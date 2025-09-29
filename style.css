@@ -164,6 +164,12 @@ body.scrolled nav {
     transform: scale(1.05);
 }
 
+.nav-span{
+    font-size: 12px;
+    color: #16a085;
+    font-weight: 500;
+}
+
 /* Slide animation for mobile menu */
 @keyframes slideDown {
     from {
