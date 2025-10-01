@@ -288,7 +288,7 @@ body.scrolled nav {
     text-align: center;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-width: 180px;
+    min-width: 160px;
 }
 
 /* Hover Effect */
@@ -1114,4 +1114,8 @@ textarea {
     .contact-grid {
         grid-template-columns: 1fr;
     }
+}
+
+#active{
+    color: red;
 }
