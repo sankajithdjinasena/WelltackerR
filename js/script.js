@@ -18,3 +18,69 @@ const toggle = document.querySelector(".menu-toggle");
   window.addEventListener("scroll", () => {
     document.body.classList.toggle("scrolled", window.scrollY > 10);
   });
+
+const form = document.getElementById("registerForm");
+const inputs = form.querySelectorAll("input[required], select[required], textarea[required]");
+const progressBar = document.getElementById("progressBar");
+
+inputs.forEach(input => {
+  input.addEventListener("input", updateProgress);
+  input.addEventListener("change", updateProgress); // for dropdown/select
+});
+
+function updateProgress() {
+  let filled = 0;
+  inputs.forEach(input => {
+    if (input.value.trim() !== "") filled++;
+  });
+  let progress = Math.round((filled / inputs.length) * 100);
+  progressBar.style.width = progress + "%";
+  progressBar.textContent = progress + "%";
+}
+
+const password = document.getElementById("password");
+const strengthBar = document.getElementById("strengthBar");
+const strengthText = document.getElementById("strengthText");
+
+password.addEventListener("input", () => {
+  const val = password.value;
+  let strength = 0;
+
+  if (val.length >= 6) strength++;
+  if (/[A-Z]/.test(val)) strength++;
+  if (/[0-9]/.test(val)) strength++;
+  if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+  switch (strength) {
+    case 0:
+      strengthBar.style.width = "0%";
+      strengthBar.style.background = "transparent";
+      strengthText.textContent = "";
+      break;
+    case 1:
+      strengthBar.style.width = "25%";
+      strengthBar.style.background = "red";
+      strengthText.textContent = "Weak";
+      strengthText.style.color = "red";
+      break;
+    case 2:
+      strengthBar.style.width = "50%";
+      strengthBar.style.background = "orange";
+      strengthText.textContent = "Fair";
+      strengthText.style.color = "orange";
+      break;
+    case 3:
+      strengthBar.style.width = "75%";
+      strengthBar.style.background = "blue";
+      strengthText.textContent = "Good";
+      strengthText.style.color = "blue";
+      break;
+    case 4:
+      strengthBar.style.width = "100%";
+      strengthBar.style.background = "green";
+      strengthText.textContent = "Strong";
+      strengthText.style.color = "green";
+      break;
+  }
+});
+

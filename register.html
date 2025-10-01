@@ -29,7 +29,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
-            <a href="patient_portal.html" class="login-btn" >Login</a>
+            <a href="patient_portal.html" class="login-btn">Login</a>
             <a href="register.html" class="register-btn" id="active">Register</a>
         </div>
     </nav>
@@ -40,7 +40,7 @@
             <div class="login-contact-form">
                 <h3>Create an Account</h3>
                 <p>Please fill in your details to register.</p>
-                <form>
+                <form id="registerForm">
                     <div class="login-form-group">
                         <label>First Name</label>
                         <input type="text" placeholder="Enter first name" required>
@@ -50,17 +50,36 @@
                         <input type="text" placeholder="Enter last name" required>
                     </div>
                     <div class="login-form-group">
+                        <label for="role">Register as</label>
+                        <select id="role" name="role" required>
+                            <option value="">-- Select Role --</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="patient">Patient</option>
+                        </select>
+                    </div>
+
+                    <div class="login-form-group">
                         <label>Email Address</label>
                         <input type="email" placeholder="Enter your email" required>
                     </div>
                     <div class="login-form-group">
                         <label>Password</label>
-                        <input type="password" placeholder="Enter password" required>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                        <div class="password-strength">
+                            <div class="strength-bar" id="strengthBar"></div>
+                        </div>
+                        <small id="strengthText"></small>
                     </div>
+
                     <div class="login-form-group">
                         <label>Confirm Password</label>
-                        <input type="password" placeholder="Confirm password" required>
+                        <input type="password" id="password" placeholder="Confirm password" required>
+                        <div class="password-strength">
+                            <div class="strength-bar" id="strengthBar"></div>
+                        </div>
+                        <small id="strengthText"></small>
                     </div>
+
                     <button type="submit" class="login-submit-btn">Register <i class="bx bx-user-plus"></i></button>
                 </form>
                 <center>
@@ -70,7 +89,56 @@
                 </center>
             </div>
             <div class="login-contact-form">
+                <div class="contact-info">
 
+                    <h2>
+                        <center>Welcome to WellTrackeR</center>
+                    </h2>
+                    <h4>
+                        <center>Create your free account in seconds</center>
+                    </h4>
+                    <p>
+                        <center>Track your health and wellness with ease using WellTrackeR. Our intuitive platform helps you monitor your fitness, nutrition, and overall well-being in one convenient place. </center></p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar">0%</div>
+                    </div>
+                    <h3>Contact Information</h3>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class='bx bx-envelope'></i></div>
+                        <div class="contact-text">
+                            <strong>Email</strong><br>
+                            support@welltracker.com
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class='bx bx-phone'></i></div>
+                        <div class="contact-text">
+                            <strong>Phone</strong><br>
+                            +94 11-678-9012
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class='bx bx-map'></i></div>
+                        <div class="contact-text">
+                            <strong>Address</strong><br>
+                            12 WelltrackeR Ave<br>Colombo District
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class='bx bx-time'></i></div>
+                        <div class="contact-text">
+                            <strong>Business Hours</strong><br>
+                            Mon – Fri: 8:00 AM – 6:00 PM PST<br>
+                            Sat – Sun: 9:00 AM – 5:00 PM PST
+                        </div>
+                    </div>
+
+                    <p><i><b><center>“Your journey starts here — sign up and unlock the possibilities.”</center></b></i></p>
+                </div>
 
             </div>
         </div>
