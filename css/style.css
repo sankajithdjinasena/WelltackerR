@@ -979,7 +979,24 @@ input, select, textarea {
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 14px;
+  box-sizing: border-box;
+  height: 42px;   /* ✅ fix height */
 }
+
+select {
+  appearance: none;  /* remove browser default */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+}
+
+select {
+  background: #fff url("data:image/svg+xml;utf8,<svg fill='%23666' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 12px center;
+  background-size: 16px;
+  padding-right: 40px; /* space for arrow */
+}
+
+
 
 
 textarea {

@@ -33,13 +33,14 @@
             <a href="login.html" class="login-btn" id="active">Login</a>
             <a href="register.html" class="register-btn">Register</a>
         </div>
-        
+
     </nav>
 
 
     <div class="login-content">
-        <p>Track your health and wellness with ease using <b>WellTrackeR</b>. <br>Our intuitive platform helps you monitor your
-                fitness, nutrition, and overall well-being in one convenient place.</p>
+        <p>Track your health and wellness with ease using <b>WellTrackeR</b>. <br>Our intuitive platform helps you
+            monitor your
+            fitness, nutrition, and overall well-being in one convenient place.</p>
     </div>
     </div>
 
@@ -50,19 +51,20 @@
                 <h3><b>
                         <center>Welcome back! <br>Please enter your credentials.</center>
                     </b></h3>
-                <form>
+                <form id="loginForm">
                     <div class="login-form-group">
                         <label>Email Address</label>
-                        <input type="email" placeholder="Enter your email" required>
+                        <input type="email" id="emailInput" placeholder="Enter your email" required>
                     </div>
                     <div class="login-form-group">
                         <label>Password</label>
-                        <input type="password" placeholder="Enter your password" required>
+                        <input type="password" id="passwordInput" placeholder="Enter your password" required>
                     </div>
                     <button type="submit" class="login-submit-btn">
                         Login <i class="bx bx-log-in"></i>
                     </button>
                 </form>
+                <p id="loginError" style="color:#c0392b; display:none; margin-top:10px; font-size:14px;"></p>
                 <center>
                     <p style="margin-top:15px;font-size:14px;">Don’t have an account?
                         <a href="register.html" style="color:#16a085;font-weight:600;">Register</a>
@@ -76,41 +78,41 @@
             <div class="login-contact-form">
                 <div class="login-contact-terxt">
                     <div class="contact-info">
-        <h3>Contact Information</h3>
+                        <h3>Contact Information</h3>
 
-        <div class="contact-item">
-          <div class="contact-icon"><i class='bx bx-envelope'></i></div>
-          <div class="contact-text">
-            <strong>Email</strong><br>
-            support@welltracker.com
-          </div>
-        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class='bx bx-envelope'></i></div>
+                            <div class="contact-text">
+                                <strong>Email</strong><br>
+                                support@welltracker.com
+                            </div>
+                        </div>
 
-        <div class="contact-item">
-          <div class="contact-icon"><i class='bx bx-phone'></i></div>
-          <div class="contact-text">
-            <strong>Phone</strong><br>
-            +94 11-678-9012
-          </div>
-        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class='bx bx-phone'></i></div>
+                            <div class="contact-text">
+                                <strong>Phone</strong><br>
+                                +94 11-678-9012
+                            </div>
+                        </div>
 
-        <div class="contact-item">
-          <div class="contact-icon"><i class='bx bx-map'></i></div>
-          <div class="contact-text">
-            <strong>Address</strong><br>
-            12 WelltrackeR Ave<br>Colombo District
-          </div>
-        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class='bx bx-map'></i></div>
+                            <div class="contact-text">
+                                <strong>Address</strong><br>
+                                12 WelltrackeR Ave<br>Colombo District
+                            </div>
+                        </div>
 
-        <div class="contact-item">
-          <div class="contact-icon"><i class='bx bx-time'></i></div>
-          <div class="contact-text">
-            <strong>Business Hours</strong><br>
-            Mon – Fri: 8:00 AM – 6:00 PM PST<br>
-            Sat – Sun: 9:00 AM – 5:00 PM PST
-          </div>
-        </div>
-      </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><i class='bx bx-time'></i></div>
+                            <div class="contact-text">
+                                <strong>Business Hours</strong><br>
+                                Mon – Fri: 8:00 AM – 6:00 PM PST<br>
+                                Sat – Sun: 9:00 AM – 5:00 PM PST
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,5 +139,6 @@
 
 </body>
 <script src="js/script.js"></script>
+<script src="js/test.js"></script>
 
 </html>
