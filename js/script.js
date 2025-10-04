@@ -38,7 +38,7 @@ function updateProgress() {
   progressBar.textContent = progress + "%";
 }
 
-const password = document.getElementById("password");
+const password = document.getElementById("passwordInput");
 const strengthBar = document.getElementById("strengthBar");
 const strengthText = document.getElementById("strengthText");
 

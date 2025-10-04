@@ -1,0 +1,52 @@
+/* Recent Activity */
+.activity {
+    margin: 20px 30px;
+}
+
+.activity h3 {
+    margin-bottom: 15px;
+}
+
+.patient {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8fafc;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.patient:hover {
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+    transform: translateX(5px);
+}
+
+.patient-info strong {
+    font-size: 15px;
+    color: #1e293b;
+}
+
+.patient-info span {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.patient button {
+    background: var(--g1color);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s ease;
+}
+
+.patient button:hover {
+    background: var(--g2color);
+}

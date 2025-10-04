@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Hard-coded credentials (client-side only; insecure for production)
   const creds = {
     'admin@welltracker.com': '12345678',
-    'patient@welltracker.com': '12345678'
+    'patient@welltracker.com': '12345678',
+    'doctor@welltracker.com': '12345678'
   };
 
   form.addEventListener('submit', function (e) {
@@ -25,10 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (creds[email] && creds[email] === password) {
       // Redirect based on role
       if (email === 'admin@welltracker.com') {
-        // Note: you wrote admin_portal.jtml — if that's a typo and you meant .html, change it.
         window.location.href = 'admin_portal.html';
       } else if (email === 'patient@welltracker.com') {
         window.location.href = 'patient_portal.html';
+      } else if (email === 'doctor@welltracker.com') {
+        window.location.href = 'doctor_portal.html';
       } else {
         // fallback (shouldn't happen with current map)
         showError('Unknown user role.');
