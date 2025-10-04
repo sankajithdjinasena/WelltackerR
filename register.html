@@ -68,16 +68,12 @@
                         <div class="password-strength">
                             <div class="strength-bar" id="strengthBar"></div>
                         </div>
-                        <small id="strengthText"></small>
                     </div>
 
                     <div class="login-form-group">
                         <label>Confirm Password</label>
-                        <input type="password" id="password" placeholder="Confirm password" required>
-                        <div class="password-strength">
-                            <div class="strength-bar" id="strengthBar"></div>
-                        </div>
-                        <small id="strengthText"></small>
+                        <input type="password" id="confirm-password" placeholder="Enter password again" required>
+                        <small id="strengthText-confirm" style="color:red;"></small>
                     </div>
 
                     <button type="submit" class="login-submit-btn">Register <i class="bx bx-user-plus"></i></button>
@@ -98,7 +94,10 @@
                         <center>Create your free account in seconds</center>
                     </h4>
                     <p>
-                        <center>Track your health and wellness with ease using WellTrackeR. Our intuitive platform helps you monitor your fitness, nutrition, and overall well-being in one convenient place. </center></p>
+                        <center>Track your health and wellness with ease using WellTrackeR. Our intuitive platform helps
+                            you monitor your fitness, nutrition, and overall well-being in one convenient place.
+                        </center>
+                    </p>
                     <div class="progress-container">
                         <div class="progress-bar" id="progressBar">0%</div>
                     </div>
@@ -137,7 +136,9 @@
                         </div>
                     </div>
 
-                    <p><i><b><center>“Your journey starts here — sign up and unlock the possibilities.”</center></b></i></p>
+                    <p><i><b>
+                                <center>“Your journey starts here — sign up and unlock the possibilities.”</center>
+                            </b></i></p>
                 </div>
 
             </div>
@@ -166,5 +167,6 @@
 
 </body>
 <script src="js/script.js"></script>
+<script src="js/password.js"></script>
 
 </html>

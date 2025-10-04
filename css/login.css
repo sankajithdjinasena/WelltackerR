@@ -443,6 +443,34 @@ textarea {
     color: red;
 }
 
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 12px; /* space on the right for icon */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.password-wrapper i {
+    position: absolute;
+    right: 12px;
+    top: 68%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.password-wrapper i:hover {
+    color: #1abc9c;
+}
 
 .contact-item {
     display: flex;

@@ -84,3 +84,25 @@ password.addEventListener("input", () => {
   }
 });
 
+const strengthText_confirm = document.getElementById("strengthText-confirm");
+const confirmPassword = document.getElementById('confirm-password');
+const submitBtn = document.getElementById('submitBtn');
+
+function checkPasswordMatch() {
+    if (confirmPassword.value === "") {
+        strengthText_confirm.textContent = "";
+        return false;
+    } else if (password.value === confirmPassword.value) {
+        strengthText_confirm.style.color = "green";
+        strengthText_confirm.textContent = "Passwords match";
+        return true;
+    } else {
+        strengthText_confirm.style.color = "red";
+        strengthText_confirm.textContent = "Passwords do not match";
+        return false;
+    }
+}
+
+password.addEventListener('input', checkPasswordMatch);
+confirmPassword.addEventListener('input', checkPasswordMatch);
+
