@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>welltrack - Privacy Policy</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2d6cdf 0%, #9333ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #2d6cdf;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #6b7280;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2d6cdf;
+        }
+
+        .hero {
+            background: linear-gradient(to bottom, #f3f4f6, white);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 768px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        .hero .date {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 1rem 3rem;
+        }
+
+        .alert-box {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .alert-box i {
+            font-size: 1.5rem;
+            color: #dc2626;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .alert-content h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-content p {
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2d6cdf 0%, #9333ea 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .section h2 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .subsection {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .subsection:hover {
+            border-color: #2d6cdf;
+        }
+
+        .subsection h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .subsection p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .info-card h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .info-card ul {
+            margin-left: 1.5rem;
+            color: #6b7280;
+        }
+
+        .info-card li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .info-card li strong {
+            color: #111827;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%);
+            border: 2px solid #2d6cdf;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .contact-info p {
+            margin: 0;
+            color: #111827;
+        }
+
+        .contact-info strong {
+            color: #2d6cdf;
+        }
+
+        footer {
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2d6cdf;
+        }
+
+        .footer-container p {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        @media (min-width: 768px) {
+            .footer-container {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <i class='bx bxs-shield'></i>
+                <span>Welltrack</span>
+            </a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/terms.html">Terms of Service</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Privacy Policy</h1>
+            <p>Your health data privacy and security are our top priorities. This policy explains how we collect, use, protect, and share your personal health information.</p>
+            <p class="date"><strong>Last Updated:</strong> October 4, 2025</p>
+        </div>
+    </section>
+
+    <main>
+        <div class="alert-box">
+            <i class='bx bxs-info-circle'></i>
+            <div class="alert-content">
+                <h3>Important Notice</h3>
+                <p>By using the Personal Health Tracker, you acknowledge that you have read, understood, and agree to this Privacy Policy. If you do not agree with any part of this policy, please do not use our services.</p>
+            </div>
+        </div>
+
+        <section class="section" id="information-we-collect">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class='bx bx-data'></i>
+                </div>
+                <h2>Information We Collect</h2>
+            </div>
+            <div class="subsection">
+                <h3>Personal Information</h3>
+                <p>Name, email address, age, gender, contact information, and medical history you provide during registration.</p>
+            </div>
+            <div class="subsection">
+                <h3>Health Data</h3>
+                <p>Blood pressure readings, blood sugar levels, heart rate, weight measurements, symptoms, and other health vitals you log in the application.</p>
+            </div>
+            <div class="subsection">
+                <h3>Usage Information</h3>
+                <p>Login times, features accessed, pages viewed, and interaction patterns within the application.</p>
+            </div>
+            <div class="subsection">
+                <h3>Doctor Communications</h3>
+                <p>Medical notes, recommendations, and advice provided by healthcare professionals through the platform.</p>
+            </div>
+        </section>
+
+        <section class="section" id="how-we-use-your-information">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class='bx bx-file-blank'></i>
+                </div>
+                <h2>How We Use Your Information</h2>
+            </div>
+            <div class="subsection">
+                <h3>Health Tracking & Visualization</h3>
+                <p>We process your health data to create personalized charts, graphs, and trend analysis to help you monitor your wellness over time.</p>
+            </div>
+            <div class="subsection">
+                <h3>AI-Powered Recommendations</h3>
+                <p>Your health vitals are analyzed by our AI models to generate personalized health insights, risk predictions, and wellness recommendations. These are informational only and not medical diagnoses.</p>
+            </div>
+            <div class="subsection">
+                <h3>Doctor-Patient Care</h3>
+                <p>Your assigned healthcare providers can access your health logs to provide informed medical advice, track your progress, and add treatment notes.</p>
+            </div>
+            <div class="subsection">
+                <h3>Service Improvement</h3>
+                <p>We use aggregated, anonymized data to improve our AI models, enhance platform features, and conduct medical research (only with your explicit consent).</p>
+            </div>
+            <div class="subsection">
+                <h3>Health Alerts</h3>
+                <p>We may send you notifications about unusual health patterns, appointment reminders, or important platform updates.</p>
+            </div>
+        </section>
+
+        <section class="section" id="data-sharing">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class='bx bx-group'></i>
+                </div>
+                <h2>Data Sharing & Disclosure</h2>
+            </div>
+            <div class="subsection">
+                <h3>Healthcare Providers</h3>
+                <p>Your health information is shared only with doctors you explicitly assign or authorize within the platform. Doctors can view your logs, trends, and add medical notes.</p>
+            </div>
+            <div class="subsection">
+                <h3>No Third-Party Sales</h3>
+                <p>We will never sell, rent, or trade your personal health information to third parties for marketing purposes.</p>
+            </div>
+            <div class="subsection">
+                <h3>Service Providers</h3>
+                <p>We may share data with trusted service providers (cloud hosting, analytics) who assist in operating our platform, under strict confidentiality agreements.</p>
+            </div>
+            <div class="subsection">
+                <h3>Legal Requirements</h3>
+                <p>We may disclose information if required by law, court order, or to protect the rights, safety, and security of our users and the platform.</p>
+            </div>
+            <div class="subsection">
+                <h3>Research (Opt-In Only)</h3>
+                <p>Anonymized health data may be used for medical research or AI model improvement only if you provide explicit consent through your account settings.</p>
+            </div>
+        </section>
+
+        <section class="section" id="compliance">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class='bx bxs-shield-alt-2'></i>
+                </div>
+                <h2>Health Data Compliance</h2>
+            </div>
+            <div class="subsection">
+                <h3>HIPAA Compliance (US)</h3>
+                <p>We implement administrative, physical, and technical safeguards to protect your Protected Health Information (PHI) in accordance with HIPAA standards.</p>
+            </div>
+            <div class="subsection">
+                <h3>GDPR Compliance (EU)</h3>
+                <p>For European users, we comply with GDPR requirements including data minimization, purpose limitation, and your rights to access, rectify, and erase your data.</p>
+            </div>
+            <div class="subsection">
+                <h3>Data Encryption</h3>
+                <p>All health data is encrypted both in transit (using TLS/SSL) and at rest (using AES-256 encryption) to prevent unauthorized access.</p>
+            </div>
+            <div class="subsection">
+                <h3>Regular Audits</h3>
+                <p>We conduct regular security assessments, penetration testing, and compliance audits to ensure the highest protection standards.</p>
+            </div>
+        </section>
+
+        <section class="section" id="your-rights">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class='bx bx-lock-alt'></i>
+                </div>
+                <h2>Your Rights & Controls</h2>
+            </div>
+            <div class="subsection">
+                <h3>Access Your Data</h3>
+                <p>You can view, download, and review all your health information at any time through your account dashboard.</p>
+            </div>
+            <div class="subsection">
+                <h3>Correct Information</h3>
+                <p>You have the right to update or correct any inaccurate personal or health information in your profile.</p>
+            </div>
+            <div class="subsection">
+                <h3>Delete Your Data</h3>
+                <p>You may request deletion of your account and all associated health data. Some data may be retained for legal compliance purposes as specified by law.</p>
+            </div>
+            <div class="subsection">
+                <h3>Export Health Records</h3>
+                <p>Download your complete health history in a portable format (CSV/PDF) for personal records or transfer to another provider.</p>
+            </div>
+            <div class="subsection">
+                <h3>Manage Doctor Access</h3>
+                <p>Control which healthcare providers can view your health data. You can revoke doctor access at any time.</p>
+            </div>
+            <div class="subsection">
+                <h3>Opt-Out of AI Analysis</h3>
+                <p>You may disable AI-powered recommendations in your settings, though this will limit certain platform features.</p>
+            </div>
+        </section>
+
+        <section class="section" id="security">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class='bx bxs-error'></i>
+                </div>
+                <h2>Data Security Measures</h2>
+            </div>
+            <div class="subsection">
+                <h3>Encryption Standards</h3>
+                <p>All data transmissions use SSL/TLS encryption. Stored data is encrypted using industry-standard AES-256 encryption.</p>
+            </div>
+            <div class="subsection">
+                <h3>Secure Authentication</h3>
+                <p>Multi-factor authentication (MFA), secure password policies, and session management protect your account from unauthorized access.</p>
+            </div>
+            <div class="subsection">
+                <h3>Access Controls</h3>
+                <p>Role-based access controls ensure that only authorized personnel (doctors, admins) can access specific data based on their role.</p>
+            </div>
+            <div class="subsection">
+                <h3>Breach Notification</h3>
+                <p>In the event of a data breach affecting your information, we will notify you within 72 hours and provide details about the incident and remediation steps.</p>
+            </div>
+            <div class="subsection">
+                <h3>Server Security</h3>
+                <p>Our servers are hosted in secure, HIPAA-compliant data centers with physical access controls, redundancy, and disaster recovery measures.</p>
+            </div>
+        </section>
+
+        <section class="section" id="retention">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class='bx bx-download'></i>
+                </div>
+                <h2>Data Retention</h2>
+            </div>
+            <div class="subsection">
+                <h3>Active Accounts</h3>
+                <p>Health logs and personal data are retained as long as your account remains active to provide continuous health tracking services.</p>
+            </div>
+            <div class="subsection">
+                <h3>Account Deletion</h3>
+                <p>Upon account deletion, most personal data is removed within 30 days. Some records may be retained for up to 7 years to comply with medical record-keeping laws.</p>
+            </div>
+            <div class="subsection">
+                <h3>Legal Obligations</h3>
+                <p>Certain data may be retained longer if required by law, regulation, or for legitimate business purposes (e.g., fraud prevention, dispute resolution).</p>
+            </div>
+        </section>
+
+        <section class="section" id="cookies">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class='bx bx-trash'></i>
+                </div>
+                <h2>Cookies & Tracking</h2>
+            </div>
+            <div class="subsection">
+                <h3>Essential Cookies</h3>
+                <p>We use necessary cookies for authentication, session management, and basic platform functionality. These cannot be disabled.</p>
+            </div>
+            <div class="subsection">
+                <h3>Analytics Cookies</h3>
+                <p>Optional analytics cookies help us understand how users interact with the platform to improve user experience. You can opt out in your browser settings.</p>
+            </div>
+            <div class="subsection">
+                <h3>No Advertising Cookies</h3>
+                <p>We do not use cookies for targeted advertising or share cookie data with advertising networks.</p>
+            </div>
+        </section>
+
+        <div class="info-card">
+            <h2>Third-Party Services</h2>
+            <p>Our platform may use the following categories of third-party services:</p>
+            <ul>
+                <li><strong>Cloud Hosting:</strong> For secure data storage and application hosting (HIPAA-compliant providers)</li>
+                <li><strong>AI Model Providers:</strong> For health risk predictions and recommendations (data is anonymized)</li>
+                <li><strong>Analytics Tools:</strong> To understand platform usage and improve user experience</li>
+                <li><strong>Email Services:</strong> For account notifications, alerts, and communication</li>
+            </ul>
+            <p>All third-party service providers are required to maintain strict confidentiality and security standards.</p>
+        </div>
+
+        <div class="info-card">
+            <h2>Updates to This Policy</h2>
+            <p>We may update this Privacy Policy periodically to reflect changes in our practices, technology, legal requirements, or other factors. When we make changes:</p>
+            <ul>
+                <li>We will update the "Last Updated" date at the top of this policy</li>
+                <li>For significant changes, we will notify you via email or in-app notification</li>
+                <li>Continued use of the platform after changes constitutes acceptance of the updated policy</li>
+            </ul>
+        </div>
+
+        <div class="contact-card">
+            <h2>Contact Us</h2>
+            <p>If you have questions about this Privacy Policy, need to exercise your data rights, or have concerns about how your information is handled, please contact us:</p>
+            <div class="contact-info">
+                <p><strong>Data Protection Officer:</strong> privacy@welltrack.com</p>
+                <p><strong>Email:</strong> support@welltrack.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Healthcare Ave, Medical District, City, State 12345</p>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.875rem;">We will respond to all privacy-related inquiries within 30 days.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>© 2025 Welltrack. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
