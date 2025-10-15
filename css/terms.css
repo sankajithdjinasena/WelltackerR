@@ -1,0 +1,264 @@
+.hero {
+    background: linear-gradient(to bottom, #f3f4f6, white);
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+.hero .date {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+main {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 1rem 3rem;
+}
+
+.warning-box {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 2px solid #ef4444;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.warning-box i {
+    font-size: 2rem;
+    color: #dc2626;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.warning-content h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #991b1b;
+    margin-bottom: 0.75rem;
+}
+
+.warning-content p,
+.warning-content ul {
+    color: #991b1b;
+    line-height: 1.6;
+}
+
+.warning-content ul {
+    margin-top: 0.5rem;
+    list-style: none;
+    padding: 0;
+}
+
+.warning-content li {
+    margin-bottom: 0.25rem;
+}
+
+.section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 2rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2d6cdf 0%, #9333ea 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.section-icon.warning {
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+}
+
+.section h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #111827;
+}
+
+.subsection {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.3s;
+}
+
+.subsection:hover {
+    border-color: #2d6cdf;
+}
+
+.subsection.warning-item {
+    border-left-color: rgba(239, 68, 68, 0.3);
+}
+
+.subsection.warning-item:hover {
+    border-left-color: rgba(239, 68, 68, 0.5);
+}
+
+.subsection h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.subsection p {
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+.info-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.info-card h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.info-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-card p {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.info-card ul {
+    margin-left: 1.5rem;
+    color: #6b7280;
+}
+
+.info-card li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+}
+
+.info-card li strong {
+    color: #2d6cdf;
+}
+
+.secondary-card {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-card {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 2px solid #2d6cdf;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.contact-card h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.contact-card p {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.contact-info p {
+    margin: 0;
+    color: #111827;
+}
+
+.contact-info strong {
+    color: #2d6cdf;
+}
+
+.acknowledgment {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border: 2px solid #93c5fd;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.acknowledgment p {
+    color: #1e40af;
+    font-weight: 600;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .footer-container {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    nav {
+        gap: 1rem;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+}
