@@ -12,6 +12,56 @@
 </head>
 
 <body>
+    
+<?php
+include 'config.php';
+
+if (isset($_POST['register'])) {
+    // Sanitize inputs
+    $first_name = trim($_POST['first_name']);
+    $last_name = trim($_POST['last_name']);
+    $email = trim($_POST['email']);
+    $role = $_POST['role'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    // Check password match
+    if ($password !== $confirm_password) {
+        echo "<script>alert('Passwords do not match!');</script>";
+    } else {
+        // Check if email already exists
+        $checkEmail = $conn->prepare("SELECT * FROM users WHERE email = ?");
+        $checkEmail->bind_param("s", $email);
+        $checkEmail->execute();
+        $result = $checkEmail->get_result();
+
+        if ($result->num_rows > 0) {
+            echo "<script>alert('Email already registered! Please login.');</script>";
+        } else {
+            // Hash password
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insert user
+            $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssss", $first_name, $last_name, $email, $hashed_password, $role);
+
+            if ($stmt->execute()) {
+                echo "<script>
+                        alert('Registration successful! You can now login.');
+                        window.location.href='login.php';
+                      </script>";
+            } else {
+                echo "<script>alert('Error: Registration failed. Try again.');</script>";
+            }
+
+            $stmt->close();
+        }
+
+        $checkEmail->close();
+    }
+}
+?>
+
 
     <style>
         .password-wrapper i {
@@ -47,14 +97,14 @@
             <div class="login-contact-form">
                 <h3>Create an Account</h3>
                 <p>Please fill in your details to register.</p>
-                <form id="registerForm">
+                <form id="registerForm" action="register.php" method="POST">
                     <div class="login-form-group">
                         <label>First Name</label>
-                        <input type="text" placeholder="Enter first name" required>
+                        <input type="text" name="first_name" placeholder="Enter first name" required>
                     </div>
                     <div class="login-form-group">
                         <label>Last Name</label>
-                        <input type="text" placeholder="Enter last name" required>
+                        <input type="text" name="last_name" placeholder="Enter last name" required>
                     </div>
                     <div class="login-form-group">
                         <label for="role">Register as</label>
@@ -67,28 +117,26 @@
 
                     <div class="login-form-group">
                         <label>Email Address</label>
-                        <input type="email" placeholder="Enter your email" required>
+                        <input type="email" name="email" placeholder="Enter your email" required>
                     </div>
                     <div class="login-form-group">
                         <label>Password</label>
                         <div class="password-wrapper">
-                            <input type="password" id="passwordInput" placeholder="Enter password" required>
-                            <i id="togglePassword" class="bx bx-hide"></i> <!-- Icon for show/hide -->
-                        </div>
-                        <div class="password-strength">
-                            <div class="strength-bar" id="strengthBar"></div>
+                            <input type="password" id="passwordInput" name="password" placeholder="Enter password" required>
+                            <i id="togglePassword" class="bx bx-hide"></i>
                         </div>
                     </div>
-
 
                     <div class="login-form-group">
                         <label>Confirm Password</label>
-                        <input type="password" id="confirm-password" placeholder="Enter password again" required>
-                        <small id="strengthText-confirm" style="color:red;"></small>
+                        <input type="password" id="confirm-password" name="confirm_password" placeholder="Enter password again" required>
                     </div>
 
-                    <button type="submit" class="login-submit-btn">Register <i class="bx bx-user-plus"></i></button>
+                    <button type="submit" name="register" class="login-submit-btn">
+                        Register <i class="bx bx-user-plus"></i>
+                    </button>
                 </form>
+
                 <center>
                     <p style="margin-top:15px;font-size:14px;">Already have an account?
                         <a href="login.html" style="color:#16a085;font-weight:600;">Login</a>

@@ -14,6 +14,60 @@
 
 <body>
 
+    <?php
+    session_start();
+    include 'config.php';
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 1) {
+            $user = $result->fetch_assoc();
+
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['role'] = $user['role'];
+                $_SESSION['first_name'] = $user['first_name'];
+                $_SESSION['last_name'] = $user['last_name'];
+                $_SESSION['email'] = $user['email'];
+
+                if ($user['role'] === 'doctor') {
+                    
+                }
+
+
+                // Redirect based on role
+                if ($user['role'] == 'doctor') {
+                    $_SESSION['verification_status'] = $user['verification_status'];
+                    $_SESSION['verification_details'] = $user['verification_details'];
+                    header("Location: doctor_portal.php");
+                } elseif ($user['role'] == 'patient') {
+                    header("Location: patient_portal.php");
+                } else {
+                    echo "<script>alert('Invalid role. Please contact admin.'); window.history.back();</script>";
+                }
+                exit();
+            } else {
+                echo "<script>alert('Incorrect password.'); window.history.back();</script>";
+            }
+        } else {
+            echo "<script>alert('No user found with that email.'); window.history.back();</script>";
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
+    ?>
+
+
+
     <!-- Navbar -->
     <nav>
         <div class="nav-header">
@@ -52,23 +106,24 @@
                 <h3><b>
                         <center>Welcome back! <br>Please enter your credentials.</center>
                     </b></h3>
-                <form id="loginForm" class="login-form">
+                <form id="loginForm" class="login-form" method="POST" action="login.php">
                     <h2 class="login-title">Login</h2>
 
                     <div class="login-form-group">
                         <label for="emailInput">Email Address</label>
-                        <input type="email" id="emailInput" placeholder="Enter your email" required>
+                        <input type="email" id="emailInput" name="email" placeholder="Enter your email" required>
                     </div>
 
                     <div class="login-form-group password-wrapper">
                         <label for="passwordInput">Password</label>
-                        <input type="password" id="passwordInput" placeholder="Enter your password" required>
+                        <input type="password" id="passwordInput" name="password" placeholder="Enter your password" required>
                         <i class="bx bx-hide" id="togglePassword"></i>
                     </div>
 
                     <button type="submit" class="login-submit-btn">
                         Login <i class="bx bx-log-in"></i>
                     </button>
+
                 </form>
                 <p id="loginError" style="color:#c0392b; display:none; margin-top:10px; font-size:14px;"></p>
                 <center>
@@ -145,7 +200,6 @@
 
 </body>
 <script src="js/script.js"></script>
-<script src="js/test.js"></script>
 <script src="js/password.js"></script>
 
 </html>
