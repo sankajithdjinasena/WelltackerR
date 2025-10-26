@@ -81,12 +81,12 @@
         <i class='bx bx-menu menu-toggle'></i>
 
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="community.html">Community</a>
-            <a href="contact.html">Contact</a>
-            <a href="login.html" class="login-btn" id="active">Login</a>
-            <a href="register.html" class="register-btn">Register</a>
+            <a href="index.php">Home</a>
+            <a href="about.php">About</a>
+            <a href="community.php">Community</a>
+            <a href="contact.php">Contact</a>
+            <a href="login.php" class="login-btn" id="active">Login</a>
+            <a href="register.php" class="register-btn">Register</a>
         </div>
 
     </nav>
@@ -128,11 +128,11 @@
                 <p id="loginError" style="color:#c0392b; display:none; margin-top:10px; font-size:14px;"></p>
                 <center>
                     <p style="margin-top:15px;font-size:14px;">Don’t have an account?
-                        <a href="register.html" style="color:#16a085;font-weight:600;">Register</a>
+                        <a href="register.php" style="color:#16a085;font-weight:600;">Register</a>
                     </p>
 
                     <p style="margin-top:15px;font-size:14px;">Don't remember your password?
-                        <a href="forget.html" style="color:#16a085;font-weight:600;">Forget Password</a>
+                        <a href="forget.php " style="color:#16a085;font-weight:600;">Forget Password</a>
                     </p>
                 </center>
             </div>
@@ -191,9 +191,9 @@
         </div>
 
         <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="privacy.php">Privacy Policy</a>
+            <a href="terms.php">Terms of Service</a>
+            <a href="contact.php">Contact Us</a>
         </div>
         <p>&copy; 2025 WellTrackeR. All rights reserved.</p>
     </footer>

@@ -24,12 +24,12 @@
     <i class='bx bx-menu menu-toggle'></i>
 
     <div class="nav-links">
-      <a href="index.html" >Home</a>
-      <a href="about.html">About</a>
-      <a href="community.html" id="active">Community</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html" class="login-btn">Login</a>
-      <a href="register.html" class="register-btn">Register</a>
+      <a href="index.php" >Home</a>
+      <a href="about.php">About</a>
+      <a href="community.php" id="active">Community</a>
+      <a href="contact.php">Contact</a>
+      <a href="login.php" class="login-btn">Login</a>
+      <a href="register.php" class="register-btn">Register</a>
     </div>
   </nav>
     <!-- COMMUNITY PAGE START -->
@@ -129,9 +129,9 @@
     </div>
 
     <div class="footer-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
-      <a href="contact.html">Contact Us</a>
+      <a href="privacy.php">Privacy Policy</a>
+      <a href="terms.php">Terms of Service</a>
+      <a href="contact.php">Contact Us</a>
     </div>
     <p>&copy; 2025 WellTrackeR. All rights reserved.</p>
   </footer>

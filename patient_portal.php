@@ -14,12 +14,12 @@
 
 <body>
     <?php
-session_start();
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
-    header("Location: login.html");
-    exit();
-}
-?>
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
+        header("Location: login.html");
+        exit();
+    }
+    ?>
     <nav>
         <div class="nav-header">
             <div class="nav-logo"><img src="image/Logo_R.png" alt="Logo"></div>
@@ -32,37 +32,37 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
         <i class='bx bx-menu menu-toggle'></i>
 
         <div class="nav-links">
-            <a id="openProfileBtn" class="register-btn"><?php echo $_SESSION["first_name"] ." ".$_SESSION["last_name"]?></a>
+            <a id="openProfileBtn" class="register-btn"><?php echo $_SESSION["first_name"] . " " . $_SESSION["last_name"] ?></a>
             <a href="login.php" class="login-btn">Logout</a>
         </div>
     </nav>
 
     <!-- Profile Dialog -->
-<!-- User Info Dialog -->
-<div id="userinfoDialog" class="userinfo-dialog">
-  <div class="userinfo-content">
-    <span class="userinfo-close">&times;</span>
-    <h2>User Profile</h2>
+    <!-- User Info Dialog -->
+    <div id="userinfoDialog" class="userinfo-dialog">
+        <div class="userinfo-content">
+            <span class="userinfo-close">&times;</span>
+            <h2>User Profile</h2>
 
-    <form id="userinfoForm" method="POST" action="update_profile.php">
-      <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+            <form id="userinfoForm" method="POST" action="update_profile.php">
+                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
 
-      <label>First Name:</label>
-      <input type="text" name="first_name" value="<?php echo $_SESSION['first_name']; ?>" required>
+                <label>First Name:</label>
+                <input type="text" name="first_name" value="<?php echo $_SESSION['first_name']; ?>" required>
 
-      <label>Last Name:</label>
-      <input type="text" name="last_name" value="<?php echo $_SESSION['last_name']; ?>" required>
+                <label>Last Name:</label>
+                <input type="text" name="last_name" value="<?php echo $_SESSION['last_name']; ?>" required>
 
-      <label>Email:</label>
-      <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
+                <label>Email:</label>
+                <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
 
-      <label>Role:</label>
-      <input type="text" value="<?php echo $_SESSION['role']; ?>" disabled>
+                <label>Role:</label>
+                <input type="text" value="<?php echo $_SESSION['role']; ?>" disabled>
 
-      <button type="submit" class="userinfo-save-btn">Save Changes</button>
-    </form>
-  </div>
-</div>
+                <button type="submit" class="userinfo-save-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
 
 
 
@@ -70,15 +70,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
         <!-- Header -->
         <div class="patient-portal-header">
             <h1>Patient Portal</h1>
-            <p>Welcome back, <?php echo $_SESSION["first_name"] ." ".$_SESSION["last_name"]?>! Here's your health overview.</p>
-            <div class="patient-portal-nav-buttons">
-                <button class="patient-portal-nav-btn active">
-                    <i class='bx bx-calendar'></i> Today's Overview
-                </button>
-                <button class="patient-portal-nav-btn">
-                    <i class='bx bx-folder'></i> Medical History
-                </button>
-            </div>
+            <p>Welcome back, <?php echo $_SESSION["first_name"] . " " . $_SESSION["last_name"] ?>! Here's your health overview.</p>
         </div>
 
         <!-- Quick Actions -->
@@ -94,30 +86,30 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
                 <span class="close-dialog" id="closeDialog">&times;</span>
                 <h2>Add Today's Vitals</h2>
 
-                <form>
+                <form method="POST" action="save_vitals.php">
                     <div class="form-group">
                         <label>Blood Pressure (mmHg)</label>
-                        <input type="text" placeholder="120/80" required>
+                        <input type="text" name="blood_pressure" placeholder="120/80" required>
                     </div>
 
                     <div class="form-group">
                         <label>Heart Rate (bpm)</label>
-                        <input type="number" placeholder="Enter heart rate" required>
+                        <input type="number" name="heart_rate" placeholder="Enter heart rate" required>
                     </div>
 
                     <div class="form-group">
                         <label>Blood Sugar (mg/dL)</label>
-                        <input type="number" placeholder="Enter blood sugar level" required>
+                        <input type="number" name="blood_sugar" placeholder="Enter blood sugar level" required>
                     </div>
 
                     <div class="form-group">
                         <label>Weight (kg)</label>
-                        <input type="number" step="0.1" placeholder="Enter weight" required>
-                    </div>                
+                        <input type="number" step="0.1" name="weight" placeholder="Enter weight" required>
+                    </div>
 
                     <div class="form-group">
                         <label>Notes</label>
-                        <textarea placeholder="Add any notes..."></textarea>
+                        <textarea name="notes" placeholder="Add any notes..."></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn">Save Vitals</button>
@@ -125,81 +117,106 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
             </div>
         </div>
 
-        <!-- Vitals Cards -->
-        <div class="vitals-grid">
-            <div class="vital-card">
-                <div class="vital-header">
-                    <span class="vital-title">Blood Pressure</span>
-                    <div class="vital-icon icon-blue">
-                        <i class='bx bx-heart'></i>
-                    </div>
-                </div>
-                <div class="vital-value">
-                    120/80<span class="vital-unit">mmHg</span>
-                </div>
-                <div class="vital-change change-negative">
-                    <i class='bx bx-down-arrow-alt'></i> 2.5% from last week
-                </div>
-            </div>
+        <div class="vitals-section">
+            <h2 class="vitals-section-title" style="padding-left: 20px;">Latest Overview</h2>
 
-            <div class="vital-card">
-                <div class="vital-header">
-                    <span class="vital-title">Heart Rate</span>
-                    <div class="vital-icon icon-cyan">
-                        <i class='bx bx-pulse'></i>
-                    </div>
-                </div>
-                <div class="vital-value">
-                    72<span class="vital-unit">bpm</span>
-                </div>
-                <div class="vital-change change-positive">
-                    <i class='bx bx-up-arrow-alt'></i> 1.2% from last week
-                </div>
-            </div>
+            <div class="vitals-grid">
+                <?php
+                include 'config.php';
 
-            <div class="vital-card">
-                <div class="vital-header">
-                    <span class="vital-title">Blood Sugar</span>
-                    <div class="vital-icon icon-red">
-                        <i class='bx bx-droplet'></i>
-                    </div>
-                </div>
-                <div class="vital-value">
-                    95<span class="vital-unit">mg/dL</span>
-                </div>
-                <div class="vital-change change-neutral">
-                    <i class='bx bx-minus'></i> 0% from last week
-                </div>
-            </div>
+                $user_id = $_SESSION['user_id'];
 
-            <div class="vital-card">
-                <div class="vital-header">
-                    <span class="vital-title">Weight</span>
-                    <div class="vital-icon icon-purple">
-                        <i class='bx bx-body'></i>
+                $sql = "SELECT blood_pressure, heart_rate, blood_sugar, weight, created_at 
+                FROM vitals 
+                WHERE user_id = ? 
+                ORDER BY created_at DESC 
+                LIMIT 1";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $user_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $latest_vitals = $result->fetch_assoc();
+
+                if (!$latest_vitals) {
+                    // No data yet
+                    $latest_vitals = [
+                        'blood_pressure' => 'N/A',
+                        'heart_rate' => 'N/A',
+                        'blood_sugar' => 'N/A',
+                        'weight' => 'N/A',
+                        'created_at' => null
+                    ];
+                }
+                ?>
+
+                <!-- Blood Pressure -->
+                <div class="vital-card">
+                    <div class="vital-header">
+                        <span class="vital-title">Blood Pressure</span>
+                        <div class="vital-icon icon-blue">
+                            <i class='bx bx-heart'></i>
+                        </div>
+                    </div>
+                    <div class="vital-value">
+                        <?php echo htmlspecialchars($latest_vitals['blood_pressure']); ?>
+                        <span class="vital-unit">mmHg</span>
                     </div>
                 </div>
-                <div class="vital-value">
-                    70.5<span class="vital-unit">kg</span>
+
+                <!-- Heart Rate -->
+                <div class="vital-card">
+                    <div class="vital-header">
+                        <span class="vital-title">Heart Rate</span>
+                        <div class="vital-icon icon-cyan">
+                            <i class='bx bx-pulse'></i>
+                        </div>
+                    </div>
+                    <div class="vital-value">
+                        <?php echo htmlspecialchars($latest_vitals['heart_rate']); ?>
+                        <span class="vital-unit">bpm</span>
+                    </div>
                 </div>
-                <div class="vital-change change-negative">
-                    <i class='bx bx-down-arrow-alt'></i> 0.8% from last week
+
+                <!-- Blood Sugar -->
+                <div class="vital-card">
+                    <div class="vital-header">
+                        <span class="vital-title">Blood Sugar</span>
+                        <div class="vital-icon icon-red">
+                            <i class='bx bx-droplet'></i>
+                        </div>
+                    </div>
+                    <div class="vital-value">
+                        <?php echo htmlspecialchars($latest_vitals['blood_sugar']); ?>
+                        <span class="vital-unit">mg/dL</span>
+                    </div>
+                </div>
+
+                <!-- Weight -->
+                <div class="vital-card">
+                    <div class="vital-header">
+                        <span class="vital-title">Weight</span>
+                        <div class="vital-icon icon-purple">
+                            <i class='bx bx-body'></i>
+                        </div>
+                    </div>
+                    <div class="vital-value">
+                        <?php echo htmlspecialchars($latest_vitals['weight']); ?>
+                        <span class="vital-unit">kg</span>
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Charts Section -->
         <div class="charts-section">
             <div class="chart-card">
                 <div class="chart-header">
                     <h3>Blood Pressure Trends</h3>
-                    <p>Your blood pressure readings over the last 30 days</p>
+                    <p>Your blood pressure readings over time</p>
                 </div>
-                <div class="chart-placeholder">
-                    <i class='bx bx-bar-chart-alt-2 chart-icon'></i>
-                    <p>Chart visualization will be displayed here</p>
-                    <p>Integration with Chart.js coming soon</p>
-                </div>
+                <canvas id="bpChart"></canvas>
             </div>
 
             <div class="chart-card">
@@ -207,11 +224,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
                     <h3>Weight Progress</h3>
                     <p>Weight tracking and BMI calculations</p>
                 </div>
-                <div class="chart-placeholder">
-                    <i class='bx bx-line-chart chart-icon'></i>
-                    <p>Chart visualization will be displayed here</p>
-                    <p>Integration with Chart.js coming soon</p>
-                </div>
+                <canvas id="weightChart"></canvas>
             </div>
         </div>
     </div>
@@ -263,14 +276,16 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patient') {
         </div>
 
         <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="privacy.php">Privacy Policy</a>
+            <a href="terms.php">Terms of Service</a>
+            <a href="contact.php">Contact Us</a>
         </div>
         <p>&copy; 2025 WellTrackeR. All rights reserved.</p>
     </footer>
 </body>
 <script src="js/script.js"></script>
 <script src="js/patientdialogbox.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/patientchart.js"></script>
 
 </html>

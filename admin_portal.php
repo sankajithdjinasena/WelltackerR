@@ -26,8 +26,8 @@
         <i class='bx bx-menu menu-toggle'></i>
 
         <div class="nav-links">
-            <a href="register.html" class="register-btn">Register</a>
-            <a href="login.html" class="login-btn">Logout</a>
+            <a href="register.php" class="register-btn">Register</a>
+            <a href="login.php" class="login-btn">Logout</a>
         </div>
     </nav>
 
@@ -135,9 +135,9 @@
         </div>
 
         <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="privacy.php">Privacy Policy</a>
+            <a href="terms.php">Terms of Service</a>
+            <a href="contact.php">Contact Us</a>
         </div>
         <p>&copy; 2025 WellTrackeR. All rights reserved.</p>
     </footer>

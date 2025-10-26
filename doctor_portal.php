@@ -32,11 +32,21 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'doctor') {
     <i class='bx bx-menu menu-toggle'></i>
 
     <div class="nav-links">
-        <a id="openProfileBtn" class="register-btn">
+        <a id="openProfileBtn" class="register-btn" style="cursor: pointer;">
             <?php echo $_SESSION["first_name"] ." ".$_SESSION["last_name"]?>
         </a>
-        <a id="openVerificationBtn" class="register-btn">
-            Status: <?php echo $_SESSION['verification_status']; ?>
+        <?php
+        $status = $_SESSION['verification_status'] ?? 'Pending';
+
+        $color = match($status) {
+            'Verified' => 'lightgreen',
+            'Pending'  => 'yellow',
+            'Rejected' => 'red',
+            default    => 'gray'
+        };
+        ?>
+        <a id="openVerificationBtn" class="register-btn" style="color: <?php echo $color; ?>; background-color:black; cursor: pointer;">
+            Status: <?php echo htmlspecialchars($status); ?>
         </a>
         <a href="logout.php" class="login-btn">Logout</a>
     </div>
@@ -172,9 +182,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'doctor') {
     </div>
 
     <div class="footer-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="privacy.php">Privacy Policy</a>
+        <a href="terms.php">Terms of Service</a>
+        <a href="contact.php">Contact Us</a>
     </div>
     <p>&copy; 2025 WellTrackeR. All rights reserved.</p>
 </footer>
