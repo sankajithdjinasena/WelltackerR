@@ -27,3 +27,5 @@ if(openVerificationBtn){
     closeVerificationBtn.onclick = () => verificationDialog.style.display = "none";
     window.onclick = (event) => { if(event.target === verificationDialog) verificationDialog.style.display = "none"; }
 }
+
+

@@ -44,11 +44,11 @@
 
 
                 // Redirect based on role
-                if ($user['role'] == 'doctor') {
+                if ($user['role'] == 'Doctor') {
                     $_SESSION['verification_status'] = $user['verification_status'];
                     $_SESSION['verification_details'] = $user['verification_details'];
                     header("Location: doctor_portal.php");
-                } elseif ($user['role'] == 'patient') {
+                } elseif ($user['role'] == 'Patient') {
                     header("Location: patient_portal.php");
                 } else {
                     echo "<script>alert('Invalid role. Please contact admin.'); window.history.back();</script>";

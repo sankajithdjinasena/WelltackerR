@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    
-<?php
+
+    <?php
 include 'config.php';
 
 if (isset($_POST['register'])) {
@@ -41,9 +41,23 @@ if (isset($_POST['register'])) {
             // Hash password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+            // Set verification status based on role
+            $verification_status = (strtolower($role) === 'doctor') ? 'Pending' : 'Verified';
+
             // Insert user
-            $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssss", $first_name, $last_name, $email, $hashed_password, $role);
+            $stmt = $conn->prepare(
+                "INSERT INTO users (first_name, last_name, email, password, role, verification_status) 
+                VALUES (?, ?, ?, ?, ?, ?)"
+            );
+            $stmt->bind_param(
+                "ssssss",
+                $first_name,
+                $last_name,
+                $email,
+                $hashed_password,
+                $role,
+                $verification_status
+            );
 
             if ($stmt->execute()) {
                 echo "<script>
@@ -61,6 +75,7 @@ if (isset($_POST['register'])) {
     }
 }
 ?>
+
 
 
     <style>
@@ -139,7 +154,7 @@ if (isset($_POST['register'])) {
 
                 <center>
                     <p style="margin-top:15px;font-size:14px;">Already have an account?
-                        <a href="login.html" style="color:#16a085;font-weight:600;">Login</a>
+                        <a href="login.php" style="color:#16a085;font-weight:600;">Login</a>
                     </p>
                 </center>
             </div>
