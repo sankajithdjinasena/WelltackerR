@@ -9,6 +9,30 @@
   <link rel="stylesheet" href="css/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+<?php
+include 'config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+    if (!empty($first_name) && !empty($email) && !empty($message)) {
+        $sql = "INSERT INTO contact_messages (first_name, last_name, email, phone, subject, message)
+                VALUES ('$first_name', '$last_name', '$email', '$phone', '$subject', '$message')";
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>alert('✅ Your message has been sent successfully!');</script>";
+        } else {
+            echo "<script>alert('❌ Error: Unable to send message. Please try again later.');</script>";
+        }
+    } else {
+        echo "<script>alert('⚠️ Please fill all required fields.');</script>";
+    }
+}
+?>
 
 <body>
   <nav>
@@ -80,31 +104,31 @@
         <h3>Send us a message</h3>
         <p>Fill out the form below and we'll get back to you within 24 hours.</p>
 
-        <form>
+        <form method="POST" action="">
           <div class="form-row">
             <div class="form-group">
               <label>First Name</label>
-              <input type="text" placeholder="John">
+              <input type="text" name="first_name" placeholder="John" required>
             </div>
             <div class="form-group">
               <label>Last Name</label>
-              <input type="text" placeholder="Doe">
+              <input type="text" name="last_name" placeholder="Doe">
             </div>
           </div>
 
           <div class="form-group">
             <label>Email</label>
-            <input type="email" placeholder="john@example.com">
+            <input type="email" name="email" placeholder="john@example.com" required>
           </div>
 
           <div class="form-group">
             <label>Phone (Optional)</label>
-            <input type="tel" placeholder="+1 (555) 123-4567">
+            <input type="tel" name="phone" placeholder="+1 (555) 123-4567">
           </div>
 
           <div class="form-group">
             <label>Subject</label>
-            <select>
+            <select name="subject">
               <option>Select a subject</option>
               <option>General Inquiry</option>
               <option>Technical Support</option>
@@ -114,7 +138,7 @@
 
           <div class="form-group">
             <label>Message</label>
-            <textarea placeholder="Tell us how we can help you..."></textarea>
+            <textarea name="message" placeholder="Tell us how we can help you..." required></textarea>
           </div>
 
           <button type="submit" class="contact-submit-btn">Send Message <i class='bx bx-send'></i></button>

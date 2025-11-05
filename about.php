@@ -34,7 +34,7 @@
 
     <div class="header">
         <div class="header_title">
-            <h1>About HealthTracker</h1>
+            <h1>About WellTrackeR</h1>
             <p>Revolutionizing healthcare through intelligent monitoring, AI-powered insights, and seamless
                 collaboration between patients and healthcare providers.</p>
         </div>
