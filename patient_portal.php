@@ -357,6 +357,46 @@
         </div>
     </div>
 </section>
+<?php
+include 'config.php';
+
+$query = "
+    SELECT 
+        u.id AS user_id,
+        CONCAT(u.first_name, ' ', u.last_name) AS full_name,
+        u.email AS email_address,
+        d.specialization,
+        d.license_number
+    FROM users u
+    JOIN doctor_verifications d ON u.id = d.user_id
+    WHERE d.verification_status = 'Verified'
+";
+$result = $conn->query($query);
+?>
+
+<section class="features-section">
+    <h2>Verified Doctors</h2>
+    <p>Professionals verified and ready to provide their expertise.</p>
+
+    <div class="features-grid">
+        <?php if ($result && $result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div class="feature-card">
+                    <h3><?= htmlspecialchars($row['full_name']) ?></h3>
+                    <p><strong>Field:</strong> <?= htmlspecialchars($row['specialization']) ?><br>
+                    ID:  <?= htmlspecialchars($row['license_number']) ?></p>
+                    <a href="mailto:<?= htmlspecialchars($row['email_address']) ?>" 
+                       style="display:inline-block; margin-top:15px; background:var(--g1color); color:#fff; padding:10px 22px; border-radius:25px; text-decoration:none; font-size:0.9rem;">
+                        Make a Appointment
+                    </a>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No verified Doctors available.</p>
+        <?php endif; ?>
+    </div>
+</section>
+
 
 <!-- Modal Structure -->
 <!-- Modal 1: Real-time Vitals Tracking -->
@@ -495,6 +535,7 @@
         </form>
     </div>
 </div>
+
 
 
 
