@@ -1,3 +1,20 @@
+<?php
+    include 'config.php';
+    session_start();
+
+    // Redirect if not a doctor
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
+        header("Location: login.php");
+        exit();
+    }
+
+    $total_users = $conn->query("SELECT COUNT(*) AS count FROM users")->fetch_assoc()['count'];
+$total_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role='Doctor'")->fetch_assoc()['count'];
+$total_patients = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role='Patient'")->fetch_assoc()['count'];
+$verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role='Doctor' AND verification_status='Verified'")->fetch_assoc()['count'];
+
+
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +43,9 @@
         <i class='bx bx-menu menu-toggle'></i>
 
         <div class="nav-links">
-            <a href="register.php" class="register-btn">Register</a>
+<a id="openProfileBtn" class="register-btn" style="cursor: pointer;">
+                <?php echo $_SESSION["first_name"] . " " . $_SESSION["last_name"] ?>
+            </a>            
             <a href="login.php" class="login-btn">Logout</a>
         </div>
     </nav>
@@ -48,33 +67,24 @@
 
 
         <!-- Vitals Cards -->
-        <div class="vitals-grid">
-            <div class="vital-card">
-                <div class="vital-header">
-                    <span class="vital-title">Total Users</span>
-                </div>
-                <div class="vital-value">1,247</div>
-            </div>
-
-            <div class="vital-card">
-                <div class="vital-header">
-                    <span class="vital-title">Active Doctors</span>
-                </div>
-                <div class="vital-value">45</div>
-            </div>
-            <div class="vital-card">
-                <div class="vital-header">
-                    <span class="vital-title">Daily Logs</span>
-                </div>
-                <div class="vital-value">2,341</div>
-            </div>
-            <div class="vital-card">
-                <div class="vital-header">
-                    <span class="vital-title">System Health</span>
-                </div>
-                <div class="vital-value">99.9% </div>
-            </div>
+    <div class="vitals-grid">
+        <div class="vital-card">
+            <h3>Total Users</h3>
+            <div class="vital-value"><?php echo $total_users; ?></div>
         </div>
+        <div class="vital-card">
+            <h3>Total Doctors</h3>
+            <div class="vital-value"><?php echo $total_doctors; ?></div>
+        </div>
+        <div class="vital-card">
+            <h3>Verified Doctors</h3>
+            <div class="vital-value"><?php echo $verified_doctors; ?></div>
+        </div>
+        <div class="vital-card">
+            <h3>Total Patients</h3>
+            <div class="vital-value"><?php echo $total_patients; ?></div>
+        </div>
+    </div>
 
 
 
@@ -107,16 +117,16 @@
                 </div>
                 <div class="menu-list">
                     <div class="menu-item">
-                        <i class='bx bx-trending-up'></i>
-                        <span>Health Trends Report</span>
-                    </div>
-                    <div class="menu-item">
                         <i class='bx bx-pulse'></i>
                         <span>User Activity Report</span>
                     </div>
                     <div class="menu-item">
-                        <i class='bx bx-shield-alt'></i>
-                        <span>Critical Conditions Summary</span>
+                        <i class='bx bx-trash'></i>
+                        <span>Remove Comments</span>
+                    </div>
+                    <div class="menu-item">
+                        <i class='bx bx-chat'></i>
+                        <span>Contact Messages</span>
                     </div>
                 </div>
             </div>

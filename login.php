@@ -38,10 +38,6 @@
                 $_SESSION['last_name'] = $user['last_name'];
                 $_SESSION['email'] = $user['email'];
 
-                if ($user['role'] === 'doctor') {
-                    
-                }
-
 
                 // Redirect based on role
                 if ($user['role'] == 'Doctor') {
@@ -50,7 +46,9 @@
                     header("Location: doctor_portal.php");
                 } elseif ($user['role'] == 'Patient') {
                     header("Location: patient_portal.php");
-                } else {
+                } elseif ($user['role'] == 'Admin') {
+                    header("Location: admin_portal.php");
+                }else {
                     echo "<script>alert('Invalid role. Please contact admin.'); window.history.back();</script>";
                 }
                 exit();
