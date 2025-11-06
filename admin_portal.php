@@ -54,15 +54,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
         <!-- Header -->
         <div class="patient-portal-header">
             <h1>Admin Portal</h1>
-            <p>System Overview: 1,247 active users, 45 doctors online.</p>
-            <div class="patient-portal-nav-buttons">
-                <button class="patient-portal-nav-btn active">
-                    <i class='bx bx-calendar'></i> Today's Overview
-                </button>
-                <button class="patient-portal-nav-btn">
-                    <i class='bx bx-stats'></i> Analytics
-                </button>
-            </div>
+            <p>System Overview: <?php echo $total_users?> active users, <?php echo $total_doctors?> doctor/s available.</p>
         </div>
 
 
@@ -88,50 +80,108 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
 
 
 
-        <div class="content-grid">
-            <div class="section-card">
-                <div class="section-header">
-                    <h2>User Management</h2>
-                    <p>Manage patients and healthcare providers</p>
-                </div>
-                <div class="menu-list">
-                    <div class="menu-item">
-                        <i class='bx bx-user'></i>
-                        <span>Manage Patients</span>
-                    </div>
-                    <div class="menu-item">
-                        <i class='bx bx-user-plus'></i>
-                        <span>Manage Doctors</span>
-                    </div>
-                    <div class="menu-item">
-                        <i class='bx bx-cog'></i>
-                        <span>System Settings</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-card">
-                <div class="section-header">
-                    <h2>Reports & Analytics</h2>
-                    <p>Generate health insights and system reports</p>
-                </div>
-                <div class="menu-list">
-                    <div class="menu-item">
-                        <i class='bx bx-pulse'></i>
-                        <span>User Activity Report</span>
-                    </div>
-                    <div class="menu-item">
-                        <i class='bx bx-trash'></i>
-                        <span>Remove Comments</span>
-                    </div>
-                    <div class="menu-item">
-                        <i class='bx bx-chat'></i>
-                        <span>Contact Messages</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="content-grid">
+  <div class="section-card">
+    <div class="section-header">
+      <h2>User Management</h2>
+      <p>Manage patients and healthcare providers</p>
     </div>
+    <div class="menu-list">
+      <div class="menu-item" data-dialog="patientsDialog">
+        <i class='bx bx-user'></i>
+        <span>Manage Patients</span>
+      </div>
+      <div class="menu-item" data-dialog="doctorsDialog">
+        <i class='bx bx-user-plus'></i>
+        <span>Manage Doctors</span>
+      </div>
+      <div class="menu-item" data-dialog="settingsDialog">
+        <i class='bx bx-user'></i>
+        <span>Register Admin</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <h2>Reports & Analytics</h2>
+      <p>Generate health insights and system reports</p>
+    </div>
+    <div class="menu-list">
+      <div class="menu-item" data-dialog="reportDialog">
+        <i class='bx bx-pulse'></i>
+        <span>User Activity Report</span>
+      </div>
+      <div class="menu-item" data-dialog="removeDialog">
+        <i class='bx bx-trash'></i>
+        <span>Remove Comments</span>
+      </div>
+      <div class="menu-item" data-dialog="contactDialog">
+        <i class='bx bx-chat'></i>
+        <span>Contact Messages</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Patients -->
+<div class="vitals-dialog" id="patientsDialog">
+  <div class="dialog-content">
+    <span class="close-dialog">&times;</span>
+    <h2>Manage Patients</h2>
+    <p>Here you can view and manage all patients’ records.</p>
+    <div class="btn"><a href="about.php">Btn</a></div>
+  </div>
+</div>
+
+<!-- Doctors -->
+<div class="vitals-dialog" id="doctorsDialog">
+  <div class="dialog-content">
+    <span class="close-dialog">&times;</span>
+    <h2>Manage Doctors</h2>
+    <p>View, edit, or add doctors in the system.</p>
+  </div>
+</div>
+
+<!-- Settings -->
+<div class="vitals-dialog" id="settingsDialog">
+  <div class="dialog-content">
+    <span class="close-dialog">&times;</span>
+    <h2>Register Admin</h2>
+    <p>Modify configurations and preferences for your system.</p>
+    <a href="register_admin.php">Register Admin</a>
+  </div>
+</div>
+
+<!-- Report -->
+<div class="vitals-dialog" id="reportDialog">
+  <div class="dialog-content">
+    <span class="close-dialog">&times;</span>
+    <h2>User Activity Report</h2>
+    <p>Generate insights and view analytics for system users.</p>
+  </div>
+</div>
+
+<!-- Remove Comments -->
+<div class="vitals-dialog" id="removeDialog">
+  <div class="dialog-content">
+    <span class="close-dialog">&times;</span>
+    <h2>Remove Comments</h2>
+    <p>View and delete inappropriate or unwanted comments.</p>
+  </div>
+</div>
+
+<!-- Contact Messages -->
+<div class="vitals-dialog" id="contactDialog">
+  <div class="dialog-content">
+    <span class="close-dialog">&times;</span>
+    <h2>Contact Messages</h2>
+    <p>View messages submitted through the contact form.</p>
+  </div>
+</div>
+
 
 
     <footer>
@@ -153,5 +203,5 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
     </footer>
 </body>
 <script src="js/script.js"></script>
-
+<script src="js/adminbox.js"></script>
 </html>
