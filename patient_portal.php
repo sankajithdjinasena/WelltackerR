@@ -13,98 +13,104 @@
 
 <style>
     .health-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(2px);
-}
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        backdrop-filter: blur(2px);
+    }
 
-.health-modal-content {
-    background: #fff;
-    padding: 30px 40px;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    max-width: 450px;
-    width: 90%;
-    position: relative;
-    animation: fadeIn 0.3s ease;
-}
+    .health-modal-content {
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        max-width: 450px;
+        width: 90%;
+        position: relative;
+        animation: fadeIn 0.3s ease;
+    }
 
-.health-modal-content h2 {
-    color: var(--g2color, #333);
-    text-align: center;
-    margin-bottom: 20px;
-}
+    .health-modal-content h2 {
+        color: var(--g2color, #333);
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-.health-modal-close {
-    position: absolute;
-    top: 12px;
-    right: 20px;
-    font-size: 26px;
-    cursor: pointer;
-    color: #888;
-    transition: color 0.2s ease;
-}
+    .health-modal-close {
+        position: absolute;
+        top: 12px;
+        right: 20px;
+        font-size: 26px;
+        cursor: pointer;
+        color: #888;
+        transition: color 0.2s ease;
+    }
 
-.health-modal-close:hover {
-    color: #e74c3c;
-}
+    .health-modal-close:hover {
+        color: #e74c3c;
+    }
 
-.health-modal .form-group {
-    margin-bottom: 15px;
-}
+    .health-modal .form-group {
+        margin-bottom: 15px;
+    }
 
-.health-modal label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #333;
-}
+    .health-modal label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+    }
 
-.health-modal input,
-.health-modal textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s ease;
-}
+    .health-modal input,
+    .health-modal textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 0.2s ease;
+    }
 
-.health-modal input:focus,
-.health-modal textarea:focus {
-    border-color: var(--g1color, #007bff);
-}
+    .health-modal input:focus,
+    .health-modal textarea:focus {
+        border-color: var(--g1color, #007bff);
+    }
 
-.health-submit {
-    width: 100%;
-    padding: 12px 25px;
-    border-radius: 25px;
-    border: none;
-    background-color: var(--g1color, #007bff);
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
+    .health-submit {
+        width: 100%;
+        padding: 12px 25px;
+        border-radius: 25px;
+        border: none;
+        background-color: var(--g1color, #007bff);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
 
-.health-submit:hover {
-    background-color: var(--g2color, #0056b3);
-}
+    .health-submit:hover {
+        background-color: var(--g2color, #0056b3);
+    }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
 
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
 
 <body>
@@ -322,45 +328,50 @@
                 <canvas id="weightChart"></canvas>
             </div>
         </div>
-    </div>
-
-<section class="features-section">
-    <h2>AI Health Insights</h2>
-    <p>Advanced features designed to revolutionize how you monitor and manage health data</p>
-
-    <div class="features-grid">
-        <div class="feature-card">
-            <i class='bx bx-pulse'></i>
-            <h3>Real-time Vitals Tracking</h3>
-            <p>Monitor blood pressure, heart rate, blood sugar, and weight with intelligent trend analysis</p>
-            <div class="ai-links">
-                <button class="ai-btn open-modal submit-btn" data-target="#modalTrack">Check</button>
-            </div>
-        </div>
-
-        <div class="feature-card">
-            <i class='bx bx-trending-up'></i>
-            <h3>AI Health Insights</h3>
-            <p>Get personalized recommendations and early risk detection powered by machine learning</p>
-            <div class="ai-links">
-                <button class="ai-btn open-modal submit-btn" data-target="#modalInsight">Check</button>
-            </div>
-        </div>
-
-        <div class="feature-card">
-            <i class='bx bx-shield'></i>
-            <h3>Secure & Private</h3>
-            <p>Enterprise-grade security ensures your health data remains confidential and protected</p>
-            <div class="ai-links">
-                <button class="ai-btn open-modal submit-btn" data-target="#modalSecureData">Check</button>
-            </div>
+        <div class="download-report" style="text-align:center; margin:30px 0;">
+            <button id="downloadPDF" class="health-submit" style="width:auto; padding:12px 25px;">
+                <i class='bx bxs-file-pdf'></i> Download Health Report (PDF)
+            </button>
         </div>
     </div>
-</section>
-<?php
-include 'config.php';
 
-$query = "
+    <section class="features-section">
+        <h2>AI Health Insights</h2>
+        <p>Advanced features designed to revolutionize how you monitor and manage health data</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class='bx bx-pulse'></i>
+                <h3>Real-time Vitals Tracking</h3>
+                <p>Monitor blood pressure, heart rate, blood sugar, and weight with intelligent trend analysis</p>
+                <div class="ai-links">
+                    <button class="ai-btn open-modal submit-btn" data-target="#modalTrack">Check</button>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <i class='bx bx-trending-up'></i>
+                <h3>AI Health Insights</h3>
+                <p>Get personalized recommendations and early risk detection powered by machine learning</p>
+                <div class="ai-links">
+                    <button class="ai-btn open-modal submit-btn" data-target="#modalInsight">Check</button>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <i class='bx bx-shield'></i>
+                <h3>Secure & Private</h3>
+                <p>Enterprise-grade security ensures your health data remains confidential and protected</p>
+                <div class="ai-links">
+                    <button class="ai-btn open-modal submit-btn" data-target="#modalSecureData">Check</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php
+    include 'config.php';
+
+    $query = "
     SELECT 
         u.id AS user_id,
         CONCAT(u.first_name, ' ', u.last_name) AS full_name,
@@ -371,174 +382,170 @@ $query = "
     JOIN doctor_verifications d ON u.id = d.user_id
     WHERE d.verification_status = 'Verified'
 ";
-$result = $conn->query($query);
-?>
+    $result = $conn->query($query);
+    ?>
 
-<section class="features-section">
-    <h2>Verified Doctors</h2>
-    <p>Professionals verified and ready to provide their expertise.</p>
+    <section class="features-section">
+        <h2>Verified Doctors</h2>
+        <p>Professionals verified and ready to provide their expertise.</p>
 
-    <div class="features-grid">
-        <?php if ($result && $result->num_rows > 0): ?>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="feature-card">
-                    <h3><?= htmlspecialchars($row['full_name']) ?></h3>
-                    <p><strong>Field:</strong> <?= htmlspecialchars($row['specialization']) ?><br>
-                    ID:  <?= htmlspecialchars($row['license_number']) ?></p>
-                    <a href="mailto:<?= htmlspecialchars($row['email_address']) ?>" 
-                       style="display:inline-block; margin-top:15px; background:var(--g1color); color:#fff; padding:10px 22px; border-radius:25px; text-decoration:none; font-size:0.9rem;">
-                        Make a Appointment
-                    </a>
+        <div class="features-grid">
+            <?php if ($result && $result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="feature-card">
+                        <h3><?= htmlspecialchars($row['full_name']) ?></h3>
+                        <p><strong>Field:</strong> <?= htmlspecialchars($row['specialization']) ?><br>
+                            ID: <?= htmlspecialchars($row['license_number']) ?></p>
+                        <a href="mailto:<?= htmlspecialchars($row['email_address']) ?>"
+                            style="display:inline-block; margin-top:15px; background:var(--g1color); color:#fff; padding:10px 22px; border-radius:25px; text-decoration:none; font-size:0.9rem;">
+                            Make a Appointment
+                        </a>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No verified Doctors available.</p>
+            <?php endif; ?>
+        </div>
+    </section>
+
+
+    <!-- Modal Structure -->
+    <!-- Modal 1: Real-time Vitals Tracking -->
+    <div id="modalTrack" class="health-modal">
+        <div class="health-modal-content">
+            <span class="health-modal-close">&times;</span>
+            <h2>Diabetes Prediction - Vitals Tracking</h2>
+            <form class="health-form">
+                <div class="form-group">
+                    <label>Pregnancies</label>
+                    <input type="number" name="Pregnancies" required>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No verified Doctors available.</p>
-        <?php endif; ?>
+                <div class="form-group">
+                    <label>Glucose</label>
+                    <input type="number" name="Glucose" required>
+                </div>
+                <div class="form-group">
+                    <label>Blood Pressure</label>
+                    <input type="number" name="BloodPressure" required>
+                </div>
+                <div class="form-group">
+                    <label>Skin Thickness</label>
+                    <input type="number" name="SkinThickness" required>
+                </div>
+                <div class="form-group">
+                    <label>Insulin</label>
+                    <input type="number" name="Insulin" required>
+                </div>
+                <div class="form-group">
+                    <label>BMI</label>
+                    <input type="number" step="any" name="BMI" required>
+                </div>
+                <div class="form-group">
+                    <label>DPF</label>
+                    <input type="number" step="any" name="DPF" required>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="Age" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="health-submit">Predict</button>
+                </div>
+            </form>
+        </div>
     </div>
-</section>
 
-
-<!-- Modal Structure -->
-<!-- Modal 1: Real-time Vitals Tracking -->
-<div id="modalTrack" class="health-modal">
-    <div class="health-modal-content">
-        <span class="health-modal-close">&times;</span>
-        <h2>Diabetes Prediction - Vitals Tracking</h2>
-        <form class="health-form">
-            <div class="form-group">
-                <label>Pregnancies</label>
-                <input type="number" name="Pregnancies" required>
-            </div>
-            <div class="form-group">
-                <label>Glucose</label>
-                <input type="number" name="Glucose" required>
-            </div>
-            <div class="form-group">
-                <label>Blood Pressure</label>
-                <input type="number" name="BloodPressure" required>
-            </div>
-            <div class="form-group">
-                <label>Skin Thickness</label>
-                <input type="number" name="SkinThickness" required>
-            </div>
-            <div class="form-group">
-                <label>Insulin</label>
-                <input type="number" name="Insulin" required>
-            </div>
-            <div class="form-group">
-                <label>BMI</label>
-                <input type="number" step="any" name="BMI" required>
-            </div>
-            <div class="form-group">
-                <label>DPF</label>
-                <input type="number" step="any" name="DPF" required>
-            </div>
-            <div class="form-group">
-                <label>Age</label>
-                <input type="number" name="Age" required>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="health-submit">Predict</button>
-            </div>
-        </form>
+    <!-- Modal 2: AI Health Insights -->
+    <div id="modalInsight" class="health-modal">
+        <div class="health-modal-content">
+            <span class="health-modal-close">&times;</span>
+            <h2>Diabetes Prediction - AI Insights</h2>
+            <form class="health-form">
+                <!-- same form fields as above -->
+                <div class="form-group">
+                    <label>Pregnancies</label>
+                    <input type="number" name="Pregnancies" required>
+                </div>
+                <div class="form-group">
+                    <label>Glucose</label>
+                    <input type="number" name="Glucose" required>
+                </div>
+                <div class="form-group">
+                    <label>Blood Pressure</label>
+                    <input type="number" name="BloodPressure" required>
+                </div>
+                <div class="form-group">
+                    <label>Skin Thickness</label>
+                    <input type="number" name="SkinThickness" required>
+                </div>
+                <div class="form-group">
+                    <label>Insulin</label>
+                    <input type="number" name="Insulin" required>
+                </div>
+                <div class="form-group">
+                    <label>BMI</label>
+                    <input type="number" step="any" name="BMI" required>
+                </div>
+                <div class="form-group">
+                    <label>DPF</label>
+                    <input type="number" step="any" name="DPF" required>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="Age" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="health-submit">Predict</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- Modal 2: AI Health Insights -->
-<div id="modalInsight" class="health-modal">
-    <div class="health-modal-content">
-        <span class="health-modal-close">&times;</span>
-        <h2>Diabetes Prediction - AI Insights</h2>
-        <form class="health-form">
-            <!-- same form fields as above -->
-            <div class="form-group">
-                <label>Pregnancies</label>
-                <input type="number" name="Pregnancies" required>
-            </div>
-            <div class="form-group">
-                <label>Glucose</label>
-                <input type="number" name="Glucose" required>
-            </div>
-            <div class="form-group">
-                <label>Blood Pressure</label>
-                <input type="number" name="BloodPressure" required>
-            </div>
-            <div class="form-group">
-                <label>Skin Thickness</label>
-                <input type="number" name="SkinThickness" required>
-            </div>
-            <div class="form-group">
-                <label>Insulin</label>
-                <input type="number" name="Insulin" required>
-            </div>
-            <div class="form-group">
-                <label>BMI</label>
-                <input type="number" step="any" name="BMI" required>
-            </div>
-            <div class="form-group">
-                <label>DPF</label>
-                <input type="number" step="any" name="DPF" required>
-            </div>
-            <div class="form-group">
-                <label>Age</label>
-                <input type="number" name="Age" required>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="health-submit">Predict</button>
-            </div>
-        </form>
+    <!-- Modal 3: Secure & Private -->
+    <div id="modalSecureData" class="health-modal">
+        <div class="health-modal-content">
+            <span class="health-modal-close">&times;</span>
+            <h2>Diabetes Prediction - Secure Data</h2>
+            <form class="health-form">
+                <!-- same form fields as above -->
+                <div class="form-group">
+                    <label>Pregnancies</label>
+                    <input type="number" name="Pregnancies" required>
+                </div>
+                <div class="form-group">
+                    <label>Glucose</label>
+                    <input type="number" name="Glucose" required>
+                </div>
+                <div class="form-group">
+                    <label>Blood Pressure</label>
+                    <input type="number" name="BloodPressure" required>
+                </div>
+                <div class="form-group">
+                    <label>Skin Thickness</label>
+                    <input type="number" name="SkinThickness" required>
+                </div>
+                <div class="form-group">
+                    <label>Insulin</label>
+                    <input type="number" name="Insulin" required>
+                </div>
+                <div class="form-group">
+                    <label>BMI</label>
+                    <input type="number" step="any" name="BMI" required>
+                </div>
+                <div class="form-group">
+                    <label>DPF</label>
+                    <input type="number" step="any" name="DPF" required>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="Age" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="health-submit">Predict</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<!-- Modal 3: Secure & Private -->
-<div id="modalSecureData" class="health-modal">
-    <div class="health-modal-content">
-        <span class="health-modal-close">&times;</span>
-        <h2>Diabetes Prediction - Secure Data</h2>
-        <form class="health-form">
-            <!-- same form fields as above -->
-            <div class="form-group">
-                <label>Pregnancies</label>
-                <input type="number" name="Pregnancies" required>
-            </div>
-            <div class="form-group">
-                <label>Glucose</label>
-                <input type="number" name="Glucose" required>
-            </div>
-            <div class="form-group">
-                <label>Blood Pressure</label>
-                <input type="number" name="BloodPressure" required>
-            </div>
-            <div class="form-group">
-                <label>Skin Thickness</label>
-                <input type="number" name="SkinThickness" required>
-            </div>
-            <div class="form-group">
-                <label>Insulin</label>
-                <input type="number" name="Insulin" required>
-            </div>
-            <div class="form-group">
-                <label>BMI</label>
-                <input type="number" step="any" name="BMI" required>
-            </div>
-            <div class="form-group">
-                <label>DPF</label>
-                <input type="number" step="any" name="DPF" required>
-            </div>
-            <div class="form-group">
-                <label>Age</label>
-                <input type="number" name="Age" required>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="health-submit">Predict</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-
-
 
     <footer>
         <div class="social">
@@ -564,42 +571,83 @@ $result = $conn->query($query);
 <script src="js/patientchart.js"></script>
 <script src="js/patientmodel.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+    document.getElementById("downloadPDF").addEventListener("click", async () => {
+        const {
+            jsPDF
+        } = window.jspdf;
+
+        // Hide buttons temporarily (to not show in PDF)
+        const buttons = document.querySelectorAll("button, .register-btn, .login-btn");
+        buttons.forEach(b => b.style.display = "none");
+
+        // Select main report area
+        const reportElement = document.querySelector(".patient-portal-container");
+
+        // Capture as canvas
+        const canvas = await html2canvas(reportElement, {
+            scale: 2
+        });
+        const imgData = canvas.toDataURL("image/png");
+
+        // Create PDF
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+
+        // Add footer
+        pdf.setFontSize(10);
+        pdf.text("Generated by WellTrackeR | © 2025", 10, pdf.internal.pageSize.getHeight() - 10);
+
+        // Save file
+        pdf.save("Health_Report.pdf");
+
+        // Restore hidden buttons
+        buttons.forEach(b => b.style.display = "");
+    });
+</script>
+
+
 <script>
     // Open modal
-document.querySelectorAll(".open-modal").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const modal = document.querySelector(btn.dataset.target);
-        modal.style.display = "flex";
+    document.querySelectorAll(".open-modal").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const modal = document.querySelector(btn.dataset.target);
+            modal.style.display = "flex";
+        });
     });
-});
 
-// Close modal by X
-document.querySelectorAll(".health-modal-close").forEach(btn => {
-    btn.addEventListener("click", () => {
-        btn.closest(".health-modal").style.display = "none";
+    // Close modal by X
+    document.querySelectorAll(".health-modal-close").forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.closest(".health-modal").style.display = "none";
+        });
     });
-});
 
-// Close modal by clicking outside
-window.addEventListener("click", e => {
-    if(e.target.classList.contains("health-modal")){
-        e.target.style.display = "none";
-    }
-});
-
-// Handle form submit
-document.querySelectorAll(".health-form").forEach(form => {
-    form.addEventListener("submit", e => {
-        e.preventDefault();
-        const prediction = Math.random() < 0.5 ? 0 : 1;
-        const message = prediction === 1
-            ? "Patient is likely to have Diabetes."
-            : "Patient is Not Diabetic.";
-        alert(message);
-        form.closest(".health-modal").style.display = "none";
+    // Close modal by clicking outside
+    window.addEventListener("click", e => {
+        if (e.target.classList.contains("health-modal")) {
+            e.target.style.display = "none";
+        }
     });
-});
 
+    // Handle form submit
+    document.querySelectorAll(".health-form").forEach(form => {
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+            const prediction = Math.random() < 0.5 ? 0 : 1;
+            const message = prediction === 1 ?
+                "Patient is likely to have Diabetes." :
+                "Patient is Not Diabetic.";
+            alert(message);
+            form.closest(".health-modal").style.display = "none";
+        });
+    });
 </script>
 
 </html>
