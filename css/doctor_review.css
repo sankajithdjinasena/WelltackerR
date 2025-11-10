@@ -1,0 +1,126 @@
+/* =========================
+   Doctor Verification Table
+   ========================= */
+.doctor-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.doctor-table thead {
+  background: linear-gradient(to right, var(--g1color), var(--g2color));
+  color: #fff;
+  text-align: left;
+}
+
+.doctor-table th {
+  padding: 12px 15px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.doctor-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.doctor-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.doctor-table td {
+  padding: 12px 15px;
+  color: #333;
+  vertical-align: middle;
+}
+
+.doctor-table a {
+  color: var(--bcolor);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.doctor-table a:hover {
+  color: var(--g2color);
+  text-decoration: underline;
+}
+
+.doctor-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Optional: status color badges */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 13px;
+  text-align: center;
+  display: inline-block;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-verified {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+
+/* =========================
+   Status Form Styles
+   ========================= */
+.status-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-select {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #333;
+  transition: border-color 0.2s ease;
+}
+
+.status-select:focus {
+  outline: none;
+  border-color: var(--bcolor);
+  background-color: #fff;
+}
+
+.update-btn {
+  padding: 6px 12px;
+  background: linear-gradient(to right, var(--g1color), var(--g2color));
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.update-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}

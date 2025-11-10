@@ -16,6 +16,14 @@
     <?php
 include 'config.php';
 
+    session_start();
+
+    // Redirect if not a doctor
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
+        header("Location: admin_portal.php");
+        exit();
+    }
+
 if (isset($_POST['register'])) {
     // Sanitize inputs
     $first_name = trim($_POST['first_name']);
@@ -97,12 +105,9 @@ if (isset($_POST['register'])) {
         <i class='bx bx-menu menu-toggle'></i>
 
         <div class="nav-links">
-            <a href="index.php">Home</a>
-            <a href="about.php">About</a>
-            <a href="community.php">Community</a>
-            <a href="contact.php">Contact</a>
-            <a href="login.php" class="login-btn">Login</a>
-            <a href="register.php" class="register-btn" id="active">Register</a>
+            <a href="" class="login-btn"><?php echo $_SESSION["first_name"] . " " . $_SESSION["last_name"] ?></a>
+            <a href="logout.php" class="login-btn">Logout</a>
+            <a href="admin_portal.php" class="register-btn">Admin Portal</a>
         </div>
     </nav>
 
@@ -149,12 +154,6 @@ if (isset($_POST['register'])) {
                         Register <i class="bx bx-user-plus"></i>
                     </button>
                 </form>
-
-                <center>
-                    <p style="margin-top:15px;font-size:14px;">Already have an account?
-                        <a href="login.php" style="color:#16a085;font-weight:600;">Login</a>
-                    </p>
-                </center>
             </div>
             <div class="login-contact-form">
                 <div class="contact-info">

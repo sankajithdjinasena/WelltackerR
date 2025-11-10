@@ -141,7 +141,8 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
   <div class="dialog-content">
     <span class="close-dialog">&times;</span>
     <h2>Manage Doctors</h2>
-    <p>View, edit, or add doctors in the system.</p>
+    <p>Review the Doctors in WellTrackeR</p>
+    <a href="view_doctors.php" style="text-decoration: none;">-> View Doctors</a>
   </div>
 </div>
 
@@ -150,8 +151,8 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
   <div class="dialog-content">
     <span class="close-dialog">&times;</span>
     <h2>Register Admin</h2>
-    <p>Modify configurations and preferences for your system.</p>
-    <a href="register_admin.php">Register Admin</a>
+    <p>Register new admin for WellTrackeR</p>
+    <a href="register_admin.php" style="text-decoration: none;">-> Register Admin</a>
   </div>
 </div>
 
