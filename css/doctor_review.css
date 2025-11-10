@@ -108,7 +108,21 @@
   border-color: var(--bcolor);
   background-color: #fff;
 }
+.delete-btn {
+    background-color: #e63946;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 5px;
+    transition: 0.2s;
+}
 
+.delete-btn:hover {
+    background-color: #d62828;
+}
 .update-btn {
   padding: 6px 12px;
   background: linear-gradient(to right, var(--g1color), var(--g2color));
@@ -119,8 +133,8 @@
   cursor: pointer;
   transition: 0.3s ease;
 }
-
 .update-btn:hover {
   opacity: 0.9;
   transform: scale(1.03);
 }
+

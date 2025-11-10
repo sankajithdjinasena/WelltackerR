@@ -132,7 +132,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
     <span class="close-dialog">&times;</span>
     <h2>Manage Patients</h2>
     <p>Here you can view and manage all patients’ records.</p>
-    <div class="btn"><a href="about.php">Btn</a></div>
+    <a href="view_users.php" style="text-decoration: none;">-> View Users</a>
   </div>
 </div>
 
