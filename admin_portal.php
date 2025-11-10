@@ -108,10 +108,6 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
       <p>Generate health insights and system reports</p>
     </div>
     <div class="menu-list">
-      <div class="menu-item" data-dialog="reportDialog">
-        <i class='bx bx-pulse'></i>
-        <span>User Activity Report</span>
-      </div>
       <div class="menu-item" data-dialog="removeDialog">
         <i class='bx bx-trash'></i>
         <span>Remove Comments</span>
@@ -156,14 +152,6 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
   </div>
 </div>
 
-<!-- Report -->
-<div class="vitals-dialog" id="reportDialog">
-  <div class="dialog-content">
-    <span class="close-dialog">&times;</span>
-    <h2>User Activity Report</h2>
-    <p>Generate insights and view analytics for system users.</p>
-  </div>
-</div>
 
 <!-- Remove Comments -->
 <div class="vitals-dialog" id="removeDialog">
@@ -180,6 +168,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
     <span class="close-dialog">&times;</span>
     <h2>Contact Messages</h2>
     <p>View messages submitted through the contact form.</p>
+    <a href="view_contact_messages.php" style="text-decoration: none;">-> View Messages</a>
   </div>
 </div>
 
