@@ -104,8 +104,8 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
 
   <div class="section-card">
     <div class="section-header">
-      <h2>Reports & Analytics</h2>
-      <p>Generate health insights and system reports</p>
+      <h2>Reviews and Comments</h2>
+      <p>Manage reviews and reply comments</p>
     </div>
     <div class="menu-list">
       <div class="menu-item" data-dialog="removeDialog">
@@ -159,6 +159,10 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role
     <span class="close-dialog">&times;</span>
     <h2>Remove Comments</h2>
     <p>View and delete inappropriate or unwanted comments.</p>
+    <a href="view_community_posts.php" style="text-decoration: none;">-> Manage posts</a><br><br>
+    <a href="view_reply.php" style="text-decoration: none;">-> Manage Replies</a>
+
+
   </div>
 </div>
 
