@@ -116,7 +116,7 @@
 <body>
     <?php
     session_start();
-    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Patient') {
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Patient' ) {
         header("Location: login.php");
         exit();
     }
@@ -181,6 +181,241 @@
                 <i class='bx bx-plus'></i> Add Today's Vitals
             </button>
         </div>
+        <!-- Button Section -->
+<div class="quick-actions">
+  <h2>Medical History</h2>
+  <button class="add-btn" id="openHistoryDialog">
+    <i class='bx bx-plus'></i> Add Medical History
+  </button>
+</div>
+  <button class="view-btn" id="openViewHistory" style="margin-left:25px">
+      <i class='bx bx-file'></i> View Medical History
+    </button>
+
+<!-- Pop-up Dialog -->
+<div class="history-dialog" id="historyDialog">
+  <div class="dialog-content">
+    <span class="close-dialog" id="closeHistoryDialog">&times;</span>
+    <h3>Add Medical History Details</h3>
+
+    <form action="upload_medical_history.php" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label>Title:</label>
+        <input type="text" name="title" placeholder="Enter title" required>
+      </div>
+
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea name="description" rows="3" placeholder="Enter description..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Upload PDF:</label>
+        <input type="file" name="pdf_file" accept="application/pdf" required>
+      </div>
+
+      <button type="submit" class="submit-btn">Upload</button>
+    </form>
+  </div>
+</div>
+
+<div class="view-history-dialog" id="viewHistoryDialog">
+  <div class="dialog-content">
+    <span class="close-dialog" id="closeViewHistory">&times;</span>
+    <h3>Medical History Records</h3>
+
+    <div class="pdf-list">
+      <?php
+      include 'config.php';
+      $user_id = $_SESSION['user_id']; // assume session has user id
+      $sql = "SELECT * FROM medical_history WHERE user_id = '$user_id' ORDER BY uploaded_at DESC";
+      $result = $conn->query($sql);
+
+      if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          echo "<div class='pdf-item'>";
+          echo "<h4>" . htmlspecialchars($row['title']) . "</h4>";
+          echo "<p>" . htmlspecialchars($row['description']) . "</p>";
+          echo "<p>Uploaded at: ". htmlspecialchars($row['uploaded_at']) . "</p>";
+          echo "<a href='" . htmlspecialchars($row['pdf_file']) . "' target='_blank' class='pdf-btn'>View PDF</a>";
+          echo "</div>";
+        }
+      } else {
+        echo "<p>No medical history uploaded yet.</p>";
+      }
+      ?>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+/* Common Modal Background */
+.history-dialog, .view-history-dialog {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+/* Dialog Box */
+.dialog-content {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 15px;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+  position: relative;
+}
+
+
+/* Close Button */
+.close-dialog {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s;
+}
+.close-dialog:hover { color: #000; }
+
+/* Headings */
+.dialog-content h3 {
+  text-align: center;
+  color: var(--g1color, #009879);
+  margin-bottom: 20px;
+}
+
+/* Form Fields */
+.form-group { margin-bottom: 15px; }
+label { font-weight: 600; color: #333; display: block; margin-bottom: 5px; }
+input, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+input:focus, textarea:focus { border-color: var(--g1color, #009879); }
+
+/* Buttons */
+.submit-btn, .pdf-btn, .view-btn {
+  background: var(--g1color, #009879);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.submit-btn:hover, .pdf-btn:hover, .view-btn:hover {
+  background: var(--g2color, #007f65);
+}
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* PDF List */
+.pdf-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+.pdf-item {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  margin-bottom: 10px;
+}
+.pdf-item h4 {
+  margin: 0 0 5px;
+  color: #222;
+  font-size: 16px;
+}
+.pdf-item p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #666;
+}
+.pdf-btn {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 8px 20px;
+  background: var(--g1color, #009879);
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.delete-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background: #cc0000;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+</style>
+
+<script>
+// Add History Dialog
+const openHistoryDialog = document.getElementById("openHistoryDialog");
+const closeHistoryDialog = document.getElementById("closeHistoryDialog");
+const historyDialog = document.getElementById("historyDialog");
+
+// View History Dialog
+const openViewHistory = document.getElementById("openViewHistory");
+const closeViewHistory = document.getElementById("closeViewHistory");
+const viewHistoryDialog = document.getElementById("viewHistoryDialog");
+
+// Open Add History
+openHistoryDialog.addEventListener("click", () => {
+  historyDialog.style.display = "flex";
+});
+closeHistoryDialog.addEventListener("click", () => {
+  historyDialog.style.display = "none";
+});
+
+// Open View History
+openViewHistory.addEventListener("click", () => {
+  viewHistoryDialog.style.display = "flex";
+});
+closeViewHistory.addEventListener("click", () => {
+  viewHistoryDialog.style.display = "none";
+});
+
+// Close on outside click
+window.addEventListener("click", (e) => {
+  if (e.target === historyDialog) historyDialog.style.display = "none";
+  if (e.target === viewHistoryDialog) viewHistoryDialog.style.display = "none";
+});
+</script>
+
 
         <div class="vitals-dialog" id="vitalsDialog">
             <div class="dialog-content">
