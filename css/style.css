@@ -6,6 +6,10 @@
     --g1color: #1abc9c;
     --g2color: #16a085;
     --bcolor: #19cbd8;
+    --g3color: #2ecc71;
+    --gradient: linear-gradient(135deg, var(--g1color), var(--g3color), var(--g2color));
+    --aqua-flow: linear-gradient(135deg, var(--bcolor), var(--g1color), var(--g2color));
+    --green-breeze: linear-gradient(135deg, var(--g3color), var(--g1color), var(--g2color));
 }
 
 body {
@@ -199,7 +203,7 @@ body.scrolled nav {
     height: 100vh;
     /* full viewport height */
     padding: 0 20px;
-    background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    background: var(--gradient);
     color: #fff;
 }
 
@@ -402,7 +406,7 @@ body.scrolled nav {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    background: var(--green-breeze);
     color: #fff;
     padding: 80px 20px;
     text-align: center;
@@ -588,7 +592,7 @@ body.scrolled nav {
 /*Footer*/
 /* Footer Container */
 footer {
-    background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    background: var(--aqua-flow);
     color: #fff;
     padding: 40px 20px;
     text-align: center;

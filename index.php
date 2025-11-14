@@ -39,7 +39,7 @@
         Intelligently Tracked</h3>
       <p>Track your health and wellness with ease using WellTrackeR. Our intuitive platform helps you monitor your
         fitness, nutrition, and overall well-being in one convenient place.</p>
-      <a href="register.html" class="get-started-btn">Get Started</a>
+      <a href="register.php" class="get-started-btn">Get Started</a>
     </div>
   </div>
 

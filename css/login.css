@@ -6,6 +6,8 @@
     --g1color: #1abc9c;
     --g2color: #16a085;
     --bcolor: #19cbd8;
+    --aqua-flow: linear-gradient(135deg, var(--bcolor), var(--g1color), var(--g2color));
+
 }
 
 body {
@@ -234,7 +236,7 @@ body.scrolled nav {
 /*Footer*/
 /* Footer Container */
 footer {
-    background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    background: var(--aqua-flow);
     color: #fff;
     padding: 40px 20px;
     text-align: center;

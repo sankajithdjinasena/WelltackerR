@@ -168,27 +168,88 @@
 
 
     <div class="patient-portal-container">
-        <!-- Header -->
+    
+    <!-- Header -->
         <div class="patient-portal-header">
             <h1>Patient Portal</h1>
             <p>Welcome back, <?php echo $_SESSION["first_name"] . " " . $_SESSION["last_name"] ?>! Here's your health overview.</p>
         </div>
 
+        <div id="pdf-extra" style="display: none;">
+            <style>
+                #pdf-extra {
+    display: none;            /* hidden on website */
+    background: #ffffff;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2px solid #ddd;
+    font-family: Arial, sans-serif;
+}
+
+/* Header section inside PDF */
+#pdf-extra .header_ {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+#pdf-extra .header_ img {
+    width: 60px;             /* adjusts logo size */
+    height: auto;
+}
+
+#pdf-extra h1 {
+    font-size: 30px;
+    color: #333;
+    margin: 0;
+}
+
+/* Basic info box */
+#pdf-extra .info-box {
+    margin-top: 10px;
+    padding: 15px;
+    background: #f7f7f7;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+#pdf-extra .info-box p {
+    margin: 5px 0;
+    color: #444;
+    font-size: 24px;
+}
+
+            </style>
+            <div class="header_">
+                <img src="image/Logo_R.png">
+                <h1>WellTrackeR – Health Summary Report</h1>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Name:</strong> <?= $_SESSION["first_name"] . " " . $_SESSION["last_name"] ?></p>
+                <p><strong>Email:</strong> <?= $_SESSION["email"] ?></p>
+                <p><strong>Date:</strong> <?= date("Y-m-d") ?></p>
+            </div>
+        </div>
+
+
         <!-- Quick Actions -->
         <div class="quick-actions">
-            <h2>Quick Actions</h2>
-            <button class="add-btn" id="openDialog">
+            <h2>Toady Vitals</h2>
+            <button class="add-btn" id="openDialog" title="Add Today's Vitals">
                 <i class='bx bx-plus'></i> Add Today's Vitals
             </button>
         </div>
         <!-- Button Section -->
 <div class="quick-actions">
   <h2>Medical History</h2>
-  <button class="add-btn" id="openHistoryDialog">
+  <button class="add-btn" id="openHistoryDialog" title="Add your past historical medical records">
     <i class='bx bx-plus'></i> Add Medical History
   </button>
 </div>
-  <button class="view-btn" id="openViewHistory" style="margin-left:25px">
+  <button class="view-btn" id="openViewHistory" style="margin-left:25px" title="View your uploaded medical history records">
       <i class='bx bx-file'></i> View Medical History
     </button>
 
@@ -810,41 +871,43 @@ window.addEventListener("click", (e) => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-    document.getElementById("downloadPDF").addEventListener("click", async () => {
-        const {
-            jsPDF
-        } = window.jspdf;
+document.getElementById("downloadPDF").addEventListener("click", async () => {
+    const { jsPDF } = window.jspdf;
 
-        // Hide buttons temporarily (to not show in PDF)
-        const buttons = document.querySelectorAll("button, .register-btn, .login-btn");
-        buttons.forEach(b => b.style.display = "none");
+    // Hide buttons temporarily
+    const buttons = document.querySelectorAll("button, .register-btn, .login-btn, .quick-actions, #viewHistoryDialog, .patient-portal-header ");
+    buttons.forEach(b => b.style.display = "none");
 
-        // Select main report area
-        const reportElement = document.querySelector(".patient-portal-container");
+    // --- STEP A: Clone hidden extra content ---
+    const extra = document.getElementById("pdf-extra").cloneNode(true);
+    extra.style.display = "block";  // make visible only for PDF
 
-        // Capture as canvas
-        const canvas = await html2canvas(reportElement, {
-            scale: 2
-        });
-        const imgData = canvas.toDataURL("image/png");
+    // --- STEP B: Attach extra header above the main report ---
+    const reportElement = document.querySelector(".patient-portal-container");
+    reportElement.prepend(extra);
 
-        // Create PDF
-        const pdf = new jsPDF("p", "mm", "a4");
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+    // --- STEP C: Capture as canvas ---
+    const canvas = await html2canvas(reportElement, { scale: 2 });
+    const imgData = canvas.toDataURL("image/png");
 
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    // --- STEP D: Generate PDF ---
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-        // Add footer
-        pdf.setFontSize(10);
-        pdf.text("Generated by WellTrackeR | © 2025", 10, pdf.internal.pageSize.getHeight() - 10);
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
 
-        // Save file
-        pdf.save("Health_Report.pdf");
+    pdf.setFontSize(10);
+    pdf.text("Generated by WellTrackeR | © 2025", 10, pdf.internal.pageSize.getHeight() - 10);
 
-        // Restore hidden buttons
-        buttons.forEach(b => b.style.display = "");
-    });
+    pdf.save("Health_Report.pdf");
+
+    // --- STEP E: Remove the temporary header ---
+    extra.remove();
+
+    // Restore UI
+    buttons.forEach(b => b.style.display = "");
+});
 </script>
 
 

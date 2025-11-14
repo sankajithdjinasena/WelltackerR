@@ -183,26 +183,26 @@
 
             // Fetch all patients and their most recent vitals
             $sql = "
-    SELECT 
-        u.id AS user_id,
-        u.email,
-        CONCAT(u.first_name, ' ', u.last_name) AS full_name,
-        v.blood_pressure,
-        v.heart_rate,
-        v.blood_sugar,
-        v.weight,
-        v.created_at
-    FROM users u
-    LEFT JOIN (
-        SELECT * FROM vitals v1
-        WHERE v1.id IN (
-            SELECT MAX(v2.id) FROM vitals v2 GROUP BY v2.user_id
-        )
-    ) v ON u.id = v.user_id
-    WHERE u.role = 'Patient'
-    ORDER BY v.created_at DESC
-    LIMIT 5
-";
+                    SELECT 
+                        u.id AS user_id,
+                        u.email,
+                        CONCAT(u.first_name, ' ', u.last_name) AS full_name,
+                        v.blood_pressure,
+                        v.heart_rate,
+                        v.blood_sugar,
+                        v.weight,
+                        v.created_at
+                    FROM users u
+                    LEFT JOIN (
+                        SELECT * FROM vitals v1
+                        WHERE v1.id IN (
+                            SELECT MAX(v2.id) FROM vitals v2 GROUP BY v2.user_id
+                        )
+                    ) v ON u.id = v.user_id
+                    WHERE u.role = 'Patient'
+                    ORDER BY v.created_at DESC
+                    LIMIT 5
+                ";
 
             $result = $conn->query($sql);
             ?>
@@ -253,8 +253,15 @@
                                     <span style="color: 
                             <?= $condition === 'High Blood Pressure' || $condition === 'High Blood Sugar' ? 'red' : ($condition === 'Low Blood Pressure' || $condition === 'Low Blood Sugar' ? 'orange' : 'green'); ?>">
                                         <?= $condition ?>
-                                    </span>
-                                </span>
+                                        <br></span>
+                                    Last Updated: <?= htmlspecialchars($row['created_at'] ?? 'N/A') ?>
+                                </span><br><br>
+                                <button class="doctor__view-btn" data-user-id="<?= $row['user_id'] ?>">
+                                    <i class='bx bx-file'></i> View Medical History
+                                </button>
+
+
+
                             </div>
                             <a href="mailto:<?= htmlspecialchars($row['email']) ?>"
                                 style="text-decoration:none; display:inline-block; padding:8px 12px; background-color:var(--g1color); color:#fff; border-radius:10px;">
@@ -269,7 +276,8 @@
         <?php elseif ($status === 'Pending'): ?>
             <!-- Limited Access -->
             <p style="color:orange; text-align:center; margin-top:20px;">
-                Your account is pending verification. Full portal features are locked.
+                Your account is pending verification. Full portal features are locked. <br>
+                <span style="color: red;">If you are not add your verified details please upload your documents.</span>
             </p>
         <?php elseif ($status === 'Rejected'): ?>
             <!-- Access Denied -->
@@ -278,6 +286,80 @@
             </p>
         <?php endif; ?>
     </div>
+
+    <!-- Doctor View History Dialog -->
+    <div class="doctor__view-history-dialog" id="doctor__viewHistoryDialog">
+        <div class="doctor__dialog-content">
+            <span class="doctor__close-dialog" id="doctor__closeViewHistory">&times;</span>
+            <h3>Medical History Records</h3>
+            <div class="doctor__pdf-list" id="doctor__pdfList">
+                <p>Select a patient to view their medical history.</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .doctor__view-history-dialog {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .doctor__dialog-content {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 15px;
+            width: 420px;
+            max-width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .doctor__close-dialog {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .doctor__pdf-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .doctor__pdf-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .doctor__pdf-btn {
+            background: var(--g1color, #009879);
+            color: white;
+            border-radius: 25px;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+
 
     <footer>
         <div class="social">
@@ -299,6 +381,35 @@
     <script src="js/script.js"></script>
     <script src="js/doctordialogbox.js"></script>
     <script src="js/docvertification.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dialog = document.getElementById("doctor__viewHistoryDialog");
+            const closeBtn = document.getElementById("doctor__closeViewHistory");
+            const pdfList = document.getElementById("doctor__pdfList");
+
+            // Open the dialog for the correct user
+            document.addEventListener("click", (e) => {
+                if (e.target.classList.contains("doctor__view-btn")) {
+                    const userId = e.target.dataset.userId;
+                    dialog.style.display = "flex";
+                    pdfList.innerHTML = "<p>Loading medical records...</p>";
+
+                    fetch(`fetch_medical_history.php?user_id=${userId}`)
+                        .then(res => res.text())
+                        .then(data => pdfList.innerHTML = data)
+                        .catch(() => pdfList.innerHTML = "<p>Error loading records.</p>");
+                }
+            });
+
+            // Close modal
+            closeBtn.addEventListener("click", () => dialog.style.display = "none");
+            window.addEventListener("click", (e) => {
+                if (e.target === dialog) dialog.style.display = "none";
+            });
+        });
+    </script>
+
 </body>
 
 </html>
