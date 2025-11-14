@@ -317,8 +317,7 @@
     </div>
 </div>
 
-
-    <footer>
+    <footer style="margin-top: 100px;">
         <div class="social">
             <h2>Follow us</h2>
             <div class="social-media">

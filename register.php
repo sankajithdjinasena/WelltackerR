@@ -139,7 +139,7 @@
             <input type="password" id="passwordInput" name="password" placeholder="Enter password" required oninput="checkPasswordStrength(this.value)">
             <i id="togglePassword" class="bx bx-hide"></i>
         </div>
-        <ul class="password-rules" id="passwordRules">
+        <ul class="password-rules" id="passwordRules" style="font-size: 12px;">
             <li id="ruleLength">At least 8 characters</li>
             <li id="ruleUpper">At least 1 uppercase letter</li>
             <li id="ruleLower">At least 1 lowercase letter</li>

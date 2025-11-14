@@ -490,7 +490,7 @@ window.addEventListener("click", (e) => {
                 <form method="POST" action="save_vitals.php">
                     <div class="form-group">
                         <label>Blood Pressure (mmHg)</label>
-                        <input type="text" name="blood_pressure" placeholder="120/80" required>
+                        <input type="text" name="blood_pressure" placeholder="120" required>
                     </div>
 
                     <div class="form-group">

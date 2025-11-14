@@ -19,6 +19,7 @@ include 'config.php';
     session_start();
 
     // Redirect if not a doctor
+    
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
         header("Location: admin_portal.php");
         exit();
@@ -73,7 +74,8 @@ if (isset($_POST['register'])) {
                         window.location.href='login.php';
                       </script>";
             } else {
-                echo "<script>alert('Error: Registration failed. Try again.');</script>";
+                echo "<script>alert('Error: Registration failed. Try again.');
+                window.location.href='register_admin.php';</script>";
             }
 
             $stmt->close();
