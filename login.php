@@ -104,7 +104,7 @@
                 <h3><b>
                         <center>Welcome back! <br>Please enter your credentials.</center>
                     </b></h3>
-                <form id="loginForm" class="login-form" method="POST" action="login.php">
+                <form id="loginForm" class="login-form" method="POST" action="login.php" >
                     <h2 class="login-title">Login</h2>
 
                     <div class="login-form-group">
@@ -178,7 +178,7 @@
     </section>
 
     <!-- Footer -->
-    <footer style="margin-bottom: ;">
+    <footer>
         <div class="social">
             <h2>Follow us</h2>
             <div class="social-media">

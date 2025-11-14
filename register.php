@@ -14,67 +14,67 @@
 <body>
 
     <?php
-include 'config.php';
+    include 'config.php';
 
-if (isset($_POST['register'])) {
-    // Sanitize inputs
-    $first_name = trim($_POST['first_name']);
-    $last_name = trim($_POST['last_name']);
-    $email = trim($_POST['email']);
-    $role = $_POST['role'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    if (isset($_POST['register'])) {
+        // Sanitize inputs
+        $first_name = trim($_POST['first_name']);
+        $last_name = trim($_POST['last_name']);
+        $email = trim($_POST['email']);
+        $role = $_POST['role'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
 
-    // Check password match
-    if ($password !== $confirm_password) {
-        echo "<script>alert('Passwords do not match!');</script>";
-    } else {
-        // Check if email already exists
-        $checkEmail = $conn->prepare("SELECT * FROM users WHERE email = ?");
-        $checkEmail->bind_param("s", $email);
-        $checkEmail->execute();
-        $result = $checkEmail->get_result();
-
-        if ($result->num_rows > 0) {
-            echo "<script>alert('Email already registered! Please login.');</script>";
+        // Check password match
+        if ($password !== $confirm_password) {
+            echo "<script>alert('Passwords do not match!');</script>";
         } else {
-            // Hash password
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            // Check if email already exists
+            $checkEmail = $conn->prepare("SELECT * FROM users WHERE email = ?");
+            $checkEmail->bind_param("s", $email);
+            $checkEmail->execute();
+            $result = $checkEmail->get_result();
 
-            // Set verification status based on role
-            $verification_status = (strtolower($role) === 'doctor') ? 'Pending' : 'Verified';
+            if ($result->num_rows > 0) {
+                echo "<script>alert('Email already registered! Please login.');</script>";
+            } else {
+                // Hash password
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert user
-            $stmt = $conn->prepare(
-                "INSERT INTO users (first_name, last_name, email, password, role, verification_status) 
+                // Set verification status based on role
+                $verification_status = (strtolower($role) === 'doctor') ? 'Pending' : 'Verified';
+
+                // Insert user
+                $stmt = $conn->prepare(
+                    "INSERT INTO users (first_name, last_name, email, password, role, verification_status) 
                 VALUES (?, ?, ?, ?, ?, ?)"
-            );
-            $stmt->bind_param(
-                "ssssss",
-                $first_name,
-                $last_name,
-                $email,
-                $hashed_password,
-                $role,
-                $verification_status
-            );
+                );
+                $stmt->bind_param(
+                    "ssssss",
+                    $first_name,
+                    $last_name,
+                    $email,
+                    $hashed_password,
+                    $role,
+                    $verification_status
+                );
 
-            if ($stmt->execute()) {
-                echo "<script>
+                if ($stmt->execute()) {
+                    echo "<script>
                         alert('Registration successful! You can now login.');
                         window.location.href='login.php';
                       </script>";
-            } else {
-                echo "<script>alert('Error: Registration failed. Try again.');</script>";
+                } else {
+                    echo "<script>alert('Error: Registration failed. Try again.');</script>";
+                }
+
+                $stmt->close();
             }
 
-            $stmt->close();
+            $checkEmail->close();
         }
-
-        $checkEmail->close();
     }
-}
-?>
+    ?>
 
 
 
@@ -112,45 +112,130 @@ if (isset($_POST['register'])) {
             <div class="login-contact-form">
                 <h3>Create an Account</h3>
                 <p>Please fill in your details to register.</p>
-                <form id="registerForm" action="register.php" method="POST">
-                    <div class="login-form-group">
-                        <label>First Name</label>
-                        <input type="text" name="first_name" placeholder="Enter first name" required>
-                    </div>
-                    <div class="login-form-group">
-                        <label>Last Name</label>
-                        <input type="text" name="last_name" placeholder="Enter last name" required>
-                    </div>
-                    <div class="login-form-group">
-                        <label for="role">Register as</label>
-                        <select id="role" name="role" required>
-                            <option value="">-- Select Role --</option>
-                            <option value="doctor">Doctor</option>
-                            <option value="patient">Patient</option>
-                        </select>
-                    </div>
+       <form id="registerForm" action="register.php" method="POST" onsubmit="return validateRegisterForm()">
+    <div class="login-form-group">
+        <label>First Name</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Enter first name" required>
+    </div>
+    <div class="login-form-group">
+        <label>Last Name</label>
+        <input type="text" id="last_name" name="last_name" placeholder="Enter last name" required>
+    </div>
+    <div class="login-form-group">
+        <label for="role">Register as</label>
+        <select id="role" name="role" required>
+            <option value="">-- Select Role --</option>
+            <option value="doctor">Doctor</option>
+            <option value="patient">Patient</option>
+        </select>
+    </div>
+    <div class="login-form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+    <div class="login-form-group">
+        <label>Password</label>
+        <div class="password-wrapper">
+            <input type="password" id="passwordInput" name="password" placeholder="Enter password" required oninput="checkPasswordStrength(this.value)">
+            <i id="togglePassword" class="bx bx-hide"></i>
+        </div>
+        <ul class="password-rules" id="passwordRules">
+            <li id="ruleLength">At least 8 characters</li>
+            <li id="ruleUpper">At least 1 uppercase letter</li>
+            <li id="ruleLower">At least 1 lowercase letter</li>
+            <li id="ruleNumber">At least 1 number</li>
+            <li id="ruleSpecial">At least 1 special character (!@#$%^&*)</li>
+        </ul>
+        <div id="strengthMsg" style="font-size:12px; margin-top:5px;"></div>
+    </div>
+    <div class="login-form-group">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirm_password" placeholder="Enter password again" required>
+    </div>
 
-                    <div class="login-form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="login-form-group">
-                        <label>Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="passwordInput" name="password" placeholder="Enter password" required>
-                            <i id="togglePassword" class="bx bx-hide"></i>
-                        </div>
-                    </div>
+    <p id="registerError" style="color:#c0392b; margin-top:10px; font-size:14px;"></p>
 
-                    <div class="login-form-group">
-                        <label>Confirm Password</label>
-                        <input type="password" id="confirm-password" name="confirm_password" placeholder="Enter password again" required>
-                    </div>
+    <button type="submit" name="register" class="login-submit-btn">
+        Register <i class="bx bx-user-plus"></i>
+    </button>
+</form>
 
-                    <button type="submit" name="register" class="login-submit-btn">
-                        Register <i class="bx bx-user-plus"></i>
-                    </button>
-                </form>
+<script>
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('passwordInput');
+togglePassword.addEventListener('click', () => {
+    const type = passwordInput.type === 'password' ? 'text' : 'password';
+    passwordInput.type = type;
+    togglePassword.classList.toggle('bx-show');
+});
+
+// Password strength & rules checker
+function checkPasswordStrength(password) {
+    const rules = {
+        ruleLength: password.length >= 8,
+        ruleUpper: /[A-Z]/.test(password),
+        ruleLower: /[a-z]/.test(password),
+        ruleNumber: /[0-9]/.test(password),
+        ruleSpecial: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    };
+
+    for (let id in rules) {
+        const el = document.getElementById(id);
+        if (rules[id]) el.classList.add('valid');
+        else el.classList.remove('valid');
+    }
+
+    const strength = Object.values(rules).filter(v => v).length;
+    const strengthMsg = document.getElementById('strengthMsg');
+    if (strength === 5) {
+        strengthMsg.textContent = "Strong password";
+        strengthMsg.style.color = "green";
+    } else if (strength >= 3) {
+        strengthMsg.textContent = "Medium strength";
+        strengthMsg.style.color = "orange";
+    } else {
+        strengthMsg.textContent = "Weak password";
+        strengthMsg.style.color = "red";
+    }
+}
+
+// Form validation
+function validateRegisterForm() {
+    const firstName = document.getElementById('first_name').value.trim();
+    const lastName = document.getElementById('last_name').value.trim();
+    const role = document.getElementById('role').value;
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('passwordInput').value.trim();
+    const confirmPassword = document.getElementById('confirmPassword').value.trim();
+    const errorEl = document.getElementById('registerError');
+
+    errorEl.textContent = "";
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!firstName || !lastName || !role || !email || !password || !confirmPassword) {
+        errorEl.textContent = "All fields are required.";
+        return false;
+    }
+
+    if (!emailRegex.test(email)) {
+        errorEl.textContent = "Please enter a valid email address.";
+        return false;
+    }
+
+    if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+        errorEl.textContent = "Password must meet all requirements listed above.";
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        errorEl.textContent = "Passwords do not match.";
+        return false;
+    }
+
+    return true; // All validations passed
+}
+</script>
 
                 <center>
                     <p style="margin-top:15px;font-size:14px;">Already have an account?
@@ -241,6 +326,4 @@ if (isset($_POST['register'])) {
 
 </body>
 <script src="js/script.js"></script>
-<script src="js/password.js"></script>
-
 </html>

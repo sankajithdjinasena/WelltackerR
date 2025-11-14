@@ -86,7 +86,7 @@ if (isset($_POST['send_otp'])) {
     border-radius: 25px;
     font-weight: 600;
     transition: all 0.3s ease;
-    width: 100px;
+    width: 150px;
 }
 
 .login-submit-btn:hover {
