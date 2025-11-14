@@ -255,18 +255,22 @@
                                         <?= $condition ?>
                                         <br></span>
                                     Last Updated: <?= htmlspecialchars($row['created_at'] ?? 'N/A') ?>
-                                </span><br><br>
-                                <button class="doctor__view-btn" data-user-id="<?= $row['user_id'] ?>">
-                                    <i class='bx bx-file'></i> View Medical History
-                                </button>
+                                </span> <br>
+                                <span>
+                                    <button class="doctor-send-note-btn" data-user-id="<?= $row['user_id'] ?>" 
+                                        data-user-name="<?= htmlspecialchars($row['full_name']) ?>"
+                                        style="margin-top:10px; background:#3498db; color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer;">
+                                        <i class='bx bx-message-dots'></i> Send Note
+                                    </button>
 
-
+                                </span>
 
                             </div>
                             <a href="mailto:<?= htmlspecialchars($row['email']) ?>"
                                 style="text-decoration:none; display:inline-block; padding:8px 12px; background-color:var(--g1color); color:#fff; border-radius:10px;">
                                 <i class='bx bx-mail-send'></i> Send Email
                             </a>
+                            
                         </div>
                     <?php endwhile; ?>
                 <?php else: ?>
@@ -287,78 +291,31 @@
         <?php endif; ?>
     </div>
 
-    <!-- Doctor View History Dialog -->
-    <div class="doctor__view-history-dialog" id="doctor__viewHistoryDialog">
-        <div class="doctor__dialog-content">
-            <span class="doctor__close-dialog" id="doctor__closeViewHistory">&times;</span>
-            <h3>Medical History Records</h3>
-            <div class="doctor__pdf-list" id="doctor__pdfList">
-                <p>Select a patient to view their medical history.</p>
-            </div>
-        </div>
+    <!-- Send Note Modal -->
+<div id="sendNoteModal" 
+     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+            background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+    
+    <div style="background:#fff; padding:20px; width:350px; border-radius:10px; position:relative;">
+        
+        <h3 id="noteModalTitle">Send Note</h3>
+        <form id="sendNoteForm">
+            <input type="hidden" name="patient_id" id="modalPatientId">
+
+            <label>Message:</label>
+            <textarea name="note" required
+                      style="width:100%; height:120px; border-radius:6px; padding:10px;"></textarea>
+
+            <button type="submit"
+                    style="margin-top:10px; width:100%; background:green; color:white; padding:10px; border:none; border-radius:6px;">
+                Send
+            </button>
+        </form>
+
+        <button id="closeModalBtn"
+                style="position:absolute; top:10px; right:10px; cursor:pointer; border:none; background:none; font-size:18px;">✖</button>
     </div>
-
-    <style>
-        .doctor__view-history-dialog {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-        }
-
-        .doctor__dialog-content {
-            background: #fff;
-            padding: 25px 30px;
-            border-radius: 15px;
-            width: 420px;
-            max-width: 90%;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            position: relative;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .doctor__close-dialog {
-            position: absolute;
-            right: 15px;
-            top: 10px;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        .doctor__pdf-list {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .doctor__pdf-item {
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-        }
-
-        .doctor__pdf-btn {
-            background: var(--g1color, #009879);
-            color: white;
-            border-radius: 25px;
-            padding: 8px 16px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-    </style>
+</div>
 
 
     <footer>
@@ -381,35 +338,45 @@
     <script src="js/script.js"></script>
     <script src="js/doctordialogbox.js"></script>
     <script src="js/docvertification.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const dialog = document.getElementById("doctor__viewHistoryDialog");
-            const closeBtn = document.getElementById("doctor__closeViewHistory");
-            const pdfList = document.getElementById("doctor__pdfList");
-
-            // Open the dialog for the correct user
-            document.addEventListener("click", (e) => {
-                if (e.target.classList.contains("doctor__view-btn")) {
-                    const userId = e.target.dataset.userId;
-                    dialog.style.display = "flex";
-                    pdfList.innerHTML = "<p>Loading medical records...</p>";
-
-                    fetch(`fetch_medical_history.php?user_id=${userId}`)
-                        .then(res => res.text())
-                        .then(data => pdfList.innerHTML = data)
-                        .catch(() => pdfList.innerHTML = "<p>Error loading records.</p>");
-                }
-            });
-
-            // Close modal
-            closeBtn.addEventListener("click", () => dialog.style.display = "none");
-            window.addEventListener("click", (e) => {
-                if (e.target === dialog) dialog.style.display = "none";
-            });
-        });
-    </script>
-
 </body>
+<script>
+document.querySelectorAll('.doctor-send-note-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const patientId = btn.getAttribute('data-user-id');
+        const patientName = btn.getAttribute('data-user-name');
+
+        document.getElementById('modalPatientId').value = patientId;
+        document.getElementById('noteModalTitle').innerText = "Send Note to " + patientName;
+
+        document.getElementById('sendNoteModal').style.display = "flex";
+    });
+});
+
+document.getElementById('closeModalBtn').addEventListener('click', () => {
+    document.getElementById('sendNoteModal').style.display = "none";
+});
+</script>
+
+<script>
+document.getElementById("sendNoteForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("send_note.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(response => {
+        if (response.trim() === "success") {
+            alert("Note sent!");
+            document.getElementById('sendNoteModal').style.display = "none";
+        } else {
+            alert("Failed to send note.");
+        }
+    });
+});
+</script>
 
 </html>

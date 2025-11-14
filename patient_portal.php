@@ -253,6 +253,10 @@
       <i class='bx bx-file'></i> View Medical History
     </button>
 
+    <button id="openMessagesBtn" class="view-btn" style="margin-left: 5px;" title="See messages from the Doctors"> 
+        <i class='bx bx-chat'></i> See messages from Doctor</button>
+
+
 <!-- Pop-up Dialog -->
 <div class="history-dialog" id="historyDialog">
   <div class="dialog-content">
@@ -692,9 +696,10 @@ window.addEventListener("click", (e) => {
                         <h3><?= htmlspecialchars($row['full_name']) ?></h3>
                         <p><strong>Field:</strong> <?= htmlspecialchars($row['specialization']) ?><br>
                             ID: <?= htmlspecialchars($row['license_number']) ?></p>
+                            <span style="color:red">Email to Schedule Consultation</span><br>
                         <a href="mailto:<?= htmlspecialchars($row['email_address']) ?>"
                             style="display:inline-block; margin-top:15px; background:var(--g1color); color:#fff; padding:10px 22px; border-radius:25px; text-decoration:none; font-size:0.9rem;">
-                            Make a Appointment
+                            Send Email
                         </a>
                     </div>
                 <?php endwhile; ?>
@@ -703,8 +708,7 @@ window.addEventListener("click", (e) => {
             <?php endif; ?>
         </div>
     </section>
-
-
+    
     <!-- Modal Structure -->
     <!-- Modal 1: Real-time Vitals Tracking -->
     <div id="modalTrack" class="health-modal">
@@ -841,11 +845,61 @@ window.addEventListener("click", (e) => {
                 </div>
             </form>
         </div>
+            <h2>Follow us</h2>
     </div>
+
+    <!-- Messages Modal -->
+<div id="messagesModal"
+     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+
+    <div style="background:#fff; width:400px; max-height:500px; overflow-y:auto;
+                padding:20px; border-radius:10px; position:relative;">
+
+        <h3>Your Messages</h3>
+
+        <div id="messagesContent">
+            <!-- PHP messages will load here -->
+            <?php
+            include 'config.php';
+            $patient_id = $_SESSION["user_id"];
+
+            $sql = "
+                SELECT dn.note, dn.created_at,
+                    CONCAT(u.first_name, ' ', u.last_name) AS doctor_name
+                FROM doctor_notes dn
+                JOIN users u ON dn.doctor_id = u.id
+                WHERE dn.patient_id = '$patient_id'
+                ORDER BY dn.created_at DESC
+            ";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0):
+                while ($row = $result->fetch_assoc()): ?>
+                    <div style='background:#f4f4f4; padding:15px; border-radius:8px; margin-bottom:10px;'>
+                        <strong>Doctor:</strong> <?= $row['doctor_name'] ?><br>
+                        <strong>Message:</strong> <?= $row['note'] ?><br>
+                        <small><?= $row['created_at'] ?></small>
+                    </div>
+                <?php endwhile;
+            else:
+                echo "<p>No messages yet.</p>";
+            endif;
+            ?>
+        </div>
+
+        <!-- Close Button -->
+        <button id="closeMessagesBtn"
+                style="position:absolute; top:10px; right:10px; 
+                       background:none; border:none; font-size:20px; cursor:pointer;"> ✖
+        </button>
+
+    </div>
+</div>
+
 
     <footer>
         <div class="social">
-            <h2>Follow us</h2>
             <div class="social-media">
                 <a href="#"> <i class='bx bxl-facebook'></i></a>
                 <a href="#"> <i class='bx bxl-instagram'></i></a>
@@ -947,5 +1001,16 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
         });
     });
 </script>
+
+<script>
+document.getElementById("openMessagesBtn").addEventListener("click", () => {
+    document.getElementById("messagesModal").style.display = "flex";
+});
+
+document.getElementById("closeMessagesBtn").addEventListener("click", () => {
+    document.getElementById("messagesModal").style.display = "none";
+});
+</script>
+
 
 </html>

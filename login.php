@@ -178,7 +178,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer style="margin-bottom: ;">
         <div class="social">
             <h2>Follow us</h2>
             <div class="social-media">
