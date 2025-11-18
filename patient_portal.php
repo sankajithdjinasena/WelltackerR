@@ -35,6 +35,8 @@
         width: 90%;
         position: relative;
         animation: fadeIn 0.3s ease;
+        max-height: 82vh;
+        overflow-y: auto;
     }
 
     .health-modal-content h2 {
@@ -639,34 +641,34 @@ window.addEventListener("click", (e) => {
         <h2>AI Health Insights</h2>
         <p>Advanced features designed to revolutionize how you monitor and manage health data</p>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class='bx bx-pulse'></i>
-                <h3>Real-time Vitals Tracking</h3>
-                <p>Monitor blood pressure, heart rate, blood sugar, and weight with intelligent trend analysis</p>
-                <div class="ai-links">
-                    <button class="ai-btn open-modal submit-btn" data-target="#modalTrack">Check</button>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <i class='bx bx-trending-up'></i>
-                <h3>AI Health Insights</h3>
-                <p>Get personalized recommendations and early risk detection powered by machine learning</p>
-                <div class="ai-links">
-                    <button class="ai-btn open-modal submit-btn" data-target="#modalInsight">Check</button>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <i class='bx bx-shield'></i>
-                <h3>Secure & Private</h3>
-                <p>Enterprise-grade security ensures your health data remains confidential and protected</p>
-                <div class="ai-links">
-                    <button class="ai-btn open-modal submit-btn" data-target="#modalSecureData">Check</button>
-                </div>
-            </div>
+<div class="features-grid">
+    
+    <div class="feature-card" style="display: flex; flex-direction: column;">
+        <h3>Real-time Diabetes Risk Tracking</h3>
+        <p style="flex-grow: 1;">Monitor <strong>Pregnancies, Glucose, Blood Pressure, Skin Thickness, Insulin, BMI, DPF(Diabetes Pedigree Function), and Age </strong> to assess diabetes risk with intelligent trend analysis.</p>
+        <div class="ai-links" style="margin-bottom: 10px; margin-top: auto;">
+            <button class="ai-btn open-modal submit-btn" data-target="#modalTrack">Check</button>
         </div>
+    </div>
+
+    <div class="feature-card" style="display: flex; flex-direction: column;">
+        <h3>Real-Time Lung Cancer Risk Checker</h3>
+        <p style="flex-grow: 1;"> Monitor key health indicators such as <strong>Age, Gender, Smoking Habits, Finger Discoloration, Mental Stress, Pollution Exposure, Long-Term Illness, Energy Level, Immune Weakness, Breathing Issues, Alcohol Consumption, Throat Discomfort, Oxygen Saturation, Chest Tightness, Family History, Smoking Family History,</strong> and <strong>Stress-Immune Factors</strong> to assess lung cancer risk with advanced machine learning insights. </p>
+        <div class="ai-links" style="margin-bottom: 10px; margin-top: auto;">
+            <button class="ai-btn open-modal submit-btn" data-target="#modalInsight">Check</button>
+        </div>
+    </div>
+
+<!--
+    <p class="disclaimer" style="color: #a00; font-weight: bold; margin-top: 15px; padding: 10px; border: 1px solid #f00; border-radius: 4px; background-color: #ffeaea;">
+    Disclaimer: The generated values are **not true medical diagnoses**. This tool is for preliminary risk assessment and informational purposes only to provide a simple idea of potential risk factors. Always consult a qualified healthcare professional for any health concerns or before making medical decisions.
+</p>
+
+            -->
+    
+</div>
+
+
     </section>
     <?php
     include 'config.php';
@@ -714,8 +716,8 @@ window.addEventListener("click", (e) => {
     <div id="modalTrack" class="health-modal">
         <div class="health-modal-content">
             <span class="health-modal-close">&times;</span>
-            <h2>Diabetes Prediction - Vitals Tracking</h2>
-            <form class="health-form">
+            <h2>Diabetes Prediction</h2>
+            <form class="health-form" id="prediction-form">
                 <div class="form-group">
                     <label>Pregnancies</label>
                     <input type="number" name="Pregnancies" required>
@@ -741,7 +743,7 @@ window.addEventListener("click", (e) => {
                     <input type="number" step="any" name="BMI" required>
                 </div>
                 <div class="form-group">
-                    <label>DPF</label>
+                    <label>DPF (Diabetes Pedigree Function)</label>
                     <input type="number" step="any" name="DPF" required>
                 </div>
                 <div class="form-group">
@@ -755,96 +757,206 @@ window.addEventListener("click", (e) => {
         </div>
     </div>
 
-    <!-- Modal 2: AI Health Insights -->
-    <div id="modalInsight" class="health-modal">
-        <div class="health-modal-content">
-            <span class="health-modal-close">&times;</span>
-            <h2>Diabetes Prediction - AI Insights</h2>
-            <form class="health-form">
-                <!-- same form fields as above -->
-                <div class="form-group">
-                    <label>Pregnancies</label>
-                    <input type="number" name="Pregnancies" required>
-                </div>
-                <div class="form-group">
-                    <label>Glucose</label>
-                    <input type="number" name="Glucose" required>
-                </div>
-                <div class="form-group">
-                    <label>Blood Pressure</label>
-                    <input type="number" name="BloodPressure" required>
-                </div>
-                <div class="form-group">
-                    <label>Skin Thickness</label>
-                    <input type="number" name="SkinThickness" required>
-                </div>
-                <div class="form-group">
-                    <label>Insulin</label>
-                    <input type="number" name="Insulin" required>
-                </div>
-                <div class="form-group">
-                    <label>BMI</label>
-                    <input type="number" step="any" name="BMI" required>
-                </div>
-                <div class="form-group">
-                    <label>DPF</label>
-                    <input type="number" step="any" name="DPF" required>
-                </div>
-                <div class="form-group">
-                    <label>Age</label>
-                    <input type="number" name="Age" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="health-submit">Predict</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    <script>
+    document.getElementById('prediction-form').addEventListener('submit', async function(e) {
+        // Stop the form from submitting normally (which would reload the page)
+        e.preventDefault(); 
 
+        const form = e.target;
+        // Use FormData to easily capture all form input values
+        const formData = new FormData(form);
+
+        try {
+            // Send the form data to the Flask '/predict' route
+            const response = await fetch('diabetic_predict.php', {
+                method: 'POST',
+                body: formData 
+            });
+
+            // Check if the server responded successfully (status 200)
+            if (!response.ok) {
+                // If not successful, parse the error message from the server
+                const errorData = await response.json();
+                alert('Prediction Error: ' + errorData.error);
+                return;
+            }
+
+            // Parse the successful JSON response from the server
+            const result = await response.json(); 
+            const predictionText = result.prediction_result;
+
+            // Display the final prediction result in a pop-up alert
+            alert('Prediction Result : ' + predictionText);
+
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('An unexpected error occurred during the request.');
+        }
+    });
+</script>
+<div id="modalInsight" class="health-modal">
+    <div class="health-modal-content">
+        <span class="health-modal-close">&times;</span>
+        <h2>Lung Cancer Prediction - AI Insights</h2>
+        <form class="health-form" id="lung-cancer-form"> 
+
+            <div class="form-group"><label>Age</label><input type="number" name="AGE" required></div>
+            
+            <div class="form-group">
+                <label>Gender</label>
+                <select name="GENDER" required>
+                    <option value="1">Male (1)</option>
+                    <option value="0">Female (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Smoking</label>
+                <select name="SMOKING" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Finger Discoloration</label>
+                <select name="FINGER_DISCOLORATION" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Mental Stress</label>
+                <select name="MENTAL_STRESS" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Exposure to Pollution</label>
+                <select name="EXPOSURE_TO_POLLUTION" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Long-Term Illness</label>
+                <select name="LONG_TERM_ILLNESS" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group"><label>Energy Level (e.g., 55.0)</label><input type="number" step="any" name="ENERGY_LEVEL" required></div>
+            
+            <div class="form-group">
+                <label>Immune Weakness</label>
+                <select name="IMMUNE_WEAKNESS" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Breathing Issue</label>
+                <select name="BREATHING_ISSUE" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Alcohol Consumption</label>
+                <select name="ALCOHOL_CONSUMPTION" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Throat Discomfort</label>
+                <select name="THROAT_DISCOMFORT" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group"><label>Oxygen Saturation (e.g., 95.5)</label><input type="number" step="any" name="OXYGEN_SATURATION" required></div>
+            
+            <div class="form-group">
+                <label>Chest Tightness</label>
+                <select name="CHEST_TIGHTNESS" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Family History</label>
+                <select name="FAMILY_HISTORY" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Smoking Family History</label>
+                <select name="SMOKING_FAMILY_HISTORY" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Stress Immune</label>
+                <select name="STRESS_IMMUNE" required>
+                    <option value="1">Yes (1)</option>
+                    <option value="0">No (0)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="health-submit">Predict</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById('lung-cancer-form').addEventListener('submit', async function(e) {
+        e.preventDefault(); 
+        const form = e.target;
+        const formData = new FormData(form);
+
+        try {
+            // Target the PHP script to act as the intermediary
+            const response = await fetch('lung_predict.php', { 
+                method: 'POST',
+                body: formData 
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert('Server Error: ' + errorData.error);
+                return;
+            }
+
+            const result = await response.json(); 
+            const predictionText = result.prediction_result;
+
+            // Display the alert
+            alert('Prediction Result: ' + predictionText);
+
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('An unexpected error occurred during the request.');
+        }
+    });
+</script>
     <!-- Modal 3: Secure & Private -->
     <div id="modalSecureData" class="health-modal">
-        <div class="health-modal-content">
-            <span class="health-modal-close">&times;</span>
-            <h2>Diabetes Prediction - Secure Data</h2>
-            <form class="health-form">
-                <!-- same form fields as above -->
-                <div class="form-group">
-                    <label>Pregnancies</label>
-                    <input type="number" name="Pregnancies" required>
-                </div>
-                <div class="form-group">
-                    <label>Glucose</label>
-                    <input type="number" name="Glucose" required>
-                </div>
-                <div class="form-group">
-                    <label>Blood Pressure</label>
-                    <input type="number" name="BloodPressure" required>
-                </div>
-                <div class="form-group">
-                    <label>Skin Thickness</label>
-                    <input type="number" name="SkinThickness" required>
-                </div>
-                <div class="form-group">
-                    <label>Insulin</label>
-                    <input type="number" name="Insulin" required>
-                </div>
-                <div class="form-group">
-                    <label>BMI</label>
-                    <input type="number" step="any" name="BMI" required>
-                </div>
-                <div class="form-group">
-                    <label>DPF</label>
-                    <input type="number" step="any" name="DPF" required>
-                </div>
-                <div class="form-group">
-                    <label>Age</label>
-                    <input type="number" name="Age" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="health-submit">Predict</button>
-                </div>
-            </form>
-        </div>
             <h2>Follow us</h2>
     </div>
 
@@ -951,10 +1063,36 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
 
     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
 
-    pdf.setFontSize(10);
-    pdf.text("Generated by WellTrackeR | © 2025", 10, pdf.internal.pageSize.getHeight() - 10);
+    // Define the coordinates for the footer
+const footerY1 = pdf.internal.pageSize.getHeight() - 15;
+const footerY2 = pdf.internal.pageSize.getHeight() - 10;
+const startX = 10;
 
-    pdf.save("Health_Report.pdf");
+// 1. Set the font for the standard text
+pdf.setFontSize(10);
+pdf.setFont('helvetica', 'normal'); // Set back to normal for non-bold text
+
+// 2. The text you want to make bold
+const boldText = "Contact - ";
+
+// 3. The remaining text (not bold)
+const normalText = "Email: support@welltracker.com | Phone: +94 11-678-9012";
+
+// --- Print the Bold part ---
+pdf.setFont('helvetica', 'bold');
+pdf.text(boldText, startX, footerY1);
+
+// --- Print the Normal part ---
+// Calculate the width of the bold text to know where to start the normal text
+const boldTextWidth = pdf.getStringUnitWidth(boldText) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+const normalTextX = startX + boldTextWidth + 0.5; // Add a small buffer (0.5 units)
+pdf.setFont('helvetica', 'normal');
+pdf.text(normalText, normalTextX, footerY1);
+
+// --- Print the second line (copyright) ---
+pdf.text("Generated by WellTrackeR | © 2025", startX, footerY2);
+
+pdf.save("Health_Report.pdf");
 
     // --- STEP E: Remove the temporary header ---
     extra.remove();
@@ -988,18 +1126,6 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
         }
     });
 
-    // Handle form submit
-    document.querySelectorAll(".health-form").forEach(form => {
-        form.addEventListener("submit", e => {
-            e.preventDefault();
-            const prediction = Math.random() < 0.5 ? 0 : 1;
-            const message = prediction === 1 ?
-                "Patient is likely to have Diabetes." :
-                "Patient is Not Diabetic.";
-            alert(message);
-            form.closest(".health-modal").style.display = "none";
-        });
-    });
 </script>
 
 <script>

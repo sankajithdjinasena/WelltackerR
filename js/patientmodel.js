@@ -20,15 +20,3 @@ window.addEventListener("click", e => {
     }
 });
 
-// Handle form submit
-document.querySelectorAll(".health-form").forEach(form => {
-    form.addEventListener("submit", e => {
-        e.preventDefault();
-        const prediction = Math.random() < 0.5 ? 0 : 1;
-        const message = prediction === 1
-            ? "Patient is likely to have Diabetes."
-            : "Patient is Not Diabetic.";
-        alert(message);
-        form.closest(".health-modal").style.display = "none";
-    });
-});
