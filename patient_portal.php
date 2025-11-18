@@ -116,6 +116,14 @@
 </style>
 
 <body>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="WelltrackeR"
+  agent-id="9d5f2420-6826-4916-9e73-235b856a1965"
+  language-code="en"
+></df-messenger>
+
     <?php
     session_start();
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Patient' ) {
@@ -640,6 +648,7 @@ window.addEventListener("click", (e) => {
     <section class="features-section">
         <h2>AI Health Insights</h2>
         <p>Advanced features designed to revolutionize how you monitor and manage health data</p>
+        
 
 <div class="features-grid">
     
@@ -657,15 +666,7 @@ window.addEventListener("click", (e) => {
         <div class="ai-links" style="margin-bottom: 10px; margin-top: auto;">
             <button class="ai-btn open-modal submit-btn" data-target="#modalInsight">Check</button>
         </div>
-    </div>
-
-<!--
-    <p class="disclaimer" style="color: #a00; font-weight: bold; margin-top: 15px; padding: 10px; border: 1px solid #f00; border-radius: 4px; background-color: #ffeaea;">
-    Disclaimer: The generated values are **not true medical diagnoses**. This tool is for preliminary risk assessment and informational purposes only to provide a simple idea of potential risk factors. Always consult a qualified healthcare professional for any health concerns or before making medical decisions.
-</p>
-
-            -->
-    
+    </div>         
 </div>
 
 
@@ -717,6 +718,9 @@ window.addEventListener("click", (e) => {
         <div class="health-modal-content">
             <span class="health-modal-close">&times;</span>
             <h2>Diabetes Prediction</h2>
+            <p class="disclaimer" style="color: #a00; font-weight: bold; margin-top: 15px; padding: 10px; border: 1px solid #f00; border-radius: 4px; background-color: #ffeaea;">
+    Disclaimer: The generated values are **not true medical diagnoses**. This tool is for preliminary risk assessment and informational purposes only to provide a simple idea of potential risk factors. Always consult a qualified healthcare professional for any health concerns or before making medical decisions.
+</p>
             <form class="health-form" id="prediction-form">
                 <div class="form-group">
                     <label>Pregnancies</label>
@@ -797,7 +801,10 @@ window.addEventListener("click", (e) => {
 <div id="modalInsight" class="health-modal">
     <div class="health-modal-content">
         <span class="health-modal-close">&times;</span>
-        <h2>Lung Cancer Prediction - AI Insights</h2>
+        <h2>Lung Cancer Prediction</h2>
+        <p class="disclaimer" style="color: #a00; font-weight: bold; margin-top: 15px; padding: 10px; border: 1px solid #f00; border-radius: 4px; background-color: #ffeaea;">
+    Disclaimer: The generated values are **not true medical diagnoses**. This tool is for preliminary risk assessment and informational purposes only to provide a simple idea of potential risk factors. Always consult a qualified healthcare professional for any health concerns or before making medical decisions.
+</p>
         <form class="health-form" id="lung-cancer-form"> 
 
             <div class="form-group"><label>Age</label><input type="number" name="AGE" required></div>
@@ -1009,7 +1016,8 @@ window.addEventListener("click", (e) => {
     </div>
 </div>
 
-
+        <?php include 'whatsapp.php';
+        ?>
     <footer>
         <div class="social">
             <div class="social-media">

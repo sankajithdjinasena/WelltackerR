@@ -58,6 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
 </head>
 
 <body>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="WelltrackeR"
+  agent-id="9d5f2420-6826-4916-9e73-235b856a1965"
+  language-code="en"
+></df-messenger>
+
 <nav>
   <div class="nav-header">
     <div class="nav-logo"><img src="image/Logo_R.png" alt="Logo"></div>

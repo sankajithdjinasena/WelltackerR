@@ -13,6 +13,14 @@
 </head>
 
 <body>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="WelltrackeR"
+  agent-id="9d5f2420-6826-4916-9e73-235b856a1965"
+  language-code="en"
+></df-messenger>
+
 
     <?php
     session_start();

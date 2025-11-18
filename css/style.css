@@ -205,6 +205,7 @@ body.scrolled nav {
     padding: 0 20px;
     background: var(--gradient);
     color: #fff;
+    /* background-image: url(); */
 }
 
 /* Header Title */

@@ -11,6 +11,15 @@
 </head>
 
 <body>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="WelltrackeR"
+  agent-id="9d5f2420-6826-4916-9e73-235b856a1965"
+  language-code="en"
+></df-messenger>
+
   <nav>
     <div class="nav-header">
       <div class="nav-logo"><img src="image/Logo_R.png" alt="Logo"></div>
@@ -109,7 +118,7 @@
       <h2>Ready to Transform Your Health Journey?</h2>
       <p>Join thousands of users who trust WellTrackeR for their daily health monitoring and medical care coordination.
       </p>
-      <a href="register.html" class="cta-btn">Get Started Today</a>
+      <a href="register.php" class="cta-btn">Get Started Today</a>
     </div>
   </section>
 

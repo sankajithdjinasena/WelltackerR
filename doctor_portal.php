@@ -14,6 +14,16 @@
 </head>
 
 <body>
+      <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="WelltrackeR"
+  agent-id="9d5f2420-6826-4916-9e73-235b856a1965"
+  language-code="en"
+></df-messenger>
+
+
+
     <?php
     include 'config.php';
     session_start();
@@ -316,8 +326,32 @@
                 style="position:absolute; top:10px; right:10px; cursor:pointer; border:none; background:none; font-size:18px;">✖</button>
     </div>
 </div>
+<style>
+    /* Style for status 'verified' (or default status) - 100px */
+.footer-normal {
+    margin-top: 100px; 
+}
 
-    <footer style="margin-top: 100px;">
+/* Style for status 'pending' or 'rejected' - 120px */
+.footer-tall {
+    margin-top: 205px;
+}
+</style>
+<?php
+// Assuming $status is defined elsewhere in your PHP script.
+// Example: $status = "rejected"; 
+
+$footer_class = "";
+
+if ($status == "Pending" || $status == "Rejected") {
+    $footer_class = "footer-tall";
+} else {
+    // This covers "verified" and any other status by default
+    $footer_class = "footer-normal"; 
+}
+?>
+<?php include 'whatsapp.php';?>
+    <footer class="<?php echo $footer_class?>">
         <div class="social">
             <h2>Follow us</h2>
             <div class="social-media">
