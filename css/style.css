@@ -71,17 +71,44 @@ body.scrolled nav {
 }
 
 .nav-links a {
+    /* Existing Styles */
     text-decoration: none;
     color: #555;
     font-weight: 500;
     padding: 6px 12px;
     border-radius: 8px;
-    transition: all 0.2s ease;
+    transition: color 0.3s ease; /* Only transition color for the text */
+    
+    /* Required for pseudo-element positioning */
+    position: relative; 
+    
+    /* Hides the default text underline if present */
+    overflow: hidden; 
 }
 
+/* 1. Create the pseudo-element line */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Start the line at the center */
+    width: 0; /* Initial width is zero */
+    height: 2px; /* Thickness of the line */
+    background-color: #1abc9c; /* The hover color */
+    
+    /* Transition only the width and left properties */
+    transition: width 0.3s ease-out, left 0.3s ease-out;
+}
+
+/* 2. Apply hover changes */
 .nav-links a:hover {
-    background-color: #f0f0f0;
-    color: #1abc9c;
+    color: #1abc9c; /* Change the text color */
+}
+
+/* 3. Animate the line on hover */
+.nav-links a:hover::after {
+    width: 100%; /* Line grows to full width */
+    left: 0; /* Line moves from center to the start */
 }
 
 /* Hamburger button */
