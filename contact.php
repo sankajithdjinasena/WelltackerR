@@ -77,6 +77,8 @@
         }
         .nav-links a.login-btn{
   color: var(--text-light);
+    border: 1px solid var(--text-light);
+
 }
 .nav-links a.login-btn:hover{
   background-color: var(--text-light);

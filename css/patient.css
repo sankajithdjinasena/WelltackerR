@@ -159,7 +159,7 @@ body {
 }
 
 .vital-title {
-    color: #64748b;
+    color: var(--text-light);
     font-size: 0.95em;
     font-weight: 500;
 }
@@ -200,7 +200,7 @@ body {
 .vital-value {
     font-size: 2em;
     font-weight: 700;
-    color: #1e293b;
+    color: black;
     margin-bottom: 5px;
 }
 
@@ -525,7 +525,7 @@ body {
 
 .vitals-dialog label {
   font-weight: 600;
-  color: #333;
+  color: #fff;
   display: block;
   margin-bottom: 5px;
 }

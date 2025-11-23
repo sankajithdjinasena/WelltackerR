@@ -78,7 +78,6 @@
             <a href="logout.php" class="login-btn">Logout</a>
         </div>
     </nav>
-
     <!-- User Profile Dialog -->
     <div id="userinfoDialog" class="userinfo-dialog">
         <div class="userinfo-content">
@@ -105,13 +104,19 @@
         </div>
     </div>
 
+    <style>
+        #verificationDialog p{
+            color: #000;
+        }
+    </style>
+
     <!-- Verification Dialog -->
     <?php if ($_SESSION['role'] === 'Doctor'): ?>
         <div id="verificationDialog" class="userinfo-dialog">
             <div class="userinfo-content">
                 <span class="userinfo-close" id="closeVerification">&times;</span>
                 <h2>Verification Status</h2>
-                <p>Status: <strong><?php echo $status; ?></strong></p>
+                <p><strong>Status: </strong><?php echo $status; ?></p>
 
                 <?php if (!empty($latest_verification)): ?>
                     <p><strong>License Number:</strong> <?php echo htmlspecialchars($latest_verification['license_number']); ?></p>
@@ -304,7 +309,7 @@
     <!-- Send Note Modal -->
 <div id="sendNoteModal" 
      style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
-            background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+            background:rgba(0,0,0,0.6); justify-content:center; align-items:center; color:black;">
     
     <div style="background:#fff; padding:20px; width:350px; border-radius:10px; position:relative;">
         

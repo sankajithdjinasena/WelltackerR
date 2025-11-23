@@ -386,9 +386,13 @@
 
             label {
                 font-weight: 600;
-                color: #333;
+                color: #000;
                 display: block;
                 margin-bottom: 5px;
+            }
+
+            .form-group label{
+                color: #000;
             }
 
             input,

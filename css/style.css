@@ -3,31 +3,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
 
 :root {
-    /* Primary Color - Deep Blue */
-    --pcolor: #034355; 
-    /* Secondary Accent - Teal/Cyan for contrast */
-    --s1color: #00B5B5; 
-    /* Darker Teal for rich contrast */
-    --s2color: #008C8C; 
-    /* Warm Accent - Bright Orange-Amber for strong CTA contrast */
-    --accent: #FF9800; 
-    /* Warm/Hot Accent - Coral (for emergency/CTAs) */
-    --accent-hot: #FF6B6B; 
-    /* Light/Success Teal for main text/features */
-    --success: #00C49F; 
-    
-    /* DARK MODE PALETTE - EYE COOLING */
-    --bg-main: #121C28; /* Main deep blue-gray background (Cooling) */
-    --bg-card: #1A2532; /* Slightly lighter blue-gray for cards/containers (Cooling) */
-    --text-light: #DCE4EC; /* Primary light text (Off-white for eye comfort) */
-    --text-muted: #8899A8; /* Secondary/muted text color */
+    /* Dark Mode Backgrounds */
+    --bg-main: #121C28;   /* main background */
+    --bg-card: #1A2532;   /* card/container background */
 
-    /* Gradients using the new palette (no changes here, they use accents) */
+    /* Primary Text (bright enough for dark bg) */
+    --text-light: #E1E8F0;   /* slightly brighter than before for better contrast */
+
+    /* Secondary / Muted Text (still subtle but readable) */
+    --text-muted: #A3B1C0;   /* lighter than #8899A8 for better readability */
+
+    /* Accent Colors (for buttons, highlights) */
+    --pcolor: #034355; 
+    --s1color: #00B5B5; 
+    --s2color: #008C8C; 
+    --accent: #FF9800; 
+    --accent-hot: #FF6B6B; 
+    --success: #00C49F; 
+
+    /* Gradients */
     --gradient: linear-gradient(135deg, var(--pcolor) 0%, var(--success) 50%, var(--s2color) 100%);
     --aqua-flow: linear-gradient(135deg, var(--s1color) 0%, var(--pcolor) 50%, var(--s2color) 100%);
     --green-breeze: linear-gradient(135deg, var(--success) 0%, var(--s1color) 50%, var(--s2color) 100%);
     --gradient-hero: linear-gradient(135deg, rgba(3, 67, 85, 0.92) 0%, rgba(0, 130, 130, 0.88) 100%);
 }
+
 
 body {
     margin: 0;

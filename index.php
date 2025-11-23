@@ -49,26 +49,24 @@
         .header_title {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 1000px;
         }
-
-        .header_title h1 {
-    font-size: 64px;
+.header_title h1 {
+    font-size: 74px;
     font-weight: 700;
     margin-bottom: 15px;
     line-height: 1.2;
 
-    /* Gradient Text */
-    background: linear-gradient(90deg, #ff6b6b, #5f27cd, #48dbfb, #ff9f43);
-    background-size: 400% 400%;
+    /* Soft gradient */
+    background: linear-gradient(90deg, #ff6b6b, #7a5af5, #48dbfb, #ffb86c);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    /* Animation */
-    animation: animateGradient 6s ease infinite;
+    animation: gradientDrift 8s ease-in-out infinite;
 }
 
-@keyframes animateGradient {
+@keyframes gradientDrift {
     0% {
         background-position: 0% 50%;
     }
@@ -79,6 +77,8 @@
         background-position: 0% 50%;
     }
 }
+
+
 
 
         .header_title h3 {
@@ -100,6 +100,7 @@
         
 .nav-links a.login-btn{
   color: var(--text-light);
+  border: 1px solid var(--text-light);
 }
 .nav-links a.login-btn:hover{
   background-color: var(--text-light);
@@ -142,7 +143,7 @@
       <h1>Welcome to WellTrackeR</h1>
       <h3>Your Health,
         Intelligently Tracked</h3>
-      <p>Track your health and wellness with ease using WellTrackeR. Our intuitive platform helps you monitor your
+      <p style="color: #fff;">Track your health and wellness with ease using WellTrackeR. Our intuitive platform helps you monitor your
         fitness, nutrition, and overall well-being in one convenient place.</p>
       <a href="register.php" class="get-started-btn">Get Started</a>
     </div>
