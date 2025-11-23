@@ -39,6 +39,15 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="css/patient.css">
     <link rel="stylesheet" href="css/doctor_review.css">
 </head>
+<style>
+            .nav-links a.login-btn{
+  color: var(--text-light);
+}
+.nav-links a.login-btn:hover{
+  background-color: var(--text-light);
+  color: var(--pcolor);
+}
+</style>
 <body>
             <nav>
         <div class="nav-header">

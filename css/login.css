@@ -1,20 +1,40 @@
 /* Import clean Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
-
 :root {
-    --g1color: #1abc9c;
-    --g2color: #16a085;
-    --bcolor: #19cbd8;
-    --aqua-flow: linear-gradient(135deg, var(--bcolor), var(--g1color), var(--g2color));
+    /* Primary Color - Deep Blue */
+    --pcolor: #034355; 
+    /* Secondary Accent - Teal/Cyan for contrast */
+    --s1color: #00B5B5; 
+    /* Darker Teal for rich contrast */
+    --s2color: #008C8C; 
+    /* Warm Accent - Bright Orange-Amber for strong CTA contrast */
+    --accent: #FF9800; 
+    /* Warm/Hot Accent - Coral (for emergency/CTAs) */
+    --accent-hot: #FF6B6B; 
+    /* Light/Success Teal for main text/features */
+    --success: #00C49F; 
+    
+    /* DARK MODE PALETTE - EYE COOLING */
+    --bg-main: #121C28; /* Main deep blue-gray background (Cooling) */
+    --bg-card: #1A2532; /* Slightly lighter blue-gray for cards/containers (Cooling) */
+    --text-light: #DCE4EC; /* Primary light text (Off-white for eye comfort) */
+    --text-muted: #8899A8; /* Secondary/muted text color */
 
+    /* Gradients using the new palette (no changes here, they use accents) */
+    --gradient: linear-gradient(135deg, var(--pcolor) 0%, var(--success) 50%, var(--s2color) 100%);
+    --aqua-flow: linear-gradient(135deg, var(--s1color) 0%, var(--pcolor) 50%, var(--s2color) 100%);
+    --green-breeze: linear-gradient(135deg, var(--success) 0%, var(--s1color) 50%, var(--s2color) 100%);
+    --gradient-hero: linear-gradient(135deg, rgba(3, 67, 85, 0.92) 0%, rgba(0, 130, 130, 0.88) 100%);
 }
+
 
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #f9f9f9;
+        background-color: var(--bg-main); 
 }
+
 
 /* Navbar container */
 nav {
@@ -22,7 +42,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 15px 40px;
-    background-color: #ffffff;
+    background-color: var(--pcolor); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
@@ -48,7 +68,7 @@ body.scrolled nav {
     font-size: 28px;
     margin: 0;
     letter-spacing: 1px;
-    background: linear-gradient(90deg, #1abc9c, #16a085);
+    background: linear-gradient(90deg, var(--s1color), var(--success)); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -62,7 +82,6 @@ body.scrolled nav {
     object-fit: cover;
 }
 
-
 /* Navigation links (desktop) */
 .nav-links {
     display: flex;
@@ -70,47 +89,51 @@ body.scrolled nav {
 }
 
 .nav-links a {
-    /* Existing Styles */
     text-decoration: none;
-    color: #555;
+    color: var(--text-light); /* Use var for consistency */
     font-weight: 500;
     padding: 6px 12px;
     border-radius: 8px;
-    transition: color 0.3s ease; /* Only transition color for the text */
-    
-    /* Required for pseudo-element positioning */
-    position: relative; 
-    
-    /* Hides the default text underline if present */
-    overflow: hidden; 
+    transition: all 0.2s ease;
 }
 
-/* 1. Create the pseudo-element line */
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%; /* Start the line at the center */
-    width: 0; /* Initial width is zero */
-    height: 2px; /* Thickness of the line */
-    background-color: #1abc9c; /* The hover color */
-    
-    /* Transition only the width and left properties */
-    transition: width 0.3s ease-out, left 0.3s ease-out;
+.nav-links a:hover,
+.nav-links a#active {
+    background-color: var(--s2color); 
+    color: var(--text-light);
 }
 
-/* 2. Apply hover changes */
-.nav-links a:hover {
-    color: #1abc9c; /* Change the text color */
+.nav-links a.register-btn {
+    background-color: var(--success); /* Solid primary CTA */
+    color: var(--text-light);
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-/* 3. Animate the line on hover */
-.nav-links a:hover::after {
-    width: 100%; /* Line grows to full width */
-    left: 0; /* Line moves from center to the start */
+.nav-links a.register-btn:hover {
+    background-color: var(--s2color); 
+    transform: scale(1.05);
+}
+
+.nav-links a.login-btn {
+    background-color: transparent; /* Ghost button */
+    color: var(--text-light);
+    border: 2px solid var(--text-light); /* White border */
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-links a.login-btn:hover {
+    background-color: var(--text-light); /* Fill with light text color on hover */
+    color: var(--pcolor); /* Dark text on hover */
+    border-color: var(--text-light);
+    transform: scale(1.05);
 }
 /* Hamburger button */
-
 
 .bx.menu-toggle,
 .menu-toggle {
@@ -431,7 +454,7 @@ textarea {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--g1color);
+    color: #000;
     padding: 10px 20px;
     border-radius: 8px;
     font-size: 14px;
@@ -440,8 +463,9 @@ textarea {
     cursor: pointer;
     margin-top: 10px;
     transition: background 0.3s;
-    border: 2px solid var(--g1color);
+    border: 2px solid var(--success);
     background-color: white;
+    transition: all 0.3s ease;
 }
 
 .login-contact-submit-btn i {
@@ -450,8 +474,8 @@ textarea {
 }
 
 .login-submit-btn:hover {
-    background: var(--g1color);
-    color: white;
+    background: var(--success);
+    color: black;
 }
 
 .login-contact-text{

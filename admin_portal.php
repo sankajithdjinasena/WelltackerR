@@ -29,7 +29,15 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
   <link rel="stylesheet" href="css/style.css">
 
 </head>
-
+<style>
+          .nav-links a.login-btn{
+  color: var(--text-light);
+}
+.nav-links a.login-btn:hover{
+  background-color: var(--text-light);
+  color: var(--pcolor);
+}
+</style>
 <body>
   <nav>
     <div class="nav-header">

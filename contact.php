@@ -9,6 +9,80 @@
   <link rel="stylesheet" href="css/style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+ <style>
+        :root {
+            --pcolor: #123456; 
+            --text-light: #ffffff;
+            --text-muted: #cccccc;
+            --gradient-hero: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.1));
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: left;
+            height: 90vh;
+            padding: 40px 80px;
+            background-image: url('image/contact.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: var(--pcolor);
+            background-blend-mode: overlay;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-hero);
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .header_title {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .header_title h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .header_title h3 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            text-align: left;
+        }
+
+        .header_title p {
+            font-size: 20px;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+        .nav-links a.login-btn{
+  color: var(--text-light);
+}
+.nav-links a.login-btn:hover{
+  background-color: var(--text-light);
+  color: var(--pcolor);
+}
+    </style>
 <?php
 include 'config.php';
 

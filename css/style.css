@@ -3,19 +3,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
 
 :root {
-    --g1color: #1abc9c;
-    --g2color: #16a085;
-    --bcolor: #19cbd8;
-    --g3color: #2ecc71;
-    --gradient: linear-gradient(135deg, var(--g1color), var(--g3color), var(--g2color));
-    --aqua-flow: linear-gradient(135deg, var(--bcolor), var(--g1color), var(--g2color));
-    --green-breeze: linear-gradient(135deg, var(--g3color), var(--g1color), var(--g2color));
+    /* Primary Color - Deep Blue */
+    --pcolor: #034355; 
+    /* Secondary Accent - Teal/Cyan for contrast */
+    --s1color: #00B5B5; 
+    /* Darker Teal for rich contrast */
+    --s2color: #008C8C; 
+    /* Warm Accent - Bright Orange-Amber for strong CTA contrast */
+    --accent: #FF9800; 
+    /* Warm/Hot Accent - Coral (for emergency/CTAs) */
+    --accent-hot: #FF6B6B; 
+    /* Light/Success Teal for main text/features */
+    --success: #00C49F; 
+    
+    /* DARK MODE PALETTE - EYE COOLING */
+    --bg-main: #121C28; /* Main deep blue-gray background (Cooling) */
+    --bg-card: #1A2532; /* Slightly lighter blue-gray for cards/containers (Cooling) */
+    --text-light: #DCE4EC; /* Primary light text (Off-white for eye comfort) */
+    --text-muted: #8899A8; /* Secondary/muted text color */
+
+    /* Gradients using the new palette (no changes here, they use accents) */
+    --gradient: linear-gradient(135deg, var(--pcolor) 0%, var(--success) 50%, var(--s2color) 100%);
+    --aqua-flow: linear-gradient(135deg, var(--s1color) 0%, var(--pcolor) 50%, var(--s2color) 100%);
+    --green-breeze: linear-gradient(135deg, var(--success) 0%, var(--s1color) 50%, var(--s2color) 100%);
+    --gradient-hero: linear-gradient(135deg, rgba(3, 67, 85, 0.92) 0%, rgba(0, 130, 130, 0.88) 100%);
 }
 
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #f9f9f9;
+    background-color: var(--bg-main); 
+    color: var(--text-light); /* Use new light text color */
 }
 
 /* Navbar container */
@@ -24,7 +42,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 15px 40px;
-    background-color: #ffffff;
+    background-color: var(--pcolor); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     position: sticky;
     top: 0;
@@ -50,7 +68,7 @@ body.scrolled nav {
     font-size: 28px;
     margin: 0;
     letter-spacing: 1px;
-    background: linear-gradient(90deg, #1abc9c, #16a085);
+    background: linear-gradient(90deg, var(--s1color), var(--success)); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -71,46 +89,50 @@ body.scrolled nav {
 }
 
 .nav-links a {
-    /* Existing Styles */
     text-decoration: none;
-    color: #555;
+    color: var(--text-light); /* Use var for consistency */
     font-weight: 500;
     padding: 6px 12px;
     border-radius: 8px;
-    transition: color 0.3s ease; /* Only transition color for the text */
-    
-    /* Required for pseudo-element positioning */
-    position: relative; 
-    
-    /* Hides the default text underline if present */
-    overflow: hidden; 
+    transition: all 0.2s ease;
 }
 
-/* 1. Create the pseudo-element line */
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%; /* Start the line at the center */
-    width: 0; /* Initial width is zero */
-    height: 2px; /* Thickness of the line */
-    background-color: #1abc9c; /* The hover color */
-    
-    /* Transition only the width and left properties */
-    transition: width 0.3s ease-out, left 0.3s ease-out;
+.nav-links a:hover,
+.nav-links a#active {
+    background-color: var(--s2color); 
+    color: var(--text-light);
 }
 
-/* 2. Apply hover changes */
-.nav-links a:hover {
-    color: #1abc9c; /* Change the text color */
+.nav-links a.register-btn {
+    background-color: var(--success); /* Solid primary CTA */
+    color: var(--text-light);
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-/* 3. Animate the line on hover */
-.nav-links a:hover::after {
-    width: 100%; /* Line grows to full width */
-    left: 0; /* Line moves from center to the start */
+.nav-links a.register-btn:hover {
+    background-color: var(--s2color); 
+    transform: scale(1.05);
 }
 
+.nav-links a.login-btn {
+    background-color: transparent; /* Ghost button */
+    color: var(--text-light);
+    border: 2px solid var(--text-light); /* White border */
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-links a.login-btn:hover {
+    background-color: var(--text-light); /* Fill with light text color on hover */
+    color: var(--pcolor); /* Dark text on hover */
+    border-color: var(--text-light);
+    transform: scale(1.05);
+}
 /* Hamburger button */
 
 
@@ -118,7 +140,7 @@ body.scrolled nav {
 .menu-toggle {
     display: none !important;
     font-size: 32px;
-    color: #1abc9c;
+    color: var(--text-light); /* Use var for consistency */
     cursor: pointer;
 }
 
@@ -139,9 +161,9 @@ body.scrolled nav {
         flex-direction: column;
         width: 100%;
         margin-top: 12px;
-        background: #fff;
+        background: var(--bg-card); /* Dark background for mobile menu */
         padding: 15px 0;
-        border-top: 1px solid #eee;
+        border-top: 1px solid #3A4654;
     }
 
     .nav-links.active {
@@ -154,19 +176,54 @@ body.scrolled nav {
         padding: 10px;
         border: 2px solid transparent;
         border-radius: 25px;
+        color: var(--pcolor);
     }
 
     .nav-links a:hover {
-        border: 2px solid #1abc9c;
-        background: #f9f9f9;
+        border: 2px solid var(--pcolor);
+        background: var(--bg-main);
     }
-}
+
+    
+/* Mobile-specific Button Overrides */
+
+    .nav-links a.login-btn {
+        background-color: transparent;
+        color: var(--text-light); 
+        border: 2px solid var(--pcolor);
+    }
+
+    .nav-links a.login-btn:hover {
+        background-color: var(--pcolor);
+        color: var(--text-light);
+        transform: scale(1.05);
+    }
+
+    .nav-links a.register-btn {
+        background-color: var(--success);
+        color: var(--text-light);
+        border: none;
+    }
+
+    .nav-links a.register-btn:hover {
+        background-color: var(--s2color);
+        transform: scale(1.05);
+    }
+    
+    .nav-span{
+        font-size: 12px;
+        color: var(--pcolor); 
+        font-weight: 500;
+    }
+} /* End of @media (max-width: 768px) */
+
+
 
 /* Login Button */
 .nav-links a.login-btn {
     background-color: transparent;
-    color: #1abc9c;
-    border: 2px solid #1abc9c;
+    color: var(--pcolor);
+    border: 2px solid var(--pcolor);
     padding: 6px 18px;
     border-radius: 25px;
     font-weight: 600;
@@ -174,15 +231,15 @@ body.scrolled nav {
 }
 
 .nav-links a.login-btn:hover {
-    background-color: #1abc9c;
-    color: #fff;
+    background-color: var(--pcolor);
+    color: var(var(--text-light));
     transform: scale(1.05);
 }
 
 /* Register Button */
 .nav-links a.register-btn {
-    background-color: #1abc9c;
-    color: #fff;
+    background-color: var(--success);
+    color: var(--text-light);
     padding: 6px 18px;
     border-radius: 25px;
     font-weight: 600;
@@ -191,13 +248,13 @@ body.scrolled nav {
 }
 
 .nav-links a.register-btn:hover {
-    background-color: #16a085;
+    background-color: var(--s2color);
     transform: scale(1.05);
 }
 
 .nav-span{
     font-size: 12px;
-    color: #16a085;
+    color: var(--pcolor);
     font-weight: 500;
 }
 
@@ -263,8 +320,8 @@ body.scrolled nav {
 
 /* Get Started Button */
 .get-started-btn {
-    background-color: #fff;
-    color: #16a085;
+    background-color: var(--text-light);
+    color: var(--pcolor);
     font-weight: 600;
     padding: 12px 30px;
     font-size: 16px;
@@ -275,8 +332,8 @@ body.scrolled nav {
 }
 
 .get-started-btn:hover {
-    background-color: #16a085;
-    color: #fff;
+    background-color: var(--success);
+    color: var(--text-light);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
@@ -306,7 +363,7 @@ body.scrolled nav {
     gap: 40px;
     /* spacing between boxes */
     padding: 60px 20px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-main);
     flex-wrap: wrap;
     /* allows responsiveness */
     font-family: 'Sora', sans-serif;
@@ -314,7 +371,7 @@ body.scrolled nav {
 
 /* Individual Counter Box */
 .counter_box {
-    background-color: #fff;
+    background-color: var(--bg-main);
     border-radius: 20px;
     padding: 30px 40px;
     text-align: center;
@@ -326,14 +383,14 @@ body.scrolled nav {
 /* Hover Effect */
 .counter_box:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 15px rgba(0, 196, 159, 0.5), 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Counter Number */
 .counter_box h2 {
     font-size: 36px;
     font-weight: 700;
-    color: #16a085;
+    color: var(--success);
     margin-bottom: 10px;
 }
 
@@ -341,7 +398,7 @@ body.scrolled nav {
 .counter_box p {
     font-size: 16px;
     font-weight: 500;
-    color: #555;
+    color: var(--text-muted);
     margin: 0;
 }
 
@@ -382,12 +439,12 @@ body.scrolled nav {
 .features-section h2 {
     font-size: 2rem;
     margin-bottom: 10px;
-    color: var(--g2color)
+    color: var(--pcolor)
 }
 
 .features-section p {
     font-size: 1rem;
-    color: #555;
+    color: var(--text-muted);
     margin-bottom: 40px;
 }
 
@@ -400,42 +457,49 @@ body.scrolled nav {
 }
 
 .feature-card {
-    background: #fff;
+    background: var(--bg-card);
     padding: 30px 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--bg-main); 
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 181, 181, 0.4), 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card i {
     font-size: 40px;
-    color: var(--bcolor);
-    background: #eaf5ff;
+    color: var(--s1color);
+    background: #3a4654;
     padding: 15px;
     border-radius: 50%;
     margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.feature-card:hover i {
+    color: var(--accent); /* Warm accent for hover color */
+    background: var(--pcolor); /* Primary color for icon background hover */
 }
 
 .feature-card h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #222;
+    color: var(--text-light);
 }
 
 .feature-card p {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--text-muted);
 }
 
 /* CTA Section */
 .cta-section {
-    background: var(--green-breeze);
-    color: #fff;
+    background: var(--aqua-flow);
+    color: var(--text-light);
     padding: 80px 20px;
     text-align: center;
     display: flex;
@@ -468,8 +532,8 @@ body.scrolled nav {
 
 /* CTA Button */
 .cta-btn {
-    background-color: #fff;
-    color: #16a085;
+    background-color: var(--accent); /* Polished bright accent for high contrast CTA */
+    color: var(--pcolor); 
     font-weight: 600;
     font-size: 18px;
     padding: 15px 40px;
@@ -480,10 +544,10 @@ body.scrolled nav {
 }
 
 .cta-btn:hover {
-    background-color: #16a085;
-    color: #fff;
+    background-color: var(--accent-hot);
+    color: var(--text-light);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.8), 0 10px 25px rgba(0, 0, 0, 0.2); 
 }
 
 /* Responsive */
@@ -520,7 +584,7 @@ body.scrolled nav {
 
 /* Testimonials Section */
 .testimonials {
-    background-color: #f9f9f9;
+    background-color: var(--bg-main);
     padding: 80px 20px;
     text-align: center;
     font-family: 'Sora', sans-serif;
@@ -530,7 +594,7 @@ body.scrolled nav {
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 50px;
-    color: #16a085;
+    color: var(--pcolor);
 }
 
 /* Container for cards */
@@ -545,7 +609,7 @@ body.scrolled nav {
 
 /* Individual Testimonial Card */
 .testimonial-card {
-    background-color: #fff;
+    background-color: var(--bg-card);
     border-radius: 20px;
     padding: 30px 25px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -566,7 +630,7 @@ body.scrolled nav {
 .testimonial-card p {
     font-size: 16px;
     font-weight: 400;
-    color: #555;
+    color: var(--text-muted);
     margin-bottom: 25px;
     line-height: 1.6;
 }
@@ -590,11 +654,12 @@ body.scrolled nav {
     font-size: 18px;
     font-weight: 600;
     margin: 0;
+    color: var(--text-light);
 }
 
 .testimonial-author span {
     font-size: 14px;
-    color: #888;
+    color: var(--text-muted);
 }
 
 /* Responsive */
@@ -620,8 +685,8 @@ body.scrolled nav {
 /*Footer*/
 /* Footer Container */
 footer {
-    background: var(--aqua-flow);
-    color: #fff;
+    background: var(--pcolor); 
+    color: var(--text-light);
     padding: 40px 20px;
     text-align: center;
     font-family: 'Sora', sans-serif;
@@ -656,9 +721,9 @@ footer p {
     align-items: center;
     width: 50px;
     height: 50px;
-    background-color: #fff;
+    background-color: var(--bg-card);
     /* icon background */
-    color: #16a085;
+    color: var(--success);
     /* icon color */
     font-size: 24px;
     border-radius: 50%;
@@ -669,8 +734,8 @@ footer p {
 
 /* Hover Effect */
 .social-media a:hover {
-    background-color: #16a085;
-    color: #fff;
+    background-color: var(--success);
+    color: var(--text-light);
     transform: translateY(-3px) scale(1.1);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
@@ -686,13 +751,13 @@ footer p {
 
 .footer-links a {
     text-decoration: none;
-    color: #fff;
+    color: var(--text-light);
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #f0f0f0;
+    color: var(--s1color);
     /* subtle hover effect */
 }
 
@@ -719,9 +784,11 @@ footer p {
     max-width: 1100px;
     margin: 80px auto;
     padding: 50px 30px;
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--s1color); 
+    transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
     font-family: 'Sora', sans-serif;
     position: relative;
@@ -733,7 +800,7 @@ footer p {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: #16a085;
+    color: var(--pcolor);
     position: relative;
     z-index: 1;
 }
@@ -742,7 +809,7 @@ footer p {
 .about-content p {
     font-size: 16px;
     line-height: 1.8;
-    color: #444;
+    color: var(--text-muted);
     position: relative;
     z-index: 1;
 }
@@ -775,6 +842,7 @@ footer p {
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 40px;
+    color: var(--text-light);
 }
 
 .about-features-grid {
@@ -801,8 +869,8 @@ footer p {
     width: 40px;
     height: 40px;
     border-radius: 12px;
-    background: var(--bcolor);
-    color: #fff;
+    background: var(--s1color); 
+    color: var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -814,18 +882,19 @@ footer p {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
+    color: var(--text-light);
 }
 
 .about-feature-text p {
     margin: 5px 0 0;
     font-size: 14px;
-    color: #555;
+    color: var(--text-muted);
     line-height: 1.5;
 }
 
 /* Right side card */
 .about-trust-card {
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 16px;
     padding: 30px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -835,12 +904,12 @@ footer p {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background: var(--bcolor);
+    background: var(--pcolor);
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto 15px;
-    color:red;
+    color:var(--accent);
     font-size: 34px;
 }
 
@@ -849,6 +918,7 @@ footer p {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
+    color: var(--text-light);
 }
 
 .about-trust-list {
@@ -865,11 +935,11 @@ footer p {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #333;
+    color: var(--text-light);
 }
 
 .about-trust-list i {
-    color: #16a34a;
+    color: var(--success);
     font-size: 18px;
 }
 
@@ -890,12 +960,12 @@ footer p {
 .contact-features-section h2 {
     font-size: 2rem;
     margin-bottom: 10px;
-    color: var(--g2color)
+    color: var(--pcolor)
 }
 
 .contact-features-section p {
     font-size: 1rem;
-    color: #555;
+    color: var(--text-muted);
     margin-bottom: 40px;
 }
 
@@ -908,7 +978,7 @@ footer p {
 }
 
 .contact-feature-card {
-    background: #fff;
+    background: var(--bg-card);
     padding: 30px 20px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -922,8 +992,8 @@ footer p {
 
 .contact-feature-card i {
     font-size: 40px;
-    color: var(--bcolor);
-    background: #eaf5ff;
+    color: var(--s1color); 
+    background: #3A4654;
     padding: 15px;
     border-radius: 50%;
     margin-bottom: 15px;
@@ -932,18 +1002,18 @@ footer p {
 .contact-feature-card h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #222;
+    color: var(--text-light);
 }
 
 .contact-feature-card h4 {
     font-size: 1rem;
     margin-bottom: 10px;
-    color: #03b5d4;
+    color: var(--s1color);
 }
 
 .contact-feature-card p {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--text-light);
 }
 
 .contact-section {
@@ -960,7 +1030,7 @@ footer p {
 
 /* Form Card */
 .contact-form {
-    background: #fff;
+    background: var(--bg-card);
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -970,11 +1040,12 @@ footer p {
     margin-bottom: 8px;
     font-size: 20px;
     font-weight: 700;
+    color: var(--text-light);
 }
 
 .contact-form p {
     font-size: 14px;
-    color: #555;
+    color: var(--text-muted);
     margin-bottom: 20px;
 }
 .form-group {
@@ -986,7 +1057,7 @@ footer p {
   font-weight: 600;
   margin-bottom: 6px;
   display: block;
-  color: #333;
+  color: var(--text-light);
 }
 .form-row {
     display: flex;
@@ -1008,22 +1079,24 @@ footer p {
 input, select, textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #3A4654;
   border-radius: 8px;
   font-size: 14px;
   box-sizing: border-box;
   height: 42px;   /* ✅ fix height */
+  background-color: var(--bg-card);
+  color: var(--text-light);
 }
 
 select {
   appearance: none;  /* remove browser default */
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-color: #fff;
+  background-color: var(--bg-card);
 }
 
 select {
-  background: #fff url("data:image/svg+xml;utf8,<svg fill='%23666' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 12px center;
+  background: var(--bg-card) url("data:image/svg+xml;utf8,<svg fill='%23666' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 12px center;
   background-size: 16px;
   padding-right: 40px; /* space for arrow */
 }
@@ -1040,7 +1113,7 @@ textarea {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--g1color);
+    color: var(--s1color);
     padding: 10px 20px;
     border-radius: 8px;
     font-size: 14px;
@@ -1049,8 +1122,8 @@ textarea {
     cursor: pointer;
     margin-top: 10px;
     transition: background 0.3s;
-    border: 2px solid var(--g1color);
-    background-color: white;
+    border: 2px solid var(--s1color);
+    background-color: var(--bg-card);
 }
 
 .contact-submit-btn i {
@@ -1059,14 +1132,14 @@ textarea {
 }
 
 .contact-submit-btn:hover {
-    background: var(--g1color);
-    color: white;
+    background: var(--s1color);
+    color: var(--text-light);
 }
 
 /* Sidebar info */
 .contact-info,
 .faq-card {
-    background: #fff;
+    background: var(--bg-card);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -1077,6 +1150,7 @@ textarea {
 .faq-card h3 {
     font-size: 18px;
     margin-bottom: 15px;
+    color: var(--text-light);
 }
 
 .contact-item {
@@ -1090,8 +1164,8 @@ textarea {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #e6f0ff;
-    color: var(--bcolor);
+    background: #3A4654;
+    color: var(--s1color); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1101,7 +1175,7 @@ textarea {
 
 .contact-text {
     font-size: 14px;
-    color: #555;
+    color: var(--text-muted);
 }
 
 .faq-card p {
@@ -1111,50 +1185,50 @@ textarea {
 
 .faq-btn {
   width: 100%;
-  background: #f8f9fa;
-  color: #333;
-  border: 1px solid #ddd;
+  background: var(--bg-main);
+  color: var(--text-light);
+  border: 1px solid #3A4654;
 }
 
 .faq-btn:hover {
-  background: var(--g1color);
-  color: white;
+  background: var(--pcolor);
+  color: var(--text-light);
 }
 .faq-card strong {
     display: block;
-    color: #000;
+    color: var(--text-light);
     margin-bottom: 4px;
 }
 
 .faq-card .btn {
     width: 100%;
-    background: #f8f9fa;
-    color: #333;
-    border: 1px solid #ddd;
+    background: var(--bg-card);
+    color: var(--text-light);
+    border: 1px solid #3A4654;
 }
 
 .faq-card .btn:hover {
-    background: #eee;
+    background: #3A4654;
 }
 
 /* Emergency Notice */
 .emergency-notice {
-    background: #fde8e8;
+    background: #2A1F26;
     padding: 20px;
     margin: 40px;
     text-align: center;
     font-size: 18px;
-    color: #555;
+    color: var(--text-muted);
     min-height: 60px;
 }
 
 .emergency-notice strong {
-    color: #e63946;
+    color: var(--accent-hot);
     font-size: 20px;
 }
 
 .emergency-notice i {
-    color: #e63946;
+    color: var(--accent-hot);
     margin-right: 6px;
 }
 
@@ -1167,4 +1241,16 @@ textarea {
 
 #active{
     color: red;
+}
+
+body.home-page .header {
+    background-image: url('../image/background.png');
+}
+
+body.about-page .header {
+    background-image: url('../image/about.png'); 
+}
+
+body.contact-page .header {
+    background-image: url('../image/contact-contact.jpg'); 
 }

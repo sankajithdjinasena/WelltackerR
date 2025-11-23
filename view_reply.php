@@ -28,6 +28,15 @@ $result = $conn->query($sql);
 <link rel="stylesheet" href="css/doctor_review.css"> <!-- reuse table styles -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
+            .nav-links a.login-btn{
+  color: var(--text-light);
+}
+.nav-links a.login-btn:hover{
+  background-color: var(--text-light);
+  color: var(--pcolor);
+}
+</style>
+<style>
 .delete-btn {
     background-color: #e63946;
     color: #fff;

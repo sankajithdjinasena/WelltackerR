@@ -24,6 +24,15 @@ $result = $conn->query($sql);
 <link rel="icon" type="image/png" href="image/Logo_R.png">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+<style>
+            .nav-links a.login-btn{
+  color: var(--text-light);
+}
+.nav-links a.login-btn:hover{
+  background-color: var(--text-light);
+  color: var(--pcolor);
+}
+</style>
 <body>
 <nav>
     <div class="nav-header">

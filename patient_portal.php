@@ -12,6 +12,13 @@
 </head>
 
 <style>
+            .nav-links a.login-btn{
+  color: var(--text-light);
+}
+.nav-links a.login-btn:hover{
+  background-color: var(--text-light);
+  color: var(--pcolor);
+}
     .health-modal {
         position: fixed;
         top: 0;
