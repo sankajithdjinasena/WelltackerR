@@ -67,7 +67,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
 
 
     <!-- Vitals Cards -->
-    <div class="vitals-grid">
+    <div class="vitals-grid" style="color:#000">
       <div class="vital-card">
         <h3>Total Users</h3>
         <div class="vital-value"><?php echo $total_users; ?></div>
@@ -135,7 +135,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
     <div class="dialog-content">
       <span class="close-dialog">&times;</span>
       <h2>Manage Patients</h2>
-      <p>Here you can view and manage all patients’ records.</p>
+      <p style="color: #000;">Here you can view and manage all patients’ records.</p>
       <a href="view_users.php" style="text-decoration: none;">-> View Users</a>
     </div>
   </div>
@@ -145,7 +145,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
     <div class="dialog-content">
       <span class="close-dialog">&times;</span>
       <h2>Manage Doctors</h2>
-      <p>Review the Doctors in WellTrackeR</p>
+      <p style="color: #000;">Review the Doctors in WellTrackeR</p>
       <a href="view_doctors.php" style="text-decoration: none;">-> View Doctors</a>
     </div>
   </div>
@@ -155,7 +155,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
     <div class="dialog-content">
       <span class="close-dialog">&times;</span>
       <h2>Register Admin</h2>
-      <p>Register new admin for WellTrackeR</p>
+      <p style="color: #000;">Register new admin for WellTrackeR</p>
       <a href="register_admin.php" style="text-decoration: none;">-> Register Admin</a>
     </div>
   </div>
@@ -166,7 +166,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
     <div class="dialog-content">
       <span class="close-dialog">&times;</span>
       <h2>Remove Comments</h2>
-      <p>View and delete inappropriate or unwanted comments.</p>
+      <p style="color: #000;">View and delete inappropriate or unwanted comments.</p>
       <a href="view_community_posts.php" style="text-decoration: none;">-> Manage posts</a><br><br>
       <a href="view_reply.php" style="text-decoration: none;">-> Manage Replies</a>
 
@@ -179,7 +179,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
     <div class="dialog-content">
       <span class="close-dialog">&times;</span>
       <h2>Contact Messages</h2>
-      <p>View messages submitted through the contact form.</p>
+      <p style="color: #000;">View messages submitted through the contact form.</p>
       <a href="view_contact_messages.php" style="text-decoration: none;">-> View Messages</a>
     </div>
   </div>

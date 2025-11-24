@@ -5,13 +5,13 @@ include 'config.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['new_post'])) {
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $message = mysqli_real_escape_string($conn, $_POST['message']);
-    $author = 'Guest'; // later can link with login user
+    $author = mysqli_real_escape_string($conn, $_POST['author']);
 
     if (!empty($title) && !empty($message)) {
         $conn->query("INSERT INTO community_posts (title, message, author) VALUES ('$title', '$message', '$author')");
-        echo "<script>alert('✅ Post created successfully!'); window.location='community.php';</script>";
+        echo "<script>alert('Post created successfully!'); window.location='community.php';</script>";
     } else {
-        echo "<script>alert('⚠️ Please fill all fields.');</script>";
+        echo "<script>alert('Please fill all fields.');</script>";
     }
 }
 
@@ -93,6 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
   <form method="POST" action="">
     <input type="hidden" name="new_post" value="1">
     <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="author" placeholder="Enter your name" required>
+    </div>
+    <div class="form-group">
       <label for="post-title">Title</label>
       <input type="text" id="post-title" name="title" placeholder="Enter your post title" required>
     </div>
@@ -108,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
 <section class="community-posts">
   <h2>Recent Posts</h2>
   <?php
-  $result = $conn->query("SELECT * FROM community_posts ORDER BY created_at DESC");
+  $result = $conn->query("SELECT * FROM community_posts ORDER BY created_at DESC LIMIT 5");
   if ($result->num_rows > 0):
       while ($row = $result->fetch_assoc()):
           $post_id = $row['post_id'];
@@ -147,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
 
     <!-- Replies -->
     <?php
-      $replies = $conn->query("SELECT * FROM community_replies WHERE post_id=$post_id ORDER BY created_at ASC");
+      $replies = $conn->query("SELECT * FROM community_replies WHERE post_id=$post_id ORDER BY created_at DESC LIMIT 5");
       if ($replies->num_rows > 0):
     ?>
     <div class="post-replies">
@@ -157,6 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
           <div class="reply-content">
             <h5><?= htmlspecialchars($r['author']) ?></h5>
             <p><?= nl2br(htmlspecialchars($r['reply_text'])) ?></p>
+            <p>Created At: <?= htmlspecialchars($r['created_at']) ?></p>
           </div>
         </div>
       <?php endwhile; ?>

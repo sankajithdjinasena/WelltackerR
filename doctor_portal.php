@@ -329,6 +329,12 @@
 
         <button id="closeModalBtn"
                 style="position:absolute; top:10px; right:10px; cursor:pointer; border:none; background:none; font-size:18px;">✖</button>
+
+                <style>
+                    #closeModalBtn:hover{
+                        color: red;
+                    }
+                </style>
     </div>
 </div>
 <style>

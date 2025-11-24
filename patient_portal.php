@@ -306,7 +306,7 @@
                 <span class="close-dialog" id="closeViewHistory">&times;</span>
                 <h3>Medical History Records</h3>
 
-                <div class="pdf-list">
+                <div class="pdf-list" style="color: #000;">
                     <?php
                     include 'config.php';
                     $user_id = $_SESSION['user_id']; // assume session has user id
@@ -575,7 +575,7 @@
         </div>
 
         <div class="vitals-section">
-            <h2 class="vitals-section-title" style="padding-left: 20px;">Latest Overview</h2>
+            <h2 class="vitals-section-title" style="padding-left: 20px; color:blue;" >Latest Overview</h2>
 
             <div class="vitals-grid">
                 <?php
@@ -1079,12 +1079,12 @@
     <!-- Messages Modal -->
     <div id="messagesModal"
         style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-            background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
+            background:rgba(0,0,0,0.6); justify-content:center; align-items:center; color:#000;">
 
         <div style="background:#fff; width:400px; max-height:500px; overflow-y:auto;
                 padding:20px; border-radius:10px; position:relative;">
 
-            <h3>Your Messages</h3>
+            <h3 style="color:var(--success)">Your Messages</h3>
 
             <div id="messagesContent">
                 <!-- PHP messages will load here -->
