@@ -1,0 +1,42 @@
+{
+  "name": "farewell",
+  "auto": true,
+  "responses": [
+    {
+      "messages": [
+        {
+          "type": 0,
+          "speech": [
+            "Goodbye! Stay healthy!"
+          ]
+        }
+      ]
+    }
+  ],
+  "userSays": [
+    {
+      "data": [
+        {
+          "text": "Bye"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Goodbye"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Thanks"
+        }
+      ],
+      "isTemplate": false
+    }
+  ]
+}

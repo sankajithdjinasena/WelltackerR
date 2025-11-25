@@ -1,0 +1,50 @@
+{
+  "name": "contact_support",
+  "auto": true,
+  "responses": [
+    {
+      "messages": [
+        {
+          "type": 0,
+          "speech": [
+            "Please contact system admin for assistance."
+          ]
+        }
+      ]
+    }
+  ],
+  "userSays": [
+    {
+      "data": [
+        {
+          "text": "I need help"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Support"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Contact admin"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Help desk"
+        }
+      ],
+      "isTemplate": false
+    }
+  ]
+}

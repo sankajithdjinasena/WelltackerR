@@ -1,0 +1,42 @@
+{
+  "name": "get_recommendations",
+  "auto": true,
+  "responses": [
+    {
+      "messages": [
+        {
+          "type": 0,
+          "speech": [
+            "Check AI Recommendations section."
+          ]
+        }
+      ]
+    }
+  ],
+  "userSays": [
+    {
+      "data": [
+        {
+          "text": "AI recommendation"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Health advice"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Analyze my data"
+        }
+      ],
+      "isTemplate": false
+    }
+  ]
+}

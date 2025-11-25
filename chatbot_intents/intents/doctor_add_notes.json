@@ -1,0 +1,34 @@
+{
+  "name": "doctor_add_notes",
+  "auto": true,
+  "responses": [
+    {
+      "messages": [
+        {
+          "type": 0,
+          "speech": [
+            "You can add notes from patient log."
+          ]
+        }
+      ]
+    }
+  ],
+  "userSays": [
+    {
+      "data": [
+        {
+          "text": "Add medical note"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Submit advice"
+        }
+      ],
+      "isTemplate": false
+    }
+  ]
+}

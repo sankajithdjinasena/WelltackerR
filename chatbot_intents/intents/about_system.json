@@ -1,0 +1,42 @@
+{
+  "name": "about_system",
+  "auto": true,
+  "responses": [
+    {
+      "messages": [
+        {
+          "type": 0,
+          "speech": [
+            "This is a Personal Health Tracker with AI recommendations."
+          ]
+        }
+      ]
+    }
+  ],
+  "userSays": [
+    {
+      "data": [
+        {
+          "text": "What is this system?"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Tell me about this"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "What can you do?"
+        }
+      ],
+      "isTemplate": false
+    }
+  ]
+}

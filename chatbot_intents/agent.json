@@ -1,0 +1,8 @@
+{
+  "description": "Health Tracker Chatbot Agent",
+  "language": "en",
+  "shortDescription": "",
+  "supportedLanguages": [],
+  "disableInteractionLogs": false,
+  "disableStackdriverLogs": false
+}

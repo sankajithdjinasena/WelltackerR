@@ -1,0 +1,34 @@
+{
+  "name": "doctor_view_patients",
+  "auto": true,
+  "responses": [
+    {
+      "messages": [
+        {
+          "type": 0,
+          "speech": [
+            "Opening patient list."
+          ]
+        }
+      ]
+    }
+  ],
+  "userSays": [
+    {
+      "data": [
+        {
+          "text": "Show patients"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Open patient list"
+        }
+      ],
+      "isTemplate": false
+    }
+  ]
+}

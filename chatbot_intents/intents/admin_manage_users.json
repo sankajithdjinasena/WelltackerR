@@ -1,0 +1,34 @@
+{
+  "name": "admin_manage_users",
+  "auto": true,
+  "responses": [
+    {
+      "messages": [
+        {
+          "type": 0,
+          "speech": [
+            "You can manage users in Admin dashboard."
+          ]
+        }
+      ]
+    }
+  ],
+  "userSays": [
+    {
+      "data": [
+        {
+          "text": "Manage users"
+        }
+      ],
+      "isTemplate": false
+    },
+    {
+      "data": [
+        {
+          "text": "Admin dashboard users"
+        }
+      ],
+      "isTemplate": false
+    }
+  ]
+}
