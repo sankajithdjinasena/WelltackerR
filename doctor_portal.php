@@ -21,9 +21,6 @@
   agent-id="9d5f2420-6826-4916-9e73-235b856a1965"
   language-code="en"
 ></df-messenger>
-
-
-
     <?php
     include 'config.php';
     session_start();
@@ -33,7 +30,6 @@
         header("Location: login.php");
         exit();
     }
-
     $user_id = $_SESSION['user_id'];
 
     // Fetch latest verification submission (if any)
@@ -247,15 +243,12 @@
                             $condition = "No Data";
                         }
 
-
                         if ($row['blood_sugar'] > 140) {
                             $condition = "High Blood Sugar";
                         } elseif ($row['blood_sugar'] < 70) {
                             $condition = "Low Blood Sugar";
                         }
                         ?>
-
-
                         <div class="patient">
                             <div class="patient-info">
                                 <strong><?= htmlspecialchars($row['full_name']) ?></strong>
@@ -277,9 +270,7 @@
                                         style="margin-top:10px; background:#3498db; color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer;">
                                         <i class='bx bx-message-dots'></i> Send Note
                                     </button>
-
                                 </span>
-
                             </div>
                             <a href="mailto:<?= htmlspecialchars($row['email']) ?>"
                                 style="text-decoration:none; display:inline-block; padding:8px 12px; background-color:var(--g1color); color:#fff; border-radius:10px;">
@@ -343,7 +334,7 @@
     margin-top: 100px; 
 }
 
-/* Style for status 'pending' or 'rejected' - 120px */
+/* Style for status 'pending' or 'rejected' - 205px */
 .footer-tall {
     margin-top: 205px;
 }

@@ -24,7 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("issss", $user_id, $license_number, $specialization, $notes, $target_file);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Verification submitted successfully!'); window.location='doctor_portal.php';</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            title: 'Success!',
+            text: 'Verification submitted successfully!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = 'doctor_portal.php';
+        });
+        </script>";
+
     } else {
         echo "Error: " . $conn->error;
     }

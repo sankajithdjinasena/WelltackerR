@@ -103,11 +103,21 @@ $(".delete-btn").click(function() {
         type: "POST",
         data: { id: id },
         success: function(res) {
-            alert("Message deleted successfully.");
+            Swal.fire({
+                title: 'Success!',
+                text: 'Message deleted successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
             row.remove();
         },
         error: function() {
-            alert("Failed to delete message.");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to delete message.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     });
 });

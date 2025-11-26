@@ -8,11 +8,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
   exit();
 }
 
-$total_users = $conn->query("SELECT COUNT(*) AS count FROM users")->fetch_assoc()['count'];
+$total_users = $conn->query("SELECT COUNT(*) AS count FROM users")->fetch_assoc()['count']; # used to retrieve the next row from a database result set as an associative array, where the column names serve as the array's keys
 $total_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role='Doctor'")->fetch_assoc()['count'];
 $total_patients = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role='Patient'")->fetch_assoc()['count'];
 $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verifications WHERE verification_status='Verified'")->fetch_assoc()['count'];
-
 
 ?>
 <!DOCTYPE html>
@@ -27,17 +26,18 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
   <link rel="stylesheet" href="css/patient.css">
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/style.css">
-
 </head>
+
 <style>
-          .nav-links a.login-btn{
-  color: var(--text-light);
-}
-.nav-links a.login-btn:hover{
-  background-color: var(--text-light);
-  color: var(--pcolor);
-}
+    .nav-links a.login-btn{
+      color: var(--text-light);
+    }
+    .nav-links a.login-btn:hover{
+      background-color: var(--text-light);
+      color: var(--pcolor);
+    }
 </style>
+
 <body>
   <nav>
     <div class="nav-header">
@@ -65,7 +65,6 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
       <p>System Overview: <?php echo $total_users ?> active users, <?php echo $total_doctors ?> doctor/s available.</p>
     </div>
 
-
     <!-- Vitals Cards -->
     <div class="vitals-grid" style="color:#000">
       <div class="vital-card">
@@ -85,9 +84,7 @@ $verified_doctors = $conn->query("SELECT COUNT(*) AS count FROM doctor_verificat
         <div class="vital-value"><?php echo $total_patients; ?></div>
       </div>
     </div>
-
-
-
+    
     <div class="content-grid">
       <div class="section-card">
         <div class="section-header">

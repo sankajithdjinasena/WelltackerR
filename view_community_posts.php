@@ -86,7 +86,7 @@ $result = $conn->query($sql);
         </table>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 // Delete community post
 $(".delete-btn").click(function() {
@@ -99,11 +99,21 @@ $(".delete-btn").click(function() {
         type: "POST",
         data: { post_id: id },
         success: function(res) {
-            alert("Post deleted successfully.");
+            Swal.fire({
+                title: 'Success!',
+                text: 'Post deleted successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
             row.remove();
         },
         error: function() {
-            alert("Failed to delete post.");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to delete post.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     });
 });

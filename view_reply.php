@@ -105,7 +105,7 @@ $result = $conn->query($sql);
         </table>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 // Delete community reply
 $(".delete-btn").click(function() {
@@ -118,11 +118,21 @@ $(".delete-btn").click(function() {
         type: "POST",
         data: { reply_id: id },
         success: function(res) {
-            alert("Reply deleted successfully.");
+            Swal.fire({
+                title: 'Success!',
+                text: 'Reply deleted successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
             row.remove();
         },
         error: function() {
-            alert("Failed to delete reply.");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to delete reply.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     });
 });

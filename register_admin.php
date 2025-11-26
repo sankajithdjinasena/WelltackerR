@@ -36,7 +36,16 @@ if (isset($_POST['register'])) {
 
     // Check password match
     if ($password !== $confirm_password) {
-        echo "<script>alert('Passwords do not match!');</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            title: 'Error!',
+            text: 'Passwords do not match!',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        </script>";
+
     } else {
         // Check if email already exists
         $checkEmail = $conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -45,7 +54,16 @@ if (isset($_POST['register'])) {
         $result = $checkEmail->get_result();
 
         if ($result->num_rows > 0) {
-            echo "<script>alert('Email already registered! Please login.');</script>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+            <script>
+            Swal.fire({
+                title: 'Warning!',
+                text: 'Email already registered! Please login.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            </script>";
+
         } else {
             // Hash password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -69,13 +87,30 @@ if (isset($_POST['register'])) {
             );
 
             if ($stmt->execute()) {
-                echo "<script>
-                        alert('Registration successful! You can now login.');
-                        window.location.href='login.php';
-                      </script>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Registration successful! You can now login.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = 'login.php';
+                });
+                </script>";
+
             } else {
-                echo "<script>alert('Error: Registration failed. Try again.');
-                window.location.href='register_admin.php';</script>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Registration failed. Try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = 'register_admin.php';
+                });
+                </script>";
             }
 
             $stmt->close();

@@ -87,7 +87,7 @@ $result = $conn->query($sql);
         </table>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(document).ready(function() {
     $(".status-select").change(function() {
@@ -102,7 +102,12 @@ $(document).ready(function() {
                 console.log("Status updated:", response);
             },
             error: function(xhr) {
-                alert("Failed to update status.");
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to update status.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
         });
     });
@@ -119,11 +124,21 @@ $(".delete-btn").click(function() {
         type: "POST",
         data: { user_id: userId },
         success: function(response) {
-            alert("User deleted successfully.");
+            Swal.fire({
+                title: 'Success!',
+                text: 'User deleted successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
             row.remove(); // Remove row from table
         },
         error: function(xhr) {
-            alert("Failed to delete user.");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to delete user.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     });
 });

@@ -12,14 +12,30 @@ if (isset($_POST['verify_otp'])) {
     $entered_otp = $_POST['otp'];
 
     if ($entered_otp == $_SESSION['reset_otp']) {
-        echo "<script>
-    alert('OTP Verified. You can now reset your password.');
-    window.location.href = 'reset_password.php';
-</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            title: 'Success!',
+            text: 'OTP Verified. You can now reset your password.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.href = 'reset_password.php';
+        });
+        </script>";
+
 
     } else {
-        echo "<script>alert('Invalid OTP !');
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            title: 'Error!',
+            text: 'Invalid OTP!',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         </script>";
+
     }
 }
 

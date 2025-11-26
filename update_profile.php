@@ -28,9 +28,31 @@ if ($stmt->execute()) {
     $_SESSION['last_name'] = $last_name;
     $_SESSION['email'] = $email;
 
-    echo "<script>alert('Profile updated successfully!'); window.location='".$_SERVER['HTTP_REFERER']."';</script>";
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+    Swal.fire({
+        title: 'Success!',
+        text: 'Profile updated successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    }).then(() => {
+        window.location.href = '".$_SERVER['HTTP_REFERER']."';
+    });
+    </script>";
+
 } else {
-    echo "<script>alert('Error updating profile.'); window.history.back();</script>";
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+    Swal.fire({
+        title: 'Error!',
+        text: 'Error updating profile.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    }).then(() => {
+        window.history.back();
+    });
+    </script>";
+
 }
 $stmt->close();
 $conn->close();

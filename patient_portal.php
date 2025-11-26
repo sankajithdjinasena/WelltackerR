@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/patient.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
             .nav-links a.login-btn{
@@ -853,7 +854,12 @@
                 if (!response.ok) {
                     // If not successful, parse the error message from the server
                     const errorData = await response.json();
-                    alert('Prediction Error: ' + errorData.error);
+                    Swal.fire({
+                        title: 'Prediction Error',
+                        text: errorData.error,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
                     return;
                 }
 
@@ -862,11 +868,23 @@
                 const predictionText = result.prediction_result;
 
                 // Display the final prediction result in a pop-up alert
-                alert('Prediction Result : ' + predictionText);
+                Swal.fire({
+                    title: 'Prediction Result',
+                    text: predictionText,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
 
             } catch (error) {
                 console.error('Fetch error:', error);
-                alert('An unexpected error occurred during the request.');
+                Swal.fire({
+                    title: 'Unexpected Error',
+                    text: 'An unexpected error occurred during the request.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+
             }
         });
     </script>
@@ -1032,8 +1050,6 @@
                         <option value="0">No</option>
                     </select>
                 </div>
-
-
                 <div class="form-group">
                     <button type="submit" class="health-submit">Predict</button>
                 </div>
@@ -1055,7 +1071,12 @@
 
                 if (!response.ok) {
                     const errorData = await response.json();
-                    alert('Server Error: ' + errorData.error);
+                    Swal.fire({
+                        title: 'Server Error',
+                        text: errorData.error,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
                     return;
                 }
 
@@ -1063,11 +1084,21 @@
                 const predictionText = result.prediction_result;
 
                 // Display the alert
-                alert('Prediction Result: ' + predictionText);
+                Swal.fire({
+                    title: 'Prediction Result',
+                    text: predictionText,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
 
             } catch (error) {
                 console.error('Fetch error:', error);
-                alert('An unexpected error occurred during the request.');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'An unexpected error occurred during the request.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
         });
     </script>

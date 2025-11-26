@@ -3,15 +3,38 @@ include 'config.php';
 
 // ---------- Handle new post ----------
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['new_post'])) {
-    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $title = mysqli_real_escape_string($conn, $_POST['title']); # to escape special characters in a string before it is used in an SQL query
     $message = mysqli_real_escape_string($conn, $_POST['message']);
     $author = mysqli_real_escape_string($conn, $_POST['author']);
 
     if (!empty($title) && !empty($message)) {
         $conn->query("INSERT INTO community_posts (title, message, author) VALUES ('$title', '$message', '$author')");
-        echo "<script>alert('Post created successfully!'); window.location='community.php';</script>";
+        echo "
+              <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+              <script>
+              Swal.fire({
+                  title: 'Success!',
+                  text: 'Post created successfully!',
+                  icon: 'success',
+                  confirmButtonText: 'OK'
+              }).then(() => {
+                  window.location = 'community.php';
+              });
+              </script>
+              ";
+
     } else {
-        echo "<script>alert('Please fill all fields.');</script>";
+        echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            title: 'Oops!',
+            text: 'Please fill all fields.',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        });
+        </script>
+        ";
     }
 }
 
@@ -40,7 +63,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
         header("Location: community.php");
         exit;
     } else {
-        echo "<script>alert('⚠️ Please enter your name and reply.');</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            title: 'Hey!',
+            text: 'Please enter your name and reply.',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        });
+        </script>
+        ";
     }
 }
 ?>

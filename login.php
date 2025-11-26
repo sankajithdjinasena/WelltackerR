@@ -57,14 +57,49 @@
                 } elseif ($user['role'] == 'Admin') {
                     header("Location: admin_portal.php");
                 }else {
-                    echo "<script>alert('Invalid role. Please contact admin.'); window.history.back();</script>";
+                    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                    <script>
+                    Swal.fire({
+                        title: 'Invalid Role',
+                        text: 'Invalid role. Please contact admin.',
+                        icon: 'error',
+                        confirmButtonText: 'Go Back'
+                    }).then(() => {
+                        window.history.back();
+                    });
+                    </script>
+                    ";
+
                 }
                 exit();
             } else {
-                echo "<script>alert('Incorrect password.'); window.history.back();</script>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                    title: 'Incorrect Password',
+                    text: 'Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'Go Back'
+                }).then(() => {
+                    window.history.back();
+                });
+                </script>
+                ";
+
             }
         } else {
-            echo "<script>alert('No user found with that email.'); window.history.back();</script>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+            <script>
+            Swal.fire({
+                title: 'No User Found',
+                text: 'No user found with that email.',
+                icon: 'warning',
+                confirmButtonText: 'Go Back'
+            }).then(() => {
+                window.history.back();
+            });
+            </script>
+            ";
         }
 
         $stmt->close();

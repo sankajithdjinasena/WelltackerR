@@ -18,7 +18,18 @@ $stmt = $conn->prepare("INSERT INTO vitals (user_id, blood_pressure, heart_rate,
 $stmt->bind_param("isiiis", $user_id, $bp, $hr, $bs, $wt, $notes);
 
 if ($stmt->execute()) {
-    echo "<script>alert('Vitals saved successfully!'); window.location.href='patient_portal.php';</script>";
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+    Swal.fire({
+        title: 'Success!',
+        text: 'Vitals saved successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    }).then(() => {
+        window.location.href = 'patient_portal.php';
+    });
+    </script>";
+
 } else {
     echo "Error: " . $stmt->error;
 }
