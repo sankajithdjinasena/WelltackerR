@@ -12,7 +12,7 @@ if (isset($_POST['verify_otp'])) {
     $entered_otp = $_POST['otp'];
 
     if ($entered_otp == $_SESSION['reset_otp']) {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        echo "
         <script>
         Swal.fire({
             title: 'Success!',
@@ -26,7 +26,7 @@ if (isset($_POST['verify_otp'])) {
 
 
     } else {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        echo "
         <script>
         Swal.fire({
             title: 'Error!',
@@ -50,6 +50,7 @@ if (isset($_POST['verify_otp'])) {
     <link rel="stylesheet" href="css/login.css">
     <link rel="icon" type="image/png" href="image/Logo_R.png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 </head>
 <style>
     .login-submit-btn {

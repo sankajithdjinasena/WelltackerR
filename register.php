@@ -37,6 +37,7 @@
         $first_name = trim($_POST['first_name']);
         $last_name = trim($_POST['last_name']);
         $email = trim($_POST['email']);
+        $telephone = trim($_POST['telephone']);
         $role = $_POST['role'];
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
@@ -80,14 +81,15 @@
 
                 // Insert user
                 $stmt = $conn->prepare(
-                    "INSERT INTO users (first_name, last_name, email, password, role, verification_status) 
-                VALUES (?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO users (first_name, last_name, email,telephone, password, role, verification_status) 
+                VALUES (?, ?, ?,?, ?, ?, ?)"
                 );
                 $stmt->bind_param(
-                    "ssssss",
+                    "sssssss",
                     $first_name,
                     $last_name,
                     $email,
+                    $telephone,
                     $hashed_password,
                     $role,
                     $verification_status
@@ -176,6 +178,10 @@
         <input type="email" id="email" name="email" placeholder="Enter your email" required>
     </div>
     <div class="login-form-group">
+        <label>Telephone Number</label>
+        <input type="text" id="telephone" name="telephone" placeholder="Enter your telephone number" required>
+    </div>
+    <div class="login-form-group">
         <label>Password</label>
         <div class="password-wrapper">
             <input type="password" id="passwordInput" name="password" placeholder="Enter password" required oninput="checkPasswordStrength(this.value)">
@@ -247,6 +253,7 @@ function validateRegisterForm() {
     const lastName = document.getElementById('last_name').value.trim();
     const role = document.getElementById('role').value;
     const email = document.getElementById('email').value.trim();
+    const telephone = document.getElementById('telephone').value.trim();
     const password = document.getElementById('passwordInput').value.trim();
     const confirmPassword = document.getElementById('confirmPassword').value.trim();
     const errorEl = document.getElementById('registerError');
@@ -255,7 +262,7 @@ function validateRegisterForm() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!firstName || !lastName || !role || !email || !password || !confirmPassword) {
+    if (!firstName || !lastName || !role || !email || !telephone || !password || !confirmPassword) {
         errorEl.textContent = "All fields are required.";
         return false;
     }
@@ -274,6 +281,14 @@ function validateRegisterForm() {
         errorEl.textContent = "Passwords do not match.";
         return false;
     }
+
+    const phoneRegex = /^[0-9]{9,12}$/;
+
+    if (!phoneRegex.test(telephone)) {
+        errorEl.textContent = "Please enter a valid telephone number (9–12 digits).";
+        return false;
+    }
+
 
     return true; // All validations passed
 }
