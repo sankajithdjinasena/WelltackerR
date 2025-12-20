@@ -174,6 +174,9 @@
                 <label>Email:</label>
                 <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
 
+                <label>Telephone:</label>
+                <input type="text" name="telephone" value="<?php echo $_SESSION['telephone']; ?>" required>
+
                 <label>Role:</label>
                 <input type="text" value="<?php echo $_SESSION['role']; ?>" disabled>
 

@@ -74,6 +74,7 @@
             <a href="logout.php" class="login-btn">Logout</a>
         </div>
     </nav>
+
     <!-- User Profile Dialog -->
     <div id="userinfoDialog" class="userinfo-dialog">
         <div class="userinfo-content">
@@ -91,6 +92,9 @@
 
                 <label>Email:</label>
                 <input type="email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
+
+                <label>Telephone:</label>
+                <input type="text" name="telephone" value="<?php echo $_SESSION['telephone']; ?>" required>
 
                 <label>Role:</label>
                 <input type="text" value="<?php echo $_SESSION['role']; ?>" disabled>
@@ -197,6 +201,7 @@
                     SELECT 
                         u.id AS user_id,
                         u.email,
+                        u.telephone,
                         CONCAT(u.first_name, ' ', u.last_name) AS full_name,
                         v.blood_pressure,
                         v.heart_rate,
@@ -264,6 +269,7 @@
                                         <br></span>
                                     Last Updated: <?= htmlspecialchars($row['created_at'] ?? 'N/A') ?>
                                 </span> <br>
+                                <span>Contact Patient: <?= htmlspecialchars($row['telephone']) ?></span><br>
                                 <span>
                                     <button class="doctor-send-note-btn" data-user-id="<?= $row['user_id'] ?>" 
                                         data-user-name="<?= htmlspecialchars($row['full_name']) ?>"

@@ -2,10 +2,19 @@
 session_start();
 include 'config.php';
 
-$user_id = $_POST['user_id'];
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: login.php");
+    exit;
+}
+
+$user_id    = $_POST['user_id'];
 $first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
-$email = $_POST['email'];
+$last_name  = $_POST['last_name'];
+$email      = $_POST['email'];
+$telephone  = $_POST['telephone'];
+
+// Determine return page
+$return_url = $_SERVER['HTTP_REFERER'];
 
 // Check if email exists for another user
 $stmt = $conn->prepare("SELECT id FROM users WHERE email=? AND id!=?");
@@ -14,46 +23,32 @@ $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-    echo "<script>alert('Email already exists. Please choose another.'); window.history.back();</script>";
+    echo "<script>alert('Email already exists. Please choose another.'); window.location.href='$return_url';</script>";
     exit;
 }
 
 // Update user details
-$stmt = $conn->prepare("UPDATE users SET first_name=?, last_name=?, email=? WHERE id=?");
-$stmt->bind_param("sssi", $first_name, $last_name, $email, $user_id);
+$stmt = $conn->prepare(
+    "UPDATE users SET first_name=?, last_name=?, email=?, telephone=? WHERE id=?"
+);
+$stmt->bind_param("ssssi", $first_name, $last_name, $email, $telephone, $user_id);
 
 if ($stmt->execute()) {
+
     // Update session variables
     $_SESSION['first_name'] = $first_name;
-    $_SESSION['last_name'] = $last_name;
-    $_SESSION['email'] = $email;
+    $_SESSION['last_name']  = $last_name;
+    $_SESSION['email']      = $email;
+    $_SESSION['telephone']  = $telephone;
 
-    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-    <script>
-    Swal.fire({
-        title: 'Success!',
-        text: 'Profile updated successfully!',
-        icon: 'success',
-        confirmButtonText: 'OK'
-    }).then(() => {
-        window.location.href = '".$_SERVER['HTTP_REFERER']."';
-    });
-    </script>";
+    // ✅ Redirect back
+    header("Location: $return_url");
+    exit;
 
 } else {
-    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-    <script>
-    Swal.fire({
-        title: 'Error!',
-        text: 'Error updating profile.',
-        icon: 'error',
-        confirmButtonText: 'OK'
-    }).then(() => {
-        window.history.back();
-    });
-    </script>";
-
+    echo "<script>alert('Error updating profile.'); window.location.href='$return_url';</script>";
 }
+
 $stmt->close();
 $conn->close();
 ?>
