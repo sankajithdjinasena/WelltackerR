@@ -89,6 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
+
+
 <body>
   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
@@ -175,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
       <form method="POST" action="">
         <input type="hidden" name="reply_post" value="1">
         <input type="hidden" name="post_id" value="<?= $post_id ?>">
-        <input type="text" name="reply_author" placeholder="Your Name" required>
+        <input type="text" id="reply-author" name="reply_author" placeholder="Your Name" required>
         <textarea name="reply_text" placeholder="Write your reply..." required></textarea>
         <button type="submit" class="post-submit-btn">Reply</button>
       </form>
@@ -193,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_post'])) {
           <div class="reply-content">
             <h5><?= htmlspecialchars($r['author']) ?></h5>
             <p><?= nl2br(htmlspecialchars($r['reply_text'])) ?></p>
-            <p>Created At: <?= htmlspecialchars($r['created_at']) ?></p>
+            <p>Posted: <?= htmlspecialchars($r['created_at']) ?></p>
           </div>
         </div>
       <?php endwhile; ?>

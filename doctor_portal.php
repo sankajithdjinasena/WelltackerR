@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/doctor.css">
+    <link rel="stylesheet" href="css/dialogflow.css">
 </head>
 
 <body>
