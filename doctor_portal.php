@@ -68,7 +68,7 @@
             <a id="openProfileBtn" class="register-btn" style="cursor: pointer;">
                 <?php echo $_SESSION["first_name"] . " " . $_SESSION["last_name"] ?>
             </a>
-            <a id="openVerificationBtn" class="register-btn" style="color: <?php echo $color; ?>; background-color:black; cursor: pointer;">
+            <a id="openVerificationBtn" class="register-btn" title="You can contact support center to change your verification status" style="color: <?php echo $color; ?>; background-color:black; cursor: pointer;">
                 Status: <?php echo htmlspecialchars($status); ?>
             </a>
             <a href="logout.php" class="login-btn">Logout</a>
@@ -269,7 +269,7 @@
                                         <br></span>
                                     Last Updated: <?= htmlspecialchars($row['created_at'] ?? 'N/A') ?>
                                 </span> <br>
-                                <span>Contact Patient: <?= htmlspecialchars($row['telephone']) ?></span><br>
+                                <span><i class='bx bx-phone'></i> <i>Contact Patient: <?= htmlspecialchars($row['telephone']) ?></i></span><br>
                                 <span>
                                     <button class="doctor-send-note-btn" data-user-id="<?= $row['user_id'] ?>" 
                                         data-user-name="<?= htmlspecialchars($row['full_name']) ?>"
