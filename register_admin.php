@@ -29,6 +29,7 @@ if (isset($_POST['register'])) {
     // Sanitize inputs
     $first_name = trim($_POST['first_name']);
     $last_name = trim($_POST['last_name']);
+    $telephone = trim($_POST['telephone'] ?? '');
     $email = trim($_POST['email']);
     $role = $_POST['role'];
     $password = $_POST['password'];
@@ -73,14 +74,15 @@ if (isset($_POST['register'])) {
 
             // Insert user
             $stmt = $conn->prepare(
-                "INSERT INTO users (first_name, last_name, email, password, role, verification_status) 
+                "INSERT INTO users (first_name, last_name, email, telephone, password, role, verification_status) 
                 VALUES (?, ?, ?, ?, ?, ?)"
             );
             $stmt->bind_param(
-                "ssssss",
+                "sssssss",
                 $first_name,
                 $last_name,
                 $email,
+                $telephone,
                 $hashed_password,
                 $role,
                 $verification_status
@@ -169,10 +171,14 @@ if (isset($_POST['register'])) {
                             <option value="admin">Admin</option>
                         </select>
                     </div>
-
+                
                     <div class="login-form-group">
                         <label>Email Address</label>
                         <input type="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="login-form-group">
+                        <label>Telephone</label>
+                        <input type="tel" name="telephone" placeholder="Enter your telephone number">
                     </div>
                     <div class="login-form-group">
                         <label>Password</label>
