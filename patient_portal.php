@@ -1179,7 +1179,7 @@
             const formData = new FormData(form);
 
             // Example: send to your backend API
-            const response = await fetch('/predict_brain_tumor', {
+            const response = await fetch('/brain_predict', {
                 method: 'POST',
                 body: formData
             });
