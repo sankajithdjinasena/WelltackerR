@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2025 at 03:57 PM
+-- Generation Time: Jan 10, 2026 at 06:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,6 +48,13 @@ CREATE TABLE `community_posts` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `community_posts`
+--
+
+INSERT INTO `community_posts` (`post_id`, `title`, `message`, `author`, `created_at`) VALUES
+(5, 'Health Awareness', 'Maintaining good health is more than just treating illness—it’s about daily habits that support your body and mind. Learn how simple lifestyle changes like proper nutrition, regular exercise, and adequate sleep can strengthen your immune system and prevent disease.', 'Sankajith Jinasena', '2025-11-26 16:23:46');
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +68,13 @@ CREATE TABLE `community_replies` (
   `reply_text` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `community_replies`
+--
+
+INSERT INTO `community_replies` (`reply_id`, `post_id`, `author`, `reply_text`, `created_at`) VALUES
+(9, 5, 'P.H. Perera', 'This is so true! I’ve started going for morning walks and I already feel more energetic.', '2025-11-26 16:26:16');
 
 -- --------------------------------------------------------
 
@@ -93,6 +107,13 @@ CREATE TABLE `doctor_notes` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `doctor_notes`
+--
+
+INSERT INTO `doctor_notes` (`id`, `patient_id`, `doctor_id`, `note`, `created_at`) VALUES
+(5, 5, 6, 'You need to balance your sugar level. ', '2025-11-26 16:28:54');
+
 -- --------------------------------------------------------
 
 --
@@ -116,7 +137,7 @@ CREATE TABLE `doctor_verifications` (
 --
 
 INSERT INTO `doctor_verifications` (`id`, `user_id`, `license_number`, `specialization`, `notes`, `document_file`, `verification_status`, `submitted_at`, `verified_at`) VALUES
-(1, 1, '26198', 'Dentist', '', 'uploads/doctor_docs/1763132001_ID.png', 'Verified', '2025-11-14 20:23:21', '2025-11-14 15:54:26');
+(2, 6, '1763132001', 'Dentist', '', 'uploads/doctor_docs/1763441009_1763132001_ID.png', 'Verified', '2025-11-18 10:13:29', '2025-11-26 10:46:34');
 
 -- --------------------------------------------------------
 
@@ -147,6 +168,13 @@ CREATE TABLE `medical_history` (
   `uploaded_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `medical_history`
+--
+
+INSERT INTO `medical_history` (`history_id`, `user_id`, `title`, `description`, `pdf_file`, `uploaded_at`) VALUES
+(4, 5, 'Blood Report', 'Partlets good. ', 'uploads/medical_history/1764175331_report.pdf', '2025-11-26 16:42:11');
+
 -- --------------------------------------------------------
 
 --
@@ -162,18 +190,21 @@ CREATE TABLE `users` (
   `role` enum('Doctor','Patient','Admin') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `verification_status` enum('Pending','Verified','Rejected') DEFAULT 'Verified',
-  `verification_details` text DEFAULT NULL
+  `verification_details` text DEFAULT NULL,
+  `telephone` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `created_at`, `verification_status`, `verification_details`) VALUES
-(1, 'Sankajith', 'Jinasena', 'sankajithdjinasena@gmail.com', '$2y$10$QUDMtkmqBkhCm6TK/CSjKeHzhcdu4UK3j/Uu9VI4PnicYiU8.E1Bu', 'Doctor', '2025-11-14 14:37:47', 'Pending', NULL),
-(2, 'Damith', 'Jinasena', 'd.damithjinasena@gmail.com', '$2y$10$vRbXxJqonFE3iWZ0glAxZOoJKThohiR2zElMVg23PhI55o77oan3W', 'Patient', '2025-11-14 14:38:38', 'Verified', NULL),
-(3, 'Sankajith', 'Jinasena', 'sanke26198@gmail.com', '$2y$10$lXvatLWPTnkQ8CsuHIKvQedDDo0UhTBV.r.9WVKZIyr.FLSoux/2i', 'Admin', '2025-11-14 14:41:11', 'Verified', NULL),
-(4, 'Welltracker', 'Admin', 'admin@welltracker.com', '$2y$10$U0bmQ/Kwpo9btsoVyDi/Me4Xq6mP7vLVoN8VUJ6NdSpaASKktt4tW', 'Admin', '2025-11-14 14:46:27', 'Verified', NULL);
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `created_at`, `verification_status`, `verification_details`, `telephone`) VALUES
+(4, 'Welltracker', 'Admin', 'admin@welltracker.com', '$2y$10$U0bmQ/Kwpo9btsoVyDi/Me4Xq6mP7vLVoN8VUJ6NdSpaASKktt4tW', 'Admin', '2025-11-14 14:46:27', 'Verified', NULL, '0'),
+(5, 'Sanodya', 'Jinadasa', 'sanodyav@gmail.com', '$2y$10$ZZ84jhlpbqGckuSgifRFpeT9hLaQ3bgk2vPpxC8SzVG9usrrPXDuS', 'Patient', '2025-11-17 14:23:34', 'Verified', NULL, '0'),
+(6, 'Sankajith', 'Jinasena', 'sankajithdjinasena@gmail.com', '$2y$10$hrHcefoGlssRJmTWiA2Owuok39ZWC/0F.E1iDSpxb85cJDDjaKWwC', 'Doctor', '2025-11-18 04:30:05', 'Pending', NULL, '0713545642'),
+(8, 'Nimesha', 'Jinasena', 'nimeshajinasena97@gmail.com', '$2y$10$Ka5yYOt6ZT54Ev31o47/je1GOFZxyQTuS2wE9xnZKTo5V4J7aJBo6', 'Patient', '2025-11-24 12:16:11', 'Verified', NULL, '0'),
+(9, 'test', 'test', 'test123@gmail.com', '$2y$10$MV6cDMzQkn0IJpTWI8sxBeHGAsSBrDT6hYYPfvICxbm4s3uBi0/hO', 'Doctor', '2025-11-27 04:47:29', 'Pending', NULL, '0'),
+(11, 'test', 'test', 'test1f23@gmail.com', '$2y$10$z9L6tU6G2667qJozbeChoeQHU2M79mGlkAi2w0s0lQIYQFx9llJL.', 'Doctor', '2025-12-20 12:57:42', 'Pending', NULL, '0713545642das');
 
 -- --------------------------------------------------------
 
@@ -191,6 +222,16 @@ CREATE TABLE `vitals` (
   `notes` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vitals`
+--
+
+INSERT INTO `vitals` (`id`, `user_id`, `blood_pressure`, `heart_rate`, `blood_sugar`, `weight`, `notes`, `created_at`) VALUES
+(1, 5, '15', 15, 10, 10, '', '2025-11-23 19:14:17'),
+(2, 5, '50', 50, 50, 50, '', '2025-11-23 19:14:29'),
+(3, 8, '120', 18, 100, 43, '--', '2025-11-24 12:17:32'),
+(4, 5, '80', 60, 100, 55, '', '2025-11-26 09:44:29');
 
 --
 -- Indexes for dumped tables
@@ -278,13 +319,13 @@ ALTER TABLE `community_likes`
 -- AUTO_INCREMENT for table `community_posts`
 --
 ALTER TABLE `community_posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `community_replies`
 --
 ALTER TABLE `community_replies`
-  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `contact_messages`
@@ -296,13 +337,13 @@ ALTER TABLE `contact_messages`
 -- AUTO_INCREMENT for table `doctor_notes`
 --
 ALTER TABLE `doctor_notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `doctor_verifications`
 --
 ALTER TABLE `doctor_verifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `forum_posts`
@@ -314,19 +355,19 @@ ALTER TABLE `forum_posts`
 -- AUTO_INCREMENT for table `medical_history`
 --
 ALTER TABLE `medical_history`
-  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `vitals`
 --
 ALTER TABLE `vitals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
