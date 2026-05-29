@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2026 at 06:36 PM
+-- Generation Time: May 29, 2026 at 08:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -137,7 +137,7 @@ CREATE TABLE `doctor_verifications` (
 --
 
 INSERT INTO `doctor_verifications` (`id`, `user_id`, `license_number`, `specialization`, `notes`, `document_file`, `verification_status`, `submitted_at`, `verified_at`) VALUES
-(2, 6, '1763132001', 'Dentist', '', 'uploads/doctor_docs/1763441009_1763132001_ID.png', 'Verified', '2025-11-18 10:13:29', '2025-11-26 10:46:34');
+(2, 6, '1763132001', 'Dentist', '', 'uploads/doctor_docs/1763441009_1763132001_ID.png', 'Verified', '2025-11-18 10:13:29', '2026-05-29 08:19:13');
 
 -- --------------------------------------------------------
 
@@ -199,12 +199,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`, `created_at`, `verification_status`, `verification_details`, `telephone`) VALUES
-(4, 'Welltracker', 'Admin', 'admin@welltracker.com', '$2y$10$U0bmQ/Kwpo9btsoVyDi/Me4Xq6mP7vLVoN8VUJ6NdSpaASKktt4tW', 'Admin', '2025-11-14 14:46:27', 'Verified', NULL, '0'),
 (5, 'Sanodya', 'Jinadasa', 'sanodyav@gmail.com', '$2y$10$ZZ84jhlpbqGckuSgifRFpeT9hLaQ3bgk2vPpxC8SzVG9usrrPXDuS', 'Patient', '2025-11-17 14:23:34', 'Verified', NULL, '0'),
 (6, 'Sankajith', 'Jinasena', 'sankajithdjinasena@gmail.com', '$2y$10$hrHcefoGlssRJmTWiA2Owuok39ZWC/0F.E1iDSpxb85cJDDjaKWwC', 'Doctor', '2025-11-18 04:30:05', 'Pending', NULL, '0713545642'),
-(8, 'Nimesha', 'Jinasena', 'nimeshajinasena97@gmail.com', '$2y$10$Ka5yYOt6ZT54Ev31o47/je1GOFZxyQTuS2wE9xnZKTo5V4J7aJBo6', 'Patient', '2025-11-24 12:16:11', 'Verified', NULL, '0'),
-(9, 'test', 'test', 'test123@gmail.com', '$2y$10$MV6cDMzQkn0IJpTWI8sxBeHGAsSBrDT6hYYPfvICxbm4s3uBi0/hO', 'Doctor', '2025-11-27 04:47:29', 'Pending', NULL, '0'),
-(11, 'test', 'test', 'test1f23@gmail.com', '$2y$10$z9L6tU6G2667qJozbeChoeQHU2M79mGlkAi2w0s0lQIYQFx9llJL.', 'Doctor', '2025-12-20 12:57:42', 'Pending', NULL, '0713545642das');
+(12, 'Sankajith', 'Jinasena', 'sanke26198@gmail.com', '$2y$10$UO9VUdXMskqFgwSMdb9P8eu0kPRfsJghsBHxXfrrAW5dEZvOfhu4a', 'Admin', '2026-05-29 06:14:49', 'Verified', NULL, '0713545642');
 
 -- --------------------------------------------------------
 
@@ -230,7 +227,6 @@ CREATE TABLE `vitals` (
 INSERT INTO `vitals` (`id`, `user_id`, `blood_pressure`, `heart_rate`, `blood_sugar`, `weight`, `notes`, `created_at`) VALUES
 (1, 5, '15', 15, 10, 10, '', '2025-11-23 19:14:17'),
 (2, 5, '50', 50, 50, 50, '', '2025-11-23 19:14:29'),
-(3, 8, '120', 18, 100, 43, '--', '2025-11-24 12:17:32'),
 (4, 5, '80', 60, 100, 55, '', '2025-11-26 09:44:29');
 
 --
@@ -361,7 +357,7 @@ ALTER TABLE `medical_history`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `vitals`
