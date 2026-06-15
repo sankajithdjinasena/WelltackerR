@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
-echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
 session_start();
+echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
 if (!isset($_SESSION['reset_email'])) {
     header("Location: forget.php");
     exit();
