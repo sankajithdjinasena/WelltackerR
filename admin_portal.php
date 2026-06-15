@@ -8,6 +8,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'Admin') {
   exit();
 }
 
+$user_id = $_SESSION['user_id'];
+
+$stmt = $conn->prepare("UPDATE users SET last_logged = NOW() WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->close();
+
 $total_users = $conn->query("SELECT COUNT(*) AS count FROM users")->fetch_assoc()['count']; # used to retrieve the next row from a database result set as an associative array, where the column names serve as the array's keys
 $total_doctors = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role='Doctor'")->fetch_assoc()['count'];
 $total_patients = $conn->query("SELECT COUNT(*) AS count FROM users WHERE role='Patient'")->fetch_assoc()['count'];

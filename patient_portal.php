@@ -138,6 +138,15 @@
         header("Location: login.php");
         exit();
     }
+
+    include 'config.php';
+
+    $user_id = $_SESSION['user_id'];
+
+    $stmt = $conn->prepare("UPDATE users SET last_logged = NOW() WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->close();
     ?>
     <nav>
         <div class="nav-header">
@@ -259,7 +268,7 @@
 
         <!-- Quick Actions -->
         <div class="quick-actions">
-            <h2>Toady Vitals</h2>
+            <h2>Today Vitals</h2>
             <button class="add-btn" id="openDialog" title="Add Today's Vitals">
                 <i class='bx bx-plus'></i> Add Today's Vitals
             </button>

@@ -33,6 +33,11 @@
     }
     $user_id = $_SESSION['user_id'];
 
+    $stmt = $conn->prepare("UPDATE users SET last_logged = NOW() WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->close();
+
     // Fetch latest verification submission (if any)
     $verification_stmt = $conn->prepare("SELECT * FROM doctor_verifications WHERE user_id = ? ORDER BY submitted_at DESC LIMIT 1");
     $verification_stmt->bind_param("i", $user_id);
