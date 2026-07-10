@@ -310,7 +310,7 @@
             <a href="terms.php">Terms of Service</a>
             <a href="contact.php">Contact Us</a>
         </div>
-        <p>&copy; 2025 WellTrackeR. All rights reserved.</p>
+        <p>&copy; 2026 WellTrackeR. All rights reserved.</p>
 
     </footer>
 </body>

@@ -135,7 +135,7 @@
 
     <div class="about-content">
         <h2>Our Story</h2>
-        <p>Founded in 2025 by a team of WelltrackeR professionals, software engineers, and data scientists, WelltrackeR
+        <p>Founded in 2026 by a team of WelltrackeR professionals, software engineers, and data scientists, WelltrackeR
             emerged from a simple observation: despite advances in medical technology, patients and healthcare providers
             still lacked comprehensive, easy-to-use tools for continuous health monitoring. <br><br>Our founders
             experienced firsthand the challenges of managing chronic conditions, coordinating care between multiple
@@ -288,7 +288,7 @@
             <a href="terms.php">Terms of Service</a>
             <a href="contact.php">Contact Us</a>
         </div>
-        <p>&copy; 2025 WellTrackeR. All rights reserved.</p>
+        <p>&copy; 2026 WellTrackeR. All rights reserved.</p>
 
     </footer>
 
