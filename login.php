@@ -7,7 +7,6 @@
     <title>WelltrackeR | Login</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="icon" type="image/png" href="image/Logo_R.png">
-    <link rel="stylesheet" href="css/dialogflow.css">
 
     <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
