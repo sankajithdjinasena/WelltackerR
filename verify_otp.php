@@ -1,46 +1,46 @@
 <?php
 include 'config.php';
 session_start();
-echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+
 if (!isset($_SESSION['reset_email'])) {
     header("Location: forget.php");
     exit();
 }
 
+$alert_script = '';
 
 if (isset($_POST['verify_otp'])) {
-    $entered_otp = $_POST['otp'];
+    $entered_otp = trim($_POST['otp']);
 
-    if ($entered_otp == $_SESSION['reset_otp']) {
-        echo "
+    if (isset($_SESSION['reset_otp']) && $entered_otp === (string)$_SESSION['reset_otp']) {
+        $alert_script = "
         <script>
-        Swal.fire({
-            title: 'Success!',
-            text: 'OTP Verified. You can now reset your password.',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        }).then(() => {
-            window.location.href = 'reset_password.php';
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Success!',
+                text: 'OTP Verified. You can now reset your password.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = 'reset_password.php';
+            });
         });
         </script>";
-
-
     } else {
-        echo "
+        $alert_script = "
         <script>
-        Swal.fire({
-            title: 'Error!',
-            text: 'Invalid OTP!',
-            icon: 'error',
-            confirmButtonText: 'OK'
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Invalid OTP!',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         });
         </script>";
-
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +51,7 @@ if (isset($_POST['verify_otp'])) {
     <link rel="icon" type="image/png" href="image/Logo_R.png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <?php echo $alert_script; ?>
 </head>
 <style>
     .login-submit-btn {

@@ -1,5 +1,5 @@
 @echo off
-cd /d C:\xampp\htdocs\WelltrackeR\Flask_Framework
+cd /d Flask_Framework
 
 start "" "run_brain.bat"
 start "" "run_diabetic.bat"
